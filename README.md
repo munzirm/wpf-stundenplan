@@ -1,5 +1,12 @@
+#### WORK IN PROCESS
 
-   Work in process!
+## Run in xcode
+
+This project uses [CocoaPods](http://cocoapods.org/) 
+
+    sudo gem update --system
+    sudo gem install cocoapods
+    pod install
 
 ## Was soll er können?
 

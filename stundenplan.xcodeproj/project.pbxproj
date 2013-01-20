@@ -24,6 +24,7 @@
 		59BA3D6A16AB2596000D0FA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59BA3D6816AB2596000D0FA4 /* InfoPlist.strings */; };
 		59BA3D6D16AB2596000D0FA4 /* stundenplanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA3D6C16AB2596000D0FA4 /* stundenplanTests.m */; };
 		59BA3D7716AB27BF000D0FA4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 59BA3D7616AB27BF000D0FA4 /* README.md */; };
+		A81A3E14201F4A02AB352304 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB45426CFF7643E58A2CB518 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19B727B45809423187C3AC13 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		59BA3D3716AB2596000D0FA4 /* stundenplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stundenplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59BA3D3B16AB2596000D0FA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59BA3D3D16AB2596000D0FA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +62,7 @@
 		59BA3D6B16AB2596000D0FA4 /* stundenplanTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stundenplanTests.h; sourceTree = "<group>"; };
 		59BA3D6C16AB2596000D0FA4 /* stundenplanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = stundenplanTests.m; sourceTree = "<group>"; };
 		59BA3D7616AB27BF000D0FA4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 				59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */,
 				59BA3D3E16AB2596000D0FA4 /* Foundation.framework in Frameworks */,
 				59BA3D4016AB2596000D0FA4 /* CoreGraphics.framework in Frameworks */,
+				A81A3E14201F4A02AB352304 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +98,7 @@
 				59BA3D6516AB2596000D0FA4 /* stundenplanTests */,
 				59BA3D3A16AB2596000D0FA4 /* Frameworks */,
 				59BA3D3816AB2596000D0FA4 /* Products */,
+				19B727B45809423187C3AC13 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +118,7 @@
 				59BA3D3D16AB2596000D0FA4 /* Foundation.framework */,
 				59BA3D3F16AB2596000D0FA4 /* CoreGraphics.framework */,
 				59BA3D5F16AB2596000D0FA4 /* SenTestingKit.framework */,
+				DB45426CFF7643E58A2CB518 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 				59BA3D3316AB2596000D0FA4 /* Sources */,
 				59BA3D3416AB2596000D0FA4 /* Frameworks */,
 				59BA3D3516AB2596000D0FA4 /* Resources */,
+				4D38D081ED5A4EFD8F26008B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,7 +216,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
-				ORGANIZATIONNAME = "FH-Köln";
+				ORGANIZATIONNAME = "FH-K√∂ln";
 			};
 			buildConfigurationList = 59BA3D3116AB2596000D0FA4 /* Build configuration list for PBXProject "stundenplan" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -254,6 +261,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4D38D081ED5A4EFD8F26008B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 		59BA3D5C16AB2596000D0FA4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +398,7 @@
 		};
 		59BA3D7116AB2596000D0FA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19B727B45809423187C3AC13 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "stundenplan/stundenplan-Prefix.pch";
@@ -388,6 +410,7 @@
 		};
 		59BA3D7216AB2596000D0FA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19B727B45809423187C3AC13 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "stundenplan/stundenplan-Prefix.pch";
@@ -450,6 +473,7 @@
 				59BA3D7216AB2596000D0FA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		59BA3D7316AB2596000D0FA4 /* Build configuration list for PBXNativeTarget "stundenplanTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +482,7 @@
 				59BA3D7516AB2596000D0FA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
