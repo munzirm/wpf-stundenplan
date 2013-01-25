@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		594BDF3F16B2E9D400328E41 /* LecturersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF3E16B2E9D400328E41 /* LecturersTableViewController.m */; };
 		59A637CD16ACAC7C00DB146C /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* TestViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
 		59BA3D3E16AB2596000D0FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3D16AB2596000D0FA4 /* Foundation.framework */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		19B727B45809423187C3AC13 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		594BDF3D16B2E9D400328E41 /* LecturersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LecturersTableViewController.h; sourceTree = "<group>"; };
+		594BDF3E16B2E9D400328E41 /* LecturersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LecturersTableViewController.m; sourceTree = "<group>"; };
 		59A637CB16ACAC7C00DB146C /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		59A637CC16ACAC7C00DB146C /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		59BA3D3716AB2596000D0FA4 /* stundenplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stundenplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +139,8 @@
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
 				59A637CB16ACAC7C00DB146C /* TestViewController.h */,
 				59A637CC16ACAC7C00DB146C /* TestViewController.m */,
+				594BDF3D16B2E9D400328E41 /* LecturersTableViewController.h */,
+				594BDF3E16B2E9D400328E41 /* LecturersTableViewController.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
 				59BA3D4216AB2596000D0FA4 /* Supporting Files */,
@@ -306,6 +311,7 @@
 				59BA3D4C16AB2596000D0FA4 /* AppDelegate.m in Sources */,
 				59BA3D5816AB2596000D0FA4 /* ViewController.m in Sources */,
 				59A637CD16ACAC7C00DB146C /* TestViewController.m in Sources */,
+				594BDF3F16B2E9D400328E41 /* LecturersTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,40 +1,49 @@
 //
-//  TestViewController.m
+//  LecturersTableViewController.m
 //  stundenplan
 //
-//  Created by Christoph Jerolimov on 20.01.2013.
+//  Created by Christoph Jerolimov on 25.01.2013.
 //  Copyright (c) 2013 FH-K√∂ln. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "LecturersTableViewController.h"
 
-#import <AFCalenderClient/AFCalender.h>
+#import <AFNetworking/AFJSONRequestOperation.h>
 
-@implementation TestViewController {
-	NSArray* _events;
+@implementation LecturersTableViewController {
+	NSArray* _lecturers;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		
-		NSURL* calenderUrl = [NSURL URLWithString:@"http://advbs06.gm.fh-koeln.de:8080/icalender/ical/?sqlabfrage=null%20is%20null"];
-		NSError* error;
-		NSString* calenderContent = [NSString stringWithContentsOfURL:calenderUrl encoding:NSASCIIStringEncoding error:&error];
-		if (error) {
-			NSLog(@"Error: %@", error);
-			return;
-		}
-		
-		AFCalenderParser* parser = [[AFCalenderParser alloc] init];
-		AFCalender* calender = [parser parse:calenderContent];
-		_events = calender.events;
-		[self.tableView reloadData];
-	});
 
+	NSURL* lecturersUrl = [NSURL URLWithString:@"http://nils-becker.com/calendar/lecturers"];
+	NSURLRequest* lecturersRequest = [NSURLRequest requestWithURL:lecturersUrl];
+	
+	NSLog(@"Download now ... %@", lecturersUrl);
+	
+	AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:lecturersRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+		
+		NSLog(@"Expect an array here: %@", NSStringFromClass([JSON class]));
+		_lecturers = JSON;
+		[self.tableView reloadData];
+		
+	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+		
+		NSLog(@"Error: %@", error);
+		
+	}];
+	[operation start];
 	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,12 +61,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _events.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return _lecturers.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,10 +76,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    
+	NSDictionary* lecturer = [_lecturers objectAtIndex:indexPath.row];
+	NSString* title = [lecturer objectForKey:@"titel"];
+	NSString* firstname = [lecturer objectForKey:@"vorname"];
+	NSString* lastname = [lecturer objectForKey:@"nachname"];
 	
-	AFCalenderEvent* event = [_events objectAtIndex:indexPath.row];
-	cell.textLabel.text = event.summery;
-	cell.detailTextLabel.text = [event.start description];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", title, firstname, lastname];
+	cell.detailTextLabel.text = [lecturer objectForKey:@"homepage"];
     
     return cell;
 }

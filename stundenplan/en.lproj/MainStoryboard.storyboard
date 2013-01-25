@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="grH-kV-RKi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qxi-49-zEp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
-        <!--Test View Controller-->
+        <!--Test View Controller - Stundenplan-->
         <scene sceneID="fvh-6J-WNg">
             <objects>
-                <tableViewController id="grH-kV-RKi" customClass="TestViewController" sceneMemberID="viewController">
+                <tableViewController title="Stundenplan" id="grH-kV-RKi" customClass="TestViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0qb-Eu-eBV">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -28,13 +28,66 @@
                             <outlet property="delegate" destination="grH-kV-RKi" id="P7y-Vd-GQv"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="nTi-pG-PkR"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdx-K1-nhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="-15"/>
+            <point key="canvasLocation" x="272" y="-603"/>
+        </scene>
+        <!--Lecturers Table View Controller - Dozenten-->
+        <scene sceneID="eQT-6l-x28">
+            <objects>
+                <tableViewController title="Dozenten" id="Sv4-QI-BPp" customClass="LecturersTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="q4k-oI-KFm">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="1Zf-qj-3T7">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Sv4-QI-BPp" id="jmu-LL-27M"/>
+                            <outlet property="delegate" destination="Sv4-QI-BPp" id="7yg-gE-N2r"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="3uC-be-Zt7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="34r-hG-pLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="283" y="191"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="7Sv-vR-Fh8">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="qxi-49-zEp" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="fdZ-po-5a7">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="grH-kV-RKi" kind="relationship" relationship="viewControllers" id="ez9-We-FCi"/>
+                        <segue destination="Sv4-QI-BPp" kind="relationship" relationship="viewControllers" id="MaO-eY-yVf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74w-sq-udS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-476" y="-247"/>
         </scene>
     </scenes>
     <classes>
+        <class className="LecturersTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LecturersTableViewController.h"/>
+        </class>
         <class className="TestViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TestViewController.h"/>
         </class>
