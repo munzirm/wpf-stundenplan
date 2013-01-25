@@ -6,8 +6,8 @@ This project uses [CocoaPods](http://cocoapods.org/).
 After installing dependency manager and the dependencies work only
 with xcode workspace!
 
-    sudo gem update --system
-    sudo gem install cocoapods
+    [sudo] gem update --system
+    [sudo] gem install cocoapods
     pod install
     open stundenplan.xcworkspace
 

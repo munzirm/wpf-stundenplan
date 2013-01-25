@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59A637CD16ACAC7C00DB146C /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* TestViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
 		59BA3D3E16AB2596000D0FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3D16AB2596000D0FA4 /* Foundation.framework */; };
 		59BA3D4016AB2596000D0FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3F16AB2596000D0FA4 /* CoreGraphics.framework */; };
@@ -39,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		19B727B45809423187C3AC13 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		59A637CB16ACAC7C00DB146C /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		59A637CC16ACAC7C00DB146C /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		59BA3D3716AB2596000D0FA4 /* stundenplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stundenplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59BA3D3B16AB2596000D0FA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59BA3D3D16AB2596000D0FA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				59BA3D7616AB27BF000D0FA4 /* README.md */,
+				594BDF3016B2E3A500328E41 /* Podfile */,
 				59BA3D4116AB2596000D0FA4 /* stundenplan */,
 				59BA3D6516AB2596000D0FA4 /* stundenplanTests */,
 				59BA3D3A16AB2596000D0FA4 /* Frameworks */,
@@ -129,6 +134,8 @@
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
+				59A637CB16ACAC7C00DB146C /* TestViewController.h */,
+				59A637CC16ACAC7C00DB146C /* TestViewController.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
 				59BA3D4216AB2596000D0FA4 /* Supporting Files */,
@@ -298,6 +305,7 @@
 				59BA3D4816AB2596000D0FA4 /* main.m in Sources */,
 				59BA3D4C16AB2596000D0FA4 /* AppDelegate.m in Sources */,
 				59BA3D5816AB2596000D0FA4 /* ViewController.m in Sources */,
+				59A637CD16ACAC7C00DB146C /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
