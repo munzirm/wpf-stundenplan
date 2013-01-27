@@ -8,21 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-#import <AFCalenderClient/AFCalender.h>
+#import <EventKit/EventKit.h>
+
+#import <AFNetworking/AFHTTPClient.h>
 
 /**
  Class which handles the connection to the ical service the FH Köln.
  */
-@interface IcalCalenderClient : AFCalenderClient
+@interface IcalCalenderClient : AFHTTPClient
 
 - (id)init;
 - (id)initWithBaseURL:(NSURL *)url;
 
-- (void) allWithSuccess:(void (^)(AFHTTPRequestOperation *operation, AFCalender* calender))success
+- (void) allWithSuccess:(void (^)(AFHTTPRequestOperation *operation, EKCalendar* calendar, NSArray* events))success
 				failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure;
 
 - (void) sqlQuery:(NSString*) query
-	  withSuccess:(void (^)(AFHTTPRequestOperation *operation, AFCalender* calender))success
+	  withSuccess:(void (^)(AFHTTPRequestOperation *operation, EKCalendar* calendar, NSArray* events))success
 		  failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure;
 
 @end
