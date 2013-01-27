@@ -8,8 +8,11 @@ with xcode workspace!
 
     [sudo] gem update --system
     [sudo] gem install cocoapods
-    pod install
+    pod install   # first time
+    pod update    # if Pods project is created already
     open stundenplan.xcworkspace
+
+After installing or updating the dependencies it was required that you use the Xcode workspace.
 
 ## Was soll er können?
 
