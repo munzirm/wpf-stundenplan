@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 FH-K√∂ln. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "IcalTestViewController.h"
 
-#import <AFCalenderClient/AFCalender.h>
+#import "IcalCalenderClient.h"
 
-@implementation TestViewController {
+@implementation IcalTestViewController {
 	NSArray* _events;
 }
 
@@ -18,23 +18,16 @@
 {
     [super viewDidLoad];
 	
+	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 	
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation *operation, AFCalender *calender) {
 		
-		NSURL* calenderUrl = [NSURL URLWithString:@"http://advbs06.gm.fh-koeln.de:8080/icalender/ical/?sqlabfrage=null%20is%20null"];
-		NSError* error;
-		NSString* calenderContent = [NSString stringWithContentsOfURL:calenderUrl encoding:NSASCIIStringEncoding error:&error];
-		if (error) {
-			NSLog(@"Error: %@", error);
-			return;
-		}
-		
-		AFCalenderParser* parser = [[AFCalenderParser alloc] init];
-		AFCalender* calender = [parser parse:calenderContent];
 		_events = calender.events;
 		[self.tableView reloadData];
-	});
-
+		
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"Error: %@", error);
+	}];
 	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

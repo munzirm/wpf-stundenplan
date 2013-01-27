@@ -8,7 +8,7 @@
 
 #import "LecturersTableViewController.h"
 
-#import <AFNetworking/AFJSONRequestOperation.h>
+#import "JsonCalenderClient.h"
 
 @implementation LecturersTableViewController {
 	NSArray* _lecturers;
@@ -27,23 +27,16 @@
 {
     [super viewDidLoad];
 
-	NSURL* lecturersUrl = [NSURL URLWithString:@"http://nils-becker.com/calendar/lecturers"];
-	NSURLRequest* lecturersRequest = [NSURLRequest requestWithURL:lecturersUrl];
+	JsonCalenderClient* jsonCalenderClient = [[JsonCalenderClient alloc] init];
 	
-	NSLog(@"Download now ... %@", lecturersUrl);
-	
-	AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:lecturersRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+	[jsonCalenderClient lecturersWithSuccess:^(AFHTTPRequestOperation* operation, NSArray* lecturers) {
 		
-		NSLog(@"Expect an array here: %@", NSStringFromClass([JSON class]));
-		_lecturers = JSON;
+		_lecturers = lecturers;
 		[self.tableView reloadData];
 		
-	} failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-		
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Error: %@", error);
-		
 	}];
-	[operation start];
 	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
