@@ -20,7 +20,7 @@
 	
 	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 	
-	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation* operation, EKCalendar* calendar, NSArray* events) {
+	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 		
 		_events = events;
 		[self.tableView reloadData];

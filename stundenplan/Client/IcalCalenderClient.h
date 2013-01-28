@@ -18,13 +18,13 @@
 @interface IcalCalenderClient : AFHTTPClient
 
 - (id)init;
-- (id)initWithBaseURL:(NSURL *)url;
+- (id)initWithBaseURL:(NSURL*) url;
 
-- (void) allWithSuccess:(void (^)(AFHTTPRequestOperation *operation, EKCalendar* calendar, NSArray* events))success
-				failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure;
+- (void) allWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+				failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
 
 - (void) sqlQuery:(NSString*) query
-	  withSuccess:(void (^)(AFHTTPRequestOperation *operation, EKCalendar* calendar, NSArray* events))success
-		  failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure;
+	  withSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+		  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
 
 @end

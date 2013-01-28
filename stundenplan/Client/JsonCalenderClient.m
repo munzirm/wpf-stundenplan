@@ -35,16 +35,16 @@
 
 #pragma mark - Asynchronous calls defined in the client API
 
-- (void) branchesWithSuccess:(void (^)(AFHTTPRequestOperation *operation, NSArray* branches))success
-					failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure {
+- (void) branchesWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* branches))success
+					failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 	
 	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"branches" parameters:nil];
 	AFHTTPRequestOperation* operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
 	[self enqueueHTTPRequestOperation:operation];
 }
 
-- (void) lecturersWithSuccess:(void (^)(AFHTTPRequestOperation *operation, NSArray* lecturers))success
-					  failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure {
+- (void) lecturersWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* lecturers))success
+					  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 	
 	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"lecturers" parameters:nil];
 	AFHTTPRequestOperation* operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];

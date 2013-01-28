@@ -21,9 +21,9 @@
 - (id)init;
 - (id)initWithBaseURL:(NSURL *)url;
 
-- (void) branchesWithSuccess:(void (^)(AFHTTPRequestOperation *operation, NSArray* branches))success
-					 failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure;
-- (void) lecturersWithSuccess:(void (^)(AFHTTPRequestOperation *operation, NSArray* lecturers))success
-					  failure:(void (^)(AFHTTPRequestOperation *operation, NSError* error))failure;
+- (void) branchesWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* branches))success
+					 failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
+- (void) lecturersWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* lecturers))success
+					  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
 
 @end
