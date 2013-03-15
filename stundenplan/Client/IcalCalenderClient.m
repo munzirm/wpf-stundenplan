@@ -40,7 +40,8 @@
 		  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 	
 	if (!query) {
-		query = @"null is null";
+		//query = @"null is null";
+		query = @"SG_KZ = 'MI' and SEMESTER_NR = '4'";
 	}
 	
 	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
