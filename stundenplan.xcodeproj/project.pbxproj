@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		594BDF3F16B2E9D400328E41 /* LecturersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF3E16B2E9D400328E41 /* LecturersTableViewController.m */; };
-		594BDF4316B3153B00328E41 /* JsonCalenderClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4216B3153B00328E41 /* JsonCalenderClient.m */; };
 		594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4516B3155E00328E41 /* IcalCalenderClient.m */; };
 		59A637CD16ACAC7C00DB146C /* IcalTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
@@ -44,10 +42,6 @@
 /* Begin PBXFileReference section */
 		19B727B45809423187C3AC13 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
-		594BDF3D16B2E9D400328E41 /* LecturersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LecturersTableViewController.h; sourceTree = "<group>"; };
-		594BDF3E16B2E9D400328E41 /* LecturersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LecturersTableViewController.m; sourceTree = "<group>"; };
-		594BDF4116B3153B00328E41 /* JsonCalenderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonCalenderClient.h; path = Client/JsonCalenderClient.h; sourceTree = "<group>"; };
-		594BDF4216B3153B00328E41 /* JsonCalenderClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonCalenderClient.m; path = Client/JsonCalenderClient.m; sourceTree = "<group>"; };
 		594BDF4416B3155E00328E41 /* IcalCalenderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcalCalenderClient.h; path = Client/IcalCalenderClient.h; sourceTree = "<group>"; };
 		594BDF4516B3155E00328E41 /* IcalCalenderClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IcalCalenderClient.m; path = Client/IcalCalenderClient.m; sourceTree = "<group>"; };
 		59A637CB16ACAC7C00DB146C /* IcalTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcalTestViewController.h; sourceTree = "<group>"; };
@@ -108,8 +102,6 @@
 			children = (
 				594BDF4416B3155E00328E41 /* IcalCalenderClient.h */,
 				594BDF4516B3155E00328E41 /* IcalCalenderClient.m */,
-				594BDF4116B3153B00328E41 /* JsonCalenderClient.h */,
-				594BDF4216B3153B00328E41 /* JsonCalenderClient.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -156,8 +148,6 @@
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
 				59A637CB16ACAC7C00DB146C /* IcalTestViewController.h */,
 				59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */,
-				594BDF3D16B2E9D400328E41 /* LecturersTableViewController.h */,
-				594BDF3E16B2E9D400328E41 /* LecturersTableViewController.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
 				594BDF4016B3151000328E41 /* Client */,
@@ -329,8 +319,6 @@
 				59BA3D4C16AB2596000D0FA4 /* AppDelegate.m in Sources */,
 				59BA3D5816AB2596000D0FA4 /* ViewController.m in Sources */,
 				59A637CD16ACAC7C00DB146C /* IcalTestViewController.m in Sources */,
-				594BDF3F16B2E9D400328E41 /* LecturersTableViewController.m in Sources */,
-				594BDF4316B3153B00328E41 /* JsonCalenderClient.m in Sources */,
 				594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

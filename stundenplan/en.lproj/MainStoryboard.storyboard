@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qxi-49-zEp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="qxi-49-zEp">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Ical Test View Controller - Stundenplan-->
@@ -34,36 +34,6 @@
             </objects>
             <point key="canvasLocation" x="272" y="-603"/>
         </scene>
-        <!--Lecturers Table View Controller - Dozenten-->
-        <scene sceneID="eQT-6l-x28">
-            <objects>
-                <tableViewController title="Dozenten" id="Sv4-QI-BPp" customClass="LecturersTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="q4k-oI-KFm">
-                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="1Zf-qj-3T7">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Sv4-QI-BPp" id="jmu-LL-27M"/>
-                            <outlet property="delegate" destination="Sv4-QI-BPp" id="7yg-gE-N2r"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="3uC-be-Zt7"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="34r-hG-pLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="283" y="191"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7Sv-vR-Fh8">
             <objects>
@@ -76,7 +46,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="grH-kV-RKi" kind="relationship" relationship="viewControllers" id="ez9-We-FCi"/>
-                        <segue destination="Sv4-QI-BPp" kind="relationship" relationship="viewControllers" id="MaO-eY-yVf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74w-sq-udS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,9 +56,6 @@
     <classes>
         <class className="IcalTestViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IcalTestViewController.h"/>
-        </class>
-        <class className="LecturersTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LecturersTableViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
