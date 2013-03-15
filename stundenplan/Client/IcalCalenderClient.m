@@ -2,8 +2,7 @@
 //  IcalCalenderClient.m
 //  stundenplan
 //
-//  Created by Christoph Jerolimov on 25.01.2013.
-//  Copyright (c) 2013 FH-Köln. All rights reserved.
+//  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
 #import "IcalCalenderClient.h"
