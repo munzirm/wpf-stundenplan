@@ -11,23 +11,22 @@
 
 @implementation IcalTestViewController {
 	NSArray* _events;
+	EKEventStore *eventStore;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	
-	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
-	
-	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
-		
-		_events = events;
-		[self.tableView reloadData];
-		
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"Error: %@", error);
+
+	eventStore = nil;
+	[self requestAccessToCalendar:^(BOOL granted, NSError *error) {
+		if (granted) {
+			[self didGetAccessToCalendar];
+		} else {
+			// no permissions to access calendars
+			NSLog(@"Error: %@", error);
+		}
 	}];
-	
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -35,11 +34,46 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+/**
+ Request permissions to the calendar
+ */
+- (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback; {
+    if (eventStore == nil) {
+        eventStore = [[EKEventStore alloc] init];
+    }
+
+	// request permissions
+	if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+		// iOS 6 and later
+		[eventStore requestAccessToEntityType:EKEntityTypeEvent completion:callback];
+	} else {
+		// iOS 5
+		callback(FALSE, NULL);
+	}
+}
+
+/**
+ Permissions to the calendar permitted
+ */
+- (void)didGetAccessToCalendar {
+	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
+
+	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
+
+		_events = events;
+		[self.tableView reloadData];
+
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		NSLog(@"Error: %@", error);
+	}];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Table view data source
 
@@ -59,7 +93,10 @@
 	
 	EKEvent* event = [_events objectAtIndex:indexPath.row];
 	cell.textLabel.text = event.title;
-	cell.detailTextLabel.text = [event.startDate description];
+
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"dd.MM.yyyy"];
+	cell.detailTextLabel.text = [dateFormatter stringFromDate:event.startDate];
     
     return cell;
 }
