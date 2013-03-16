@@ -30,23 +30,19 @@
 
 #pragma mark - Asynchronous calls defined in the client API
 
-- (void) allWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-				failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
-	[self sqlQuery:nil withSuccess:success failure:failure];
-}
+- (void) query:(NSString *)query
+			withEventStore:(EKEventStore *)store
+			onSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+			onFailure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 
-- (void) sqlQuery:(NSString*) query
-	  withSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-		  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
-	
 	if (!query) {
 		//query = @"null is null";
 		query = @"SG_KZ = 'MI' and SEMESTER_NR = '4'";
 	}
-	
+
 	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
-	
-	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request success:^(AFCalendarRequestOperation* operation) {
+
+	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request andEventStore:store success:^(AFCalendarRequestOperation* operation) {
 		if (success) {
 			success(operation, operation.responseEvents);
 		}
@@ -55,7 +51,7 @@
 			failure(operation, error);
 		}
 	}];
-	 
+
 	[self enqueueHTTPRequestOperation:operation];
 }
 

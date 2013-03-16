@@ -62,13 +62,14 @@
 	// For demo proposes, display events for the next X dayes
 	NSDate *startDate = [NSDate date];
 
-	// 5 days = 60*60*24*2 = 432000s
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:432000];
+	// 2 days
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];
 
 	NSArray *calendars = [NSArray arrayWithObject:_calendar];
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
+	NSLog(@"Events: %@", _events);
 	if (![_events count]) {
 		[self fetchCalendarFromRemote];
 		NSLog(@"Used: REMOTE");
@@ -119,7 +120,7 @@
 			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:key];
 		} else {
 			// Unable to save calendar
-			NSLog(@"Error: %@", error);
+			NSLog(@"Calendar Saving: %@", error);
 			return nil;
 		}
 	}
@@ -130,7 +131,7 @@
 - (void)fetchCalendarFromRemote {
 	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 
-	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
+	[icalCalenderClient query:nil withEventStore:_eventStore success:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
 		_events = events;
 
@@ -139,14 +140,14 @@
 			NSError *error = nil;
 			BOOL result = [_eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
 			if (!result) {
-				NSLog(@"Error: %@", error);
+				NSLog(@"Event Storing: %@", error);
 			}
 		}
 		
 		[self.tableView reloadData];
 
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"Error: %@", error);
+		NSLog(@"Request Operation: %@", error);
 	}];
 }
 

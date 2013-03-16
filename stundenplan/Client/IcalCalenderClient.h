@@ -19,11 +19,9 @@
 - (id)init;
 - (id)initWithBaseURL:(NSURL*) url;
 
-- (void) allWithSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-				failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
-
-- (void) sqlQuery:(NSString*) query
-	  withSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-		  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
+- (void) query:(NSString *)query
+			withEventStore:(EKEventStore *)store
+			onSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+			onFailure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
 
 @end
