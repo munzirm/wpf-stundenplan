@@ -8,6 +8,14 @@
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
 
+@interface IcalTestEventCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *eventTime;
+@property (weak, nonatomic) IBOutlet UILabel *eventName;
+@property (weak, nonatomic) IBOutlet UIView *eventColor;
+
+@end
+
 @interface IcalTestViewController : UITableViewController
 
 @property (strong) EKEventStore* eventStore;

@@ -9,6 +9,11 @@
 
 #import "IcalCalenderClient.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+@implementation IcalTestEventCell
+@end
+
 @implementation IcalTestViewController {
 	NSArray* _events;
 }
@@ -63,14 +68,14 @@
 	NSDate *startDate = [NSDate date];
 
 	// 2 days
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*5];
 
 	NSArray *calendars = [NSArray arrayWithObject:_calendar];
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
 	//NSLog(@"Events: %@", _events);
-	if (![_events count]) {
+	if ([_events count]) {
 		[self fetchCalendarFromRemote];
 		NSLog(@"Used: REMOTE");
 	} else {
@@ -173,17 +178,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"IcalTestEventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    // Configure the cell...
-
 	EKEvent* event = [_events objectAtIndex:indexPath.row];
-	cell.textLabel.text = event.title;
+	((IcalTestEventCell*) cell).eventName.text = event.title;
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"dd.MM.yyyy"];
-	cell.detailTextLabel.text = [dateFormatter stringFromDate:event.startDate];
+	[dateFormatter setDateFormat:@"HH:mm"];
+	NSString *startTime = [dateFormatter stringFromDate:event.startDate];
+	NSString *endTime = [dateFormatter stringFromDate:event.endDate];
+
+	((IcalTestEventCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+
+	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
+	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
+	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
+	((IcalTestEventCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
+	((IcalTestEventCell*) cell).eventColor.layer.cornerRadius = 5.0;
 
     return cell;
 }
