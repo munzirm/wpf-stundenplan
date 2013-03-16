@@ -59,20 +59,22 @@
 - (void)didGetAccessToCalendar {
 	[self getCalendar];
 
-	// For demo proposes, display events for the next two dates
-    NSDate *startDate = [NSDate date];
+	// For demo proposes, display events for the next X dayes
+	NSDate *startDate = [NSDate date];
 
-    // 2 days = 60*60*24*2 = 172.800s
-    NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:172800];
+	// 5 days = 60*60*24*2 = 432000s
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:432000];
 
-    NSArray *calendars = [NSArray arrayWithObject:_calendar];
-    NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+	NSArray *calendars = [NSArray arrayWithObject:_calendar];
+	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
-    _events = [self.eventStore eventsMatchingPredicate:predicate];
+	_events = [self.eventStore eventsMatchingPredicate:predicate];
 	if (![_events count]) {
 		[self fetchCalendarFromRemote];
+		NSLog(@"Used: REMOTE");
 	} else {
 		[self.tableView reloadData];
+		NSLog(@"Used: LOCAL");
 	}
 }
 
