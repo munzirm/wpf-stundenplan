@@ -63,7 +63,7 @@
 	NSDate *startDate = [NSDate date];
 
 	// 2 days
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*2];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
 
 	NSArray *calendars = [NSArray arrayWithObject:_calendar];
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
@@ -74,7 +74,11 @@
 		[self fetchCalendarFromRemote];
 		NSLog(@"Used: REMOTE");
 	} else {
-		[self.tableView reloadData];
+		// Workaround to remove the delay
+		// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
+		dispatch_async(dispatch_get_main_queue(), ^(void) {
+			[self.tableView reloadData];
+		});
 		NSLog(@"Used: LOCAL");
 	}
 }
