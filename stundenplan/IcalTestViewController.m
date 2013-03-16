@@ -69,7 +69,7 @@
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
-	NSLog(@"Events: %@", _events);
+	//NSLog(@"Events: %@", _events);
 	if (![_events count]) {
 		[self fetchCalendarFromRemote];
 		NSLog(@"Used: REMOTE");
@@ -131,7 +131,7 @@
 - (void)fetchCalendarFromRemote {
 	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 
-	[icalCalenderClient query:nil withEventStore:_eventStore success:^(AFHTTPRequestOperation* operation, NSArray* events) {
+	[icalCalenderClient query:nil withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
 		_events = events;
 
@@ -146,7 +146,7 @@
 		
 		[self.tableView reloadData];
 
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];
 }
