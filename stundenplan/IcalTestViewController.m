@@ -15,14 +15,17 @@
 @end
 
 @implementation IcalTestViewController {
-	NSArray* _events;
+	NSArray *_events;
+	NSMutableDictionary *_daySections;
+	NSArray *_sortedDays;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	_eventStore = nil;
-	_calendar = nil;
+	_eventStore  = nil;
+	_calendar    = nil;
+	_daySections = [NSMutableDictionary dictionary];
 
 	[self requestAccessToCalendar:^(BOOL granted, NSError *error) {
 		if (granted) {
@@ -62,30 +65,86 @@
  Permissions to the calendar permitted
  */
 - (void)didGetAccessToCalendar {
+	/*
+	// DEBUG CLEAR CALENDAR
+	NSString *key = @"fh_koeln_stundenplan";
+	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:key];
+	EKCalendar *calendar = [_eventStore calendarWithIdentifier:calendarIdentifier];
+	NSError *error = nil;
+	BOOL result = [_eventStore removeCalendar:calendar commit:YES error:&error];
+	if (result) {
+        NSLog(@"Deleted calendar from event store.");
+    } else {
+        NSLog(@"Deleting calendar failed: %@.", error);
+    }
+	// END DEBUG */
+	
 	[self getCalendar];
 
 	// For demo proposes, display events for the next X dayes
 	NSDate *startDate = [NSDate date];
-
-	// 2 days
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*5];
-
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
 	NSArray *calendars = [NSArray arrayWithObject:_calendar];
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
-	//NSLog(@"Events: %@", _events);
-	if ([_events count]) {
+	if (![_events count]) {
 		[self fetchCalendarFromRemote];
 		NSLog(@"Used: REMOTE");
 	} else {
-		// Workaround to remove the delay
-		// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
-		dispatch_async(dispatch_get_main_queue(), ^(void) {
-			[self.tableView reloadData];
-		});
 		NSLog(@"Used: LOCAL");
 	}
+
+	[self prepareEventsForDisplay];
+	
+	// Workaround to remove the delay
+	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
+	dispatch_async(dispatch_get_main_queue(), ^(void) {
+		[self.tableView reloadData];
+	});
+}
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
+{
+    // Use the user's current calendar and time zone
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    [calendar setTimeZone:timeZone];
+
+    // Selectively convert the date components (year, month, day) of the input date
+    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
+
+    // Set the time components manually
+    [dateComps setHour:0];
+    [dateComps setMinute:0];
+    [dateComps setSecond:0];
+
+    // Convert back
+    NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
+    return beginningOfDay;
+}
+
+- (void)prepareEventsForDisplay {
+	for (EKEvent *event in _events) {
+		// Reduce event start date to date components (year, month, day)
+        NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
+
+        // If we don't yet have an array to hold the events for this day, create one
+        NSMutableArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
+        if (eventsOnThisDay == nil) {
+            eventsOnThisDay = [NSMutableArray array];
+
+            // Use the reduced date as dictionary key to later retrieve the event list this day
+            [_daySections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
+        }
+
+        // Add the event to the list for this day
+        [eventsOnThisDay addObject:event];
+    }
+
+    // Create a sorted list of days
+    NSArray *unsortedDays = [_daySections allKeys];
+	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
 }
 
 /**
@@ -140,9 +199,7 @@
 - (void)fetchCalendarFromRemote {
 	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 
-	[icalCalenderClient query:nil withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
-
-		_events = events;
+	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
 		for (EKEvent* event in events) {
 			event.calendar = _calendar;
@@ -152,9 +209,9 @@
 				NSLog(@"Event Storing: %@", error);
 			}
 		}
-		
-		[self.tableView reloadData];
 
+		_events = events;
+		
 	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];
@@ -170,18 +227,30 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [_daySections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _events.count;
+	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
+    NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
+    return [eventsOnThisDay count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
+	NSDateFormatter *sectionDateFormatter = [[NSDateFormatter alloc] init];
+	[sectionDateFormatter setDateFormat:@"dd.MM.yyyy"];
+    return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"IcalTestEventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-	EKEvent* event = [_events objectAtIndex:indexPath.row];
+	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
+    NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
+    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+	
 	((IcalTestEventCell*) cell).eventName.text = event.title;
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
