@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAE716F3FCEC00D83F86 /* MainViewController.m */; };
+		5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */; };
 		594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4516B3155E00328E41 /* IcalCalenderClient.m */; };
 		59A637CD16ACAC7C00DB146C /* IcalTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
@@ -41,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		19B727B45809423187C3AC13 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		5900FAE616F3FCEC00D83F86 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		5900FAE716F3FCEC00D83F86 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		5900FAE916F3FFCE00D83F86 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		594BDF4416B3155E00328E41 /* IcalCalenderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcalCalenderClient.h; path = Client/IcalCalenderClient.h; sourceTree = "<group>"; };
 		594BDF4516B3155E00328E41 /* IcalCalenderClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IcalCalenderClient.m; path = Client/IcalCalenderClient.m; sourceTree = "<group>"; };
@@ -146,6 +152,10 @@
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
+				5900FAE616F3FCEC00D83F86 /* MainViewController.h */,
+				5900FAE716F3FCEC00D83F86 /* MainViewController.m */,
+				5900FAE916F3FFCE00D83F86 /* MainMenuViewController.h */,
+				5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */,
 				59A637CB16ACAC7C00DB146C /* IcalTestViewController.h */,
 				59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
@@ -320,6 +330,8 @@
 				59BA3D5816AB2596000D0FA4 /* ViewController.m in Sources */,
 				59A637CD16ACAC7C00DB146C /* IcalTestViewController.m in Sources */,
 				594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */,
+				5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */,
+				5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
