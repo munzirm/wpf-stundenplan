@@ -93,14 +93,14 @@
 
 	[self getCalendar];
 
-	// For demo proposes, display events for the next X dayes
+	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*3];
 	NSArray *calendars = [NSArray arrayWithObject:_calendar];
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
-	if (![_events count]) {
+	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
 		[self fetchCalendarFromRemote:^ {
 			[self prepareEventsForDisplay];
@@ -196,7 +196,7 @@
 		BOOL saved = [_eventStore saveCalendar:_calendar commit:YES error:&error];
 		if (saved) {
 			// Saved successfuly, store identifier in NSUserDefaults
-			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifier];
+			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifierKey];
 		} else {
 			// Unable to save calendar
 			NSLog(@"Calendar Saving: %@", error);
