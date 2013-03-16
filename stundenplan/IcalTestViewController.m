@@ -18,14 +18,23 @@
 	NSArray *_events;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
+	// The calendar store key
+	NSString *calendarIdentifierKey;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
+	// The event store
 	_eventStore  = nil;
+	// Our calendar
 	_calendar    = nil;
+	// The days
 	_daySections = [NSMutableDictionary dictionary];
+	// The events per day
+	_sortedDays = nil;
+	// The calendar store key
+	calendarIdentifierKey = @"fh_koeln_stundenplan";
 
 	[self requestAccessToCalendar:^(BOOL granted, NSError *error) {
 		if (granted) {
@@ -36,11 +45,11 @@
 		}
 	}];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+	// Uncomment the following line to preserve selection between presentations.
+	// self.clearsSelectionOnViewWillAppear = NO;
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+	// self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 /**
@@ -48,7 +57,7 @@
  */
 - (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback; {
 	if (_eventStore == nil) {
-        _eventStore = [[EKEventStore alloc] init];
+		_eventStore = [[EKEventStore alloc] init];
 	}
 
 	// request permissions
@@ -66,19 +75,18 @@
  */
 - (void)didGetAccessToCalendar {
 	/*
-	// DEBUG CLEAR CALENDAR
-	NSString *key = @"fh_koeln_stundenplan";
-	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:key];
-	EKCalendar *calendar = [_eventStore calendarWithIdentifier:calendarIdentifier];
-	NSError *error = nil;
-	BOOL result = [_eventStore removeCalendar:calendar commit:YES error:&error];
-	if (result) {
-        NSLog(@"Deleted calendar from event store.");
-    } else {
-        NSLog(@"Deleting calendar failed: %@.", error);
-    }
-	// END DEBUG */
-	
+	 // DEBUG CLEAR CALENDAR
+	 NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
+	 EKCalendar *calendar = [_eventStore calendarWithIdentifier:calendarIdentifier];
+	 NSError *error = nil;
+	 BOOL result = [_eventStore removeCalendar:calendar commit:YES error:&error];
+	 if (result) {
+	 NSLog(@"Deleted calendar from event store.");
+	 } else {
+	 NSLog(@"Deleting calendar failed: %@.", error);
+	 }
+	 // END DEBUG */
+
 	[self getCalendar];
 
 	// For demo proposes, display events for the next X dayes
@@ -96,7 +104,7 @@
 	}
 
 	[self prepareEventsForDisplay];
-	
+
 	// Workaround to remove the delay
 	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -106,44 +114,44 @@
 
 - (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
 {
-    // Use the user's current calendar and time zone
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-    [calendar setTimeZone:timeZone];
+	// Use the user's current calendar and time zone
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	[calendar setTimeZone:timeZone];
 
-    // Selectively convert the date components (year, month, day) of the input date
-    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
+	// Selectively convert the date components (year, month, day) of the input date
+	NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
 
-    // Set the time components manually
-    [dateComps setHour:0];
-    [dateComps setMinute:0];
-    [dateComps setSecond:0];
+	// Set the time components manually
+	[dateComps setHour:0];
+	[dateComps setMinute:0];
+	[dateComps setSecond:0];
 
-    // Convert back
-    NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
-    return beginningOfDay;
+	// Convert back
+	NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
+	return beginningOfDay;
 }
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _events) {
 		// Reduce event start date to date components (year, month, day)
-        NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
+		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
 
-        // If we don't yet have an array to hold the events for this day, create one
-        NSMutableArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
-        if (eventsOnThisDay == nil) {
-            eventsOnThisDay = [NSMutableArray array];
+		// If we don't yet have an array to hold the events for this day, create one
+		NSMutableArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
+		if (eventsOnThisDay == nil) {
+			eventsOnThisDay = [NSMutableArray array];
 
-            // Use the reduced date as dictionary key to later retrieve the event list this day
-            [_daySections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
-        }
+			// Use the reduced date as dictionary key to later retrieve the event list this day
+			[_daySections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
+		}
 
-        // Add the event to the list for this day
-        [eventsOnThisDay addObject:event];
-    }
+		// Add the event to the list for this day
+		[eventsOnThisDay addObject:event];
+	}
 
-    // Create a sorted list of days
-    NSArray *unsortedDays = [_daySections allKeys];
+	// Create a sorted list of days
+	NSArray *unsortedDays = [_daySections allKeys];
 	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
 }
 
@@ -151,11 +159,8 @@
  Get the calendar
  */
 - (EKCalendar *)getCalendar {
-	// The calendar store key
-	NSString *key = @"fh_koeln_stundenplan";
-	
 	// Get our custom calendar identifier
-	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:key];
+	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
 
 	// When identifier exists, calendar probably already exists
 	if (calendarIdentifier) {
@@ -185,7 +190,7 @@
 		BOOL saved = [_eventStore saveCalendar:_calendar commit:YES error:&error];
 		if (saved) {
 			// Saved successfuly, store identifier in NSUserDefaults
-			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:key];
+			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifier];
 		} else {
 			// Unable to save calendar
 			NSLog(@"Calendar Saving: %@", error);
@@ -211,7 +216,7 @@
 		}
 
 		_events = events;
-		
+
 	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];
@@ -219,38 +224,38 @@
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_daySections count];
+	return [_daySections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
-    NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
-    return [eventsOnThisDay count];
+	NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
+	return [eventsOnThisDay count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
+	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
 	NSDateFormatter *sectionDateFormatter = [[NSDateFormatter alloc] init];
 	[sectionDateFormatter setDateFormat:@"dd.MM.yyyy"];
-    return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
+	return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"IcalTestEventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	static NSString *CellIdentifier = @"IcalTestEventCell";
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
-    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-	
+	NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
+	EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
+
 	((IcalTestEventCell*) cell).eventName.text = event.title;
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -266,7 +271,7 @@
 	((IcalTestEventCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
 	((IcalTestEventCell*) cell).eventColor.layer.cornerRadius = 5.0;
 
-    return cell;
+	return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -308,13 +313,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+	// Navigation logic may go here. Create and push another view controller.
+	/*
+	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+	 // ...
+	 // Pass the selected object to the new view controller.
+	 [self.navigationController pushViewController:detailViewController animated:YES];
+	 */
 }
 
 @end
