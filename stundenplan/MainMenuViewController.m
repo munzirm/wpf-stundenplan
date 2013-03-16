@@ -7,6 +7,8 @@
 
 #import "MainMenuViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation MainMenuModuleCell
 @end
 
@@ -99,6 +101,7 @@
 				[_modules objectAtIndex:indexPath.row];
 		((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor =
 				[_moduleColors objectAtIndex:indexPath.row];
+		((MainMenuModuleCell*) cell).moduleColorIndicator.layer.cornerRadius = 5.0;
 		
 	} else if (indexPath.section == 1) {
 		((MainMenuFilterCell*) cell).filterLabel.text =

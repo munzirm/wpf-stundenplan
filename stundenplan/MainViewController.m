@@ -19,8 +19,8 @@
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
 	
-	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"IcalTestViewController"];
-	self.leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenuViewController"];
+	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
+	self.leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
 }
 
 - (void)didReceiveMemoryWarning
