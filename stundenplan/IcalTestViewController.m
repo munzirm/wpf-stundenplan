@@ -11,15 +11,13 @@
 
 @implementation IcalTestViewController {
 	NSArray* _events;
-	EKEventStore *eventStore;
-	EKCalendar *calendar;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	eventStore = nil;
-	calendar = nil;
+	_eventStore = nil;
+	_calendar = nil;
 
 	[self requestAccessToCalendar:^(BOOL granted, NSError *error) {
 		if (granted) {
@@ -41,14 +39,14 @@
  Request permissions to the calendar
  */
 - (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback; {
-	if (eventStore == nil) {
-        eventStore = [[EKEventStore alloc] init];
+	if (_eventStore == nil) {
+        _eventStore = [[EKEventStore alloc] init];
 	}
 
 	// request permissions
-	if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+	if ([_eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
 		// iOS 6 and later
-		[eventStore requestAccessToEntityType:EKEntityTypeEvent completion:callback];
+		[_eventStore requestAccessToEntityType:EKEntityTypeEvent completion:callback];
 	} else {
 		// iOS 5
 		callback(FALSE, NULL);
@@ -59,9 +57,23 @@
  Permissions to the calendar permitted
  */
 - (void)didGetAccessToCalendar {
-	calendar = [self getCalendar];
+	[self getCalendar];
 
-	[self fetchCalendarFromRemote];
+	// For demo proposes, display events for the next two dates
+    NSDate *startDate = [NSDate date];
+
+    // 2 days = 60*60*24*2 = 172.800s
+    NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:172800];
+
+    NSArray *calendars = [NSArray arrayWithObject:_calendar];
+    NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+
+    _events = [self.eventStore eventsMatchingPredicate:predicate];
+	if (![_events count]) {
+		[self fetchCalendarFromRemote];
+	} else {
+		[self.tableView reloadData];
+	}
 }
 
 /**
@@ -76,30 +88,30 @@
 
 	// When identifier exists, calendar probably already exists
 	if (calendarIdentifier) {
-		calendar = [eventStore calendarWithIdentifier:calendarIdentifier];
+		_calendar = [_eventStore calendarWithIdentifier:calendarIdentifier];
 	}
 
 	// Calendar doesn't exist
-	if (!calendar) {
+	if (!_calendar) {
 		// Create it
-		calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:eventStore];
+		_calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:_eventStore];
 
 		// Set user visible calendar name
-		[calendar setTitle:@"FH Köln Stundenplan"];
+		[_calendar setTitle:@"FH Köln Stundenplan"];
 
 		// Find appropriate source type. Only local calendars
-		for (EKSource *s in eventStore.sources) {
+		for (EKSource *s in _eventStore.sources) {
 			if (s.sourceType == EKSourceTypeLocal) {
-				calendar.source = s;
+				_calendar.source = s;
 				break;
 			}
 		}
 
 		// Save identifier to store it later
-		NSString *calendarIdentifier = [calendar calendarIdentifier];
+		NSString *calendarIdentifier = [_calendar calendarIdentifier];
 
 		NSError *error = nil;
-		BOOL saved = [eventStore saveCalendar:calendar commit:YES error:&error];
+		BOOL saved = [_eventStore saveCalendar:_calendar commit:YES error:&error];
 		if (saved) {
 			// Saved successfuly, store identifier in NSUserDefaults
 			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:key];
@@ -110,7 +122,7 @@
 		}
 	}
 
-	return calendar;
+	return _calendar;
 }
 
 - (void)fetchCalendarFromRemote {
