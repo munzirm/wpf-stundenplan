@@ -7,19 +7,48 @@
 
 #import "MainMenuViewController.h"
 
-@interface MainMenuViewController ()
-
+@implementation MainMenuModuleCell
 @end
 
-@implementation MainMenuViewController
+@implementation MainMenuFilterCell
+@end
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+@implementation MainMenuMoreCell
+@end
+
+@implementation MainMenuViewController {
+	NSArray* _sections;
+	NSArray* _sectionCellIdentifiers;
+	
+	NSArray* _modules; // TODO replace this
+	NSArray* _moduleColors; // TODO replace this
+	NSArray* _filters;
+	NSMutableArray* _filterFlags;
+	NSArray* _more;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		_sections = @[ @"Module", @"Filter", @" " ];
+		_sectionCellIdentifiers = @[ @"MainMenuModuleCell", @"MainMenuFilterCell", @"MainMenuMoreCell" ];
+		
+		_modules = @[ @"WBA2", @"WPF-CITY", @"MCI", @"BWL2", @"MC1", @"BS1"];
+		_moduleColors = @[
+			[UIColor redColor],
+			[UIColor blueColor],
+			[UIColor greenColor],
+			[UIColor yellowColor],
+			[UIColor magentaColor],
+			[UIColor orangeColor],
+		];
+		
+		_filters = @[ @"Vorlesungen", @"Seminare", @"Praktikas", @"Übungen", @"Tutorien" ];
+		_filterFlags = [@[ @YES, @NO, @NO, @NO, @NO ] mutableCopy];
+		
+		_more = @[ @"Einstellungen" ];
+	}
+	return self;
 }
 
 - (void)viewDidLoad
@@ -36,74 +65,60 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+	return _sections.count;
 }
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return [_sections objectAtIndex:section];
+}
+
+// TODO vlt besser den header ganz selbst machen wg. layout
+//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section:(NSInteger)section {
+//}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+	if (section == 0) {
+		return _modules.count;
+	} else if (section == 1) {
+		return _filters.count;
+	} else if (section == 2) {
+		return _more.count;
+	} else {
+		return -1; // it's ok to produce an error if we found an illegal number of sections.
+	}
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"MainMenuCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-	cell.textLabel.text = @"hallo";
-    
-    return cell;
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString* CellIdentifier = [_sectionCellIdentifiers objectAtIndex:indexPath.section];
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	if (indexPath.section == 0) {
+		((MainMenuModuleCell*) cell).moduleLabel.text =
+				[_modules objectAtIndex:indexPath.row];
+		((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor =
+				[_moduleColors objectAtIndex:indexPath.row];
+		
+	} else if (indexPath.section == 1) {
+		((MainMenuFilterCell*) cell).filterLabel.text =
+				[_filters objectAtIndex:indexPath.row];
+		((MainMenuFilterCell*) cell).filterSelectionIndicator.backgroundColor =
+				[[_filterFlags objectAtIndex:indexPath.row] boolValue] ?
+				[UIColor blackColor] :
+				[UIColor whiteColor];
+		
+	} else if (indexPath.section == 2) {
+		((MainMenuMoreCell*) cell).moreLabel.text = [_more objectAtIndex:indexPath.row];
+		
+	}
+	
+	return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 @end
