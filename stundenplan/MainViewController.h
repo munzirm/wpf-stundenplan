@@ -7,6 +7,5 @@
 
 #import <ViewDeck/IIViewDeckController.h>
 
-@interface MainViewController : IIViewDeckController
-
+@interface MainViewController : IIViewDeckController <IIViewDeckControllerDelegate>
 @end

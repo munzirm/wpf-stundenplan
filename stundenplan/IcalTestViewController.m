@@ -183,14 +183,10 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	// only to test that the sidebar does not handle the slide gesture in the center.
+	return YES;
+}
 
 /*
  // Override to support editing the table view.
