@@ -101,19 +101,15 @@
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
 	if (![_events count]) {
-		[self fetchCalendarFromRemote];
 		NSLog(@"Used: REMOTE");
+		[self fetchCalendarFromRemote:^ {
+			[self prepareEventsForDisplay];
+		}];
 	} else {
 		NSLog(@"Used: LOCAL");
+		[self prepareEventsForDisplay];
 	}
 
-	[self prepareEventsForDisplay];
-
-	// Workaround to remove the delay
-	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
-	dispatch_async(dispatch_get_main_queue(), ^(void) {
-		[self.tableView reloadData];
-	});
 }
 
 - (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
@@ -157,6 +153,12 @@
 	// Create a sorted list of days
 	NSArray *unsortedDays = [_daySections allKeys];
 	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
+
+	// Workaround to remove the delay
+	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
+	dispatch_async(dispatch_get_main_queue(), ^(void) {
+		[self.tableView reloadData];
+	});
 }
 
 /**
@@ -205,7 +207,7 @@
 	return _calendar;
 }
 
-- (void)fetchCalendarFromRemote {
+- (void)fetchCalendarFromRemote:(void (^)())success; {
 	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 
 	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
@@ -220,7 +222,7 @@
 		}
 
 		_events = events;
-
+		success();
 	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];
