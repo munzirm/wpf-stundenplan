@@ -133,6 +133,16 @@
 	[icalCalenderClient allWithSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
 		_events = events;
+
+		for (EKEvent* event in events) {
+			event.calendar = _calendar;
+			NSError *error = nil;
+			BOOL result = [_eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
+			if (!result) {
+				NSLog(@"Error: %@", error);
+			}
+		}
+		
 		[self.tableView reloadData];
 
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
