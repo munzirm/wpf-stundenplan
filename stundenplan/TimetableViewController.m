@@ -11,7 +11,7 @@
 
 #import "IcalCalenderClient.h"
 
-#import "ModellModulEvent.h"
+#import "ModulEvent.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -120,7 +120,7 @@
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _events) {
-		ModellModulEvent *modulEvent = [[ModellModulEvent alloc] initWithEventTitle:event.title];
+		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEventTitle:event.title];
 
 		if (![modulEvent.modulName isEqualToString:@"WBA2"] && ![modulEvent.modulName isEqualToString:@"MCI"]) {
 			continue;

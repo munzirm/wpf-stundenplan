@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ModellModulEvent : NSObject
+@interface ModulEvent : NSObject
 
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy) NSString *modulName;
