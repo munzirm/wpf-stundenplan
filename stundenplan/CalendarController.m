@@ -127,7 +127,7 @@
 				continue;
 			}
 
-			// Previous event with same name as the current event. Inteval <= 15 minutes. 
+			// Previous event with same name as the current event. Interval <= 15 minutes. 
 			if (
 				prevEvent &&
 				[prevEvent.title isEqualToString:event.title] &&
