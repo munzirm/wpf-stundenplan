@@ -9,12 +9,13 @@
 
 #import "TimetableCell.h"
 
-#import "ModulEvent.h"
+#import "ModulEvents.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TimetableViewController {
 	NSArray *_events;
+	ModulEvents *modulEvents;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
 }
@@ -26,10 +27,7 @@
 	NSLog(@"navigationItem: %@", self.navigationItem);
 	((UILabel*) self.navigationItem.titleView).textColor = [UIColor blackColor];
 
-	// The days
-	_daySections = [NSMutableDictionary dictionary];
-	// The events per day
-	_sortedDays = nil;
+	modulEvents = [ModulEvents alloc];
 
 	self.calendarController = [[CalendarController alloc] init];
 
@@ -60,69 +58,24 @@
 	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
 		[self.calendarController fetchCalendarFromRemote:^(NSArray *events) {
-			_events = events;
+			modulEvents = [modulEvents initWithEvents:events];
 			[self prepareEventsForDisplay];
 		}];
 	} else {
 		NSLog(@"Used: LOCAL");
+		modulEvents = [modulEvents initWithEvents:_events];
+
 		[self prepareEventsForDisplay];
 	}
 
 }
 
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate {
-	// Use the user's current calendar and time zone
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
-
-	// Selectively convert the date components (year, month, day) of the input date
-	NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
-
-	// Set the time components manually
-	[dateComps setHour:0];
-	[dateComps setMinute:0];
-	[dateComps setSecond:0];
-
-	// Convert back
-	return [calendar dateFromComponents:dateComps];
-}
-
 - (void)prepareEventsForDisplay {
-	for (EKEvent *event in _events) {
-		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEventTitle:event.title];
-
-		if (![modulEvent.modulName isEqualToString:@"WBA2"] && ![modulEvent.modulName isEqualToString:@"MCI"]) {
-			continue;
-		}
-
-		if ([modulEvent.modulType isEqualToString:@"P"]) {
-			continue;
-		}
-
-		// Reduce event start date to date components (year, month, day)
-		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
-
-		// If we don't yet have an array to hold the events for this day, create one
-		NSMutableArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
-		if (eventsOnThisDay == nil) {
-			eventsOnThisDay = [NSMutableArray array];
-
-			// Use the reduced date as dictionary key to later retrieve the event list this day
-			[_daySections setObject:eventsOnThisDay forKey:dateRepresentingThisDay];
-		}
-
-		// Add the event to the list for this day
-		[eventsOnThisDay addObject:event];
-	}
-
-	// Create a sorted list of days
-	NSArray *unsortedDays = [_daySections allKeys];
-	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
-
+	//NSLog( @"%@",_events);
 	// Workaround to remove the delay
 	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
+		NSLog( @"Reloaded");
 		[self.tableView reloadData];
 	});
 }
@@ -137,30 +90,24 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [_daySections count];
+	return [modulEvents dayCount];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
-	NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
-	return [eventsOnThisDay count];
+	return [modulEvents eventCountOnThisDay:section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
-	NSDateFormatter *sectionDateFormatter = [[NSDateFormatter alloc] init];
-	[sectionDateFormatter setDateFormat:@"dd.MM.yyyy"];
-	return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
+	return [modulEvents dateRepresentingThisDay:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"TimetableCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
-    NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
-    EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
-	
+	// Todo: Replace EKEvent with ModulEvent
+	EKEvent *event = [modulEvents eventOnThisDay:indexPath];
+
 	((TimetableCell*) cell).eventName.text = event.title;
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -34,6 +34,7 @@
 		B43F646416F542810050CAE4 /* ModulEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646316F542810050CAE4 /* ModulEvent.m */; };
 		B43F646616F5DF310050CAE4 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B43F646516F5DF310050CAE4 /* data.json */; };
 		B43F646B16F601830050CAE4 /* CalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646A16F601830050CAE4 /* CalendarController.m */; };
+		B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD04416F61D97005395A2 /* ModulEvents.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		B43F646516F5DF310050CAE4 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		B43F646916F601830050CAE4 /* CalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarController.h; sourceTree = "<group>"; };
 		B43F646A16F601830050CAE4 /* CalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarController.m; sourceTree = "<group>"; };
+		B4AFD04316F61D97005395A2 /* ModulEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEvents.h; sourceTree = "<group>"; };
+		B4AFD04416F61D97005395A2 /* ModulEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEvents.m; sourceTree = "<group>"; };
 		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,6 +237,8 @@
 			children = (
 				B43F646216F542810050CAE4 /* ModulEvent.h */,
 				B43F646316F542810050CAE4 /* ModulEvent.m */,
+				B4AFD04316F61D97005395A2 /* ModulEvents.h */,
+				B4AFD04416F61D97005395A2 /* ModulEvents.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				B43F646B16F601830050CAE4 /* CalendarController.m in Sources */,
 				590329C516F60A2600DFB8D4 /* TimetableCell.m in Sources */,
 				590329C816F60A5000DFB8D4 /* TimetableOptionCell.m in Sources */,
+				B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
