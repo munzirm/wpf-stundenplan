@@ -7,7 +7,7 @@
 
 #import "MainViewController.h"
 
-#import "IcalTestViewController.h"
+#import "TimetableViewController.h"
 
 @implementation MainViewController
 

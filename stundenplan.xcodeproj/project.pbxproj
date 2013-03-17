@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAE716F3FCEC00D83F86 /* MainViewController.m */; };
 		5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */; };
+		590329C116F5E59100DFB8D4 /* TimetableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590329C016F5E59100DFB8D4 /* TimetableCell.m */; };
 		594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4516B3155E00328E41 /* IcalCalenderClient.m */; };
-		59A637CD16ACAC7C00DB146C /* IcalTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */; };
+		59A637CD16ACAC7C00DB146C /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* TimetableViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
 		59BA3D3E16AB2596000D0FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3D16AB2596000D0FA4 /* Foundation.framework */; };
 		59BA3D4016AB2596000D0FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3F16AB2596000D0FA4 /* CoreGraphics.framework */; };
@@ -49,11 +50,13 @@
 		5900FAE716F3FCEC00D83F86 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5900FAE916F3FFCE00D83F86 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		590329BF16F5E59100DFB8D4 /* TimetableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableCell.h; sourceTree = "<group>"; };
+		590329C016F5E59100DFB8D4 /* TimetableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableCell.m; sourceTree = "<group>"; };
 		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		594BDF4416B3155E00328E41 /* IcalCalenderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcalCalenderClient.h; path = Client/IcalCalenderClient.h; sourceTree = "<group>"; };
 		594BDF4516B3155E00328E41 /* IcalCalenderClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IcalCalenderClient.m; path = Client/IcalCalenderClient.m; sourceTree = "<group>"; };
-		59A637CB16ACAC7C00DB146C /* IcalTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcalTestViewController.h; sourceTree = "<group>"; };
-		59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcalTestViewController.m; sourceTree = "<group>"; };
+		59A637CB16ACAC7C00DB146C /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableViewController.h; sourceTree = "<group>"; };
+		59A637CC16ACAC7C00DB146C /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableViewController.m; sourceTree = "<group>"; };
 		59BA3D3716AB2596000D0FA4 /* stundenplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stundenplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59BA3D3B16AB2596000D0FA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59BA3D3D16AB2596000D0FA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,8 +167,10 @@
 				B43F646216F542810050CAE4 /* ModellModulEvent.h */,
 				B43F646316F542810050CAE4 /* ModellModulEvent.m */,
 				5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */,
-				59A637CB16ACAC7C00DB146C /* IcalTestViewController.h */,
-				59A637CC16ACAC7C00DB146C /* IcalTestViewController.m */,
+				59A637CB16ACAC7C00DB146C /* TimetableViewController.h */,
+				59A637CC16ACAC7C00DB146C /* TimetableViewController.m */,
+				590329BF16F5E59100DFB8D4 /* TimetableCell.h */,
+				590329C016F5E59100DFB8D4 /* TimetableCell.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
 				594BDF4016B3151000328E41 /* Client */,
@@ -337,11 +342,12 @@
 				59BA3D4816AB2596000D0FA4 /* main.m in Sources */,
 				59BA3D4C16AB2596000D0FA4 /* AppDelegate.m in Sources */,
 				59BA3D5816AB2596000D0FA4 /* ViewController.m in Sources */,
-				59A637CD16ACAC7C00DB146C /* IcalTestViewController.m in Sources */,
+				59A637CD16ACAC7C00DB146C /* TimetableViewController.m in Sources */,
 				594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */,
 				5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */,
 				5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */,
 				B43F646416F542810050CAE4 /* ModellModulEvent.m in Sources */,
+				590329C116F5E59100DFB8D4 /* TimetableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

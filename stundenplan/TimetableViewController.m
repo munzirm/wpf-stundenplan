@@ -5,7 +5,9 @@
 //  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
-#import "IcalTestViewController.h"
+#import "TimetableViewController.h"
+
+#import "TimetableCell.h"
 
 #import "IcalCalenderClient.h"
 
@@ -13,19 +15,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@implementation IcalTestEventCell
-
-// Ignore the editing mode to no not show the ios standard delete button.
-- (void)setEditing:(BOOL)editing {
-}
-
-// Ignore the editing mode to no not show the ios standard delete button.
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-}
-
-@end
-
-@implementation IcalTestViewController {
+@implementation TimetableViewController {
 	NSArray *_events;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
@@ -261,27 +251,27 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"IcalTestEventCell";
+	static NSString *CellIdentifier = @"TimetableCell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
     EKEvent *event = [eventsOnThisDay objectAtIndex:indexPath.row];
 	
-	((IcalTestEventCell*) cell).eventName.text = event.title;
+	((TimetableCell*) cell).eventName.text = event.title;
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm"];
 	NSString *startTime = [dateFormatter stringFromDate:event.startDate];
 	NSString *endTime = [dateFormatter stringFromDate:event.endDate];
 
-	((IcalTestEventCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+	((TimetableCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
 
 	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
-	((IcalTestEventCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
-	((IcalTestEventCell*) cell).eventColor.layer.cornerRadius = 5.0;
+	((TimetableCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
+	((TimetableCell*) cell).eventColor.layer.cornerRadius = 5.0;
 
 	return cell;
 }
@@ -291,15 +281,12 @@
 	return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	NSLog(@"commit??");
-	
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//}
 
 // Required for the swipe to delete interaction.
-- (BOOL)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-}
+//- (BOOL)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+//}
 
 
 #pragma mark - Table view delegate
@@ -313,38 +300,6 @@
 	 // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 */
-}
-
-
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-	NSLog(@"gestureRecognizerShouldBegin:");
-	return YES;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-	NSLog(@"gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:");
-	
-	
-	// Get the table view cell where the swipe occured
-    CGPoint location = [gestureRecognizer locationInView:self.tableView];
-    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:location];
-    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
-	
-	CGPoint translation = [(UIPanGestureRecognizer*) gestureRecognizer translationInView:self.tableView];
-    CGPoint velocity = [(UIPanGestureRecognizer*) gestureRecognizer velocityInView:self.tableView];
-	
-	NSLog(@"cell: %@", cell);
-	NSLog(@"translation: %@", NSStringFromCGPoint(translation));
-	
-	cell.frame = CGRectMake(translation.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-	
-	return YES;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-	NSLog(@"gestureRecognizer:shouldReceiveTouch:");
-	return YES;
 }
 
 @end
