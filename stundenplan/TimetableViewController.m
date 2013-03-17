@@ -15,6 +15,13 @@
 	ModulEvents *modulEvents;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
+	
+	UIActionSheet* _actionSheet;
+}
+
+- (void)dealloc {
+	_actionSheet.delegate = nil;
+	_actionSheet = nil;
 }
 
 - (void)viewDidLoad {
@@ -155,6 +162,7 @@
 #pragma mark - TimetableCellDelegate implementation
 
 - (void)favorite:(ModulEvent*) event {
+	event.favorite = YES;
 	NSLog(@"favorite: %@", event);
 }
 
@@ -167,7 +175,16 @@
 }
 
 - (void)remove:(ModulEvent*) event {
-	NSLog(@"remove: %@", event);
+	_actionSheet = [[UIActionSheet alloc] initWithTitle:@"Löschen?"
+											   delegate:self
+									  cancelButtonTitle:@"Abbrechen"
+								 destructiveButtonTitle:@"Alle Folgetermine"
+									  otherButtonTitles:@"Nur diesen Termin", nil];
+	[_actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	
 }
 
 @end
