@@ -6,6 +6,7 @@
 //
 
 #import "ModulEvent.h"
+#import "Data.h"
 
 @implementation ModulEvent {
 	EKEvent *_event;
@@ -24,7 +25,9 @@
 	NSArray *modulComponents = [event.title componentsSeparatedByString:@" "];
 	_modulAcronym = [modulComponents objectAtIndex:0];
 	_modulType = [modulComponents objectAtIndex:1];
-	//_modulFullName = ...
+	NSDictionary *data = [Data objectForKey:@"modules" andForKey:_modulAcronym];
+	_modulFullName = [data valueForKey:@"name"];
+
 
 	// Dates
 	_startDate = _event.startDate;
