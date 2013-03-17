@@ -6,12 +6,10 @@
 //
 
 #import "TimetableViewController.h"
-
 #import "TimetableCell.h"
-
 #import "ModulEvents.h"
-
-#import <QuartzCore/QuartzCore.h>
+#import "ModulEvent.h"
+#import "ColorGenerator.h"
 
 @implementation TimetableViewController {
 	ModulEvents *modulEvents;
@@ -77,8 +75,7 @@
 	});
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
@@ -106,18 +103,25 @@
 	cell.event = [modulEvents eventOnThisDay:indexPath];
 
 	cell.eventName.text = cell.event.event.title;
+	if ([cell.event.modulAcronym isEqualToString:@"WBA2"])
+		[cell.eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
+	
+	if ([cell.event.modulAcronym isEqualToString:@"BS1"])
+		[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
 
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"HH:mm"];
-	NSString *startTime = [dateFormatter stringFromDate:cell.event.event.startDate];
-	NSString *endTime = [dateFormatter stringFromDate:cell.event.event.endDate];
-
-	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime];
 
 	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
 	cell.eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
+
+	// Todo: Replace EKEvent with ModulEvent
+	ModulEvent *event = [modulEvents eventOnThisDay:indexPath];
+	
+	((TimetableCell*) cell).eventName.text = event.modulAcronym;
+
+	((TimetableCell*) cell).eventColor.backgroundColor = [ColorGenerator randomColor];
 
 	return cell;
 }

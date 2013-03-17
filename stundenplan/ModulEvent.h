@@ -15,6 +15,11 @@
 @property (nonatomic, copy, readonly) NSString *modulAcronym;
 @property (nonatomic, copy, readonly) NSString *modulFullName;
 @property (nonatomic, copy, readonly) NSString *modulType;
+@property (nonatomic, copy, readonly) NSDate *startDate;
+@property (nonatomic, copy, readonly) NSDate *endDate;
+@property (nonatomic, copy, readonly) NSString *startTime;
+@property (nonatomic, copy, readonly) NSString *endTime;
+
 
 - (id)initWithEvent:(EKEvent *)event;
 
