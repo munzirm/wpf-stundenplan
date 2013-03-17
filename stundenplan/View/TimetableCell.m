@@ -76,14 +76,13 @@
 			   state == UIGestureRecognizerStateFailed) {
 		
 		// Calculate velocity
-		CGPoint velocity = [gestureRecognizer velocityInView:self];
-		CGFloat x = self.center.x + velocity.x;
-		
-		NSLog(@"center %f + velocity %f = %f", self.center.x, velocity.x, x);
-		
-		if (x < 0) {
+		CGFloat velocity = [gestureRecognizer velocityInView:self].x;
+		CGFloat position = self.center.x + velocity;
+		NSLog(@"center %f + velocity %f = %f", self.center.x, velocity, position);
+		NSLog(@"option view ursprung: %f", _optionView.frame.origin.x);
+		if (position < 0 && _optionView.frame.origin.x > 0) {
 			[self animateToOptionWithDirection:UISwipeGestureRecognizerDirectionLeft];
-		} else if (x > self.frame.size.width) {
+		} else if (position > self.frame.size.width && _optionView.frame.origin.x < 0) {
 			[self animateToOptionWithDirection:UISwipeGestureRecognizerDirectionRight];
 		} else {
 			[self animateToOrigin];
@@ -193,7 +192,7 @@
 	}
 	
 	CGFloat x = [gestureRecognizer locationInView:self].x;
-	return (x > 40 && x < 80) || x > (320 - 80);
+	return (x > 40 && x < 100) || x > (320 - 100);
 }
 
 @end
