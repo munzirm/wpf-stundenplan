@@ -5,11 +5,11 @@
 //  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
-#import "IcalCalenderClient.h"
+#import "FhKoelnF10CalendarClient.h"
 
 #import <AFCalendarRequestOperation/AFCalendarRequestOperation.h>
 
-@implementation IcalCalenderClient
+@implementation FhKoelnF10CalendarClient
 
 #pragma mark - Initialization / deallocation
 

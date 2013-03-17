@@ -9,9 +9,9 @@
 
 #import "TimetableCell.h"
 
-#import "IcalCalenderClient.h"
+#import "FhKoelnF10CalendarClient.h"
 
-#import "ModellModulEvent.h"
+#import "ModulEvent.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -120,7 +120,7 @@
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _events) {
-		ModellModulEvent *modulEvent = [[ModellModulEvent alloc] initWithEventTitle:event.title];
+		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEventTitle:event.title];
 
 		if (![modulEvent.modulName isEqualToString:@"WBA2"] && ![modulEvent.modulName isEqualToString:@"MCI"]) {
 			continue;
@@ -204,7 +204,7 @@
 }
 
 - (void)fetchCalendarFromRemote:(void (^)())success; {
-	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
+	FhKoelnF10CalendarClient* icalCalenderClient = [[FhKoelnF10CalendarClient alloc] init];
 
 	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 

@@ -5,9 +5,9 @@
 //  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
-#import "ModellModulEvent.h"
+#import "ModulEvent.h"
 
-@implementation ModellModulEvent
+@implementation ModulEvent
 
 - (id)initWithEventTitle:(NSString *)title {
 	self = [super init];
