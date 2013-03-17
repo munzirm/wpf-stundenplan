@@ -11,7 +11,7 @@
 
 @interface TimetableOptionCell : UITableViewCell
 
-@property (weak, nonatomic) id<TimetableCellDelegate> delegate;
+@property (weak, nonatomic) TimetableCell* originalCell;
 
 @property (weak, nonatomic) ModulEvent* event;
 

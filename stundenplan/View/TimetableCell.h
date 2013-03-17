@@ -26,4 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 @property (weak, nonatomic) IBOutlet UIView *eventColor;
 
+- (void) animateToOrigin;
+
 @end
