@@ -111,8 +111,14 @@
 
 	// Todo: Replace EKEvent with ModulEvent
 	EKEvent *event = [modulEvents eventOnThisDay:indexPath];
+	if ([event.title isEqualToString:@"WBA2 V"])
+		[((TimetableCell*) cell).eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
 
+	if ([event.title isEqualToString:@"WBA2 P"])
+		[((TimetableCell*) cell).eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
+	
 	((TimetableCell*) cell).eventName.text = event.title;
+
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm"];
