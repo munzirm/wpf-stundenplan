@@ -6,14 +6,10 @@
 //
 
 #import "TimetableViewController.h"
-
 #import "TimetableCell.h"
-
 #import "ModulEvents.h"
 #import "ModulEvent.h"
-
-
-#import <QuartzCore/QuartzCore.h>
+#import "ColorGenerator.h"
 
 @implementation TimetableViewController {
 	NSArray *_events;
@@ -119,15 +115,10 @@
 	
 	((TimetableCell*) cell).eventName.text = event.modulAcronym;
 
-
-
-
 	((TimetableCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", event.startTime, event.endTime];
 
-	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
-	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
-	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
-	((TimetableCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
+
+	((TimetableCell*) cell).eventColor.backgroundColor = [ColorGenerator randomColor];
 
 	return cell;
 }

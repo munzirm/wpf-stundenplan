@@ -46,6 +46,7 @@
 		B4AFD05A16F66567005395A2 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04F16F66567005395A2 /* OpenSans-Regular.ttf */; };
 		B4AFD05B16F66567005395A2 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD05016F66567005395A2 /* OpenSans-Semibold.ttf */; };
 		B4AFD05C16F66567005395A2 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD05116F66567005395A2 /* OpenSans-SemiboldItalic.ttf */; };
+		B4AFD05F16F674E1005395A2 /* ColorGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD05E16F674E1005395A2 /* ColorGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,8 @@
 		B4AFD04F16F66567005395A2 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		B4AFD05016F66567005395A2 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		B4AFD05116F66567005395A2 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		B4AFD05D16F674E1005395A2 /* ColorGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGenerator.h; sourceTree = "<group>"; };
+		B4AFD05E16F674E1005395A2 /* ColorGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGenerator.m; sourceTree = "<group>"; };
 		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -211,6 +214,7 @@
 				590329C216F60A2600DFB8D4 /* View */,
 				5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */,
 				59A637CB16ACAC7C00DB146C /* TimetableViewController.h */,
+				B4AFD06016F675C2005395A2 /* Utils */,
 				59A637CC16ACAC7C00DB146C /* TimetableViewController.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
@@ -282,6 +286,15 @@
 				B4AFD05116F66567005395A2 /* OpenSans-SemiboldItalic.ttf */,
 			);
 			path = "open-sans";
+			sourceTree = "<group>";
+		};
+		B4AFD06016F675C2005395A2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B4AFD05D16F674E1005395A2 /* ColorGenerator.h */,
+				B4AFD05E16F674E1005395A2 /* ColorGenerator.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +447,7 @@
 				590329C516F60A2600DFB8D4 /* TimetableCell.m in Sources */,
 				590329C816F60A5000DFB8D4 /* TimetableOptionCell.m in Sources */,
 				B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */,
+				B4AFD05F16F674E1005395A2 /* ColorGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
