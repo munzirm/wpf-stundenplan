@@ -47,7 +47,8 @@
  Permissions to the calendar permitted
  */
 - (void)didGetAccessToCalendar {
-	EKCalendar* calendar = [self.calendarController getTheCalendar];
+	EKCalendar* calendar = [self.calendarController calendar];
+	NSLog(@"%@", calendar);
 
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
@@ -56,6 +57,7 @@
 	NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.calendarController.store eventsMatchingPredicate:predicate];
+
 	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
 		[self.calendarController fetchCalendarFromRemote:^(NSArray *events) {

@@ -10,12 +10,11 @@
 
 @interface CalendarController : NSObject
 @property (strong) EKEventStore* store;
-@property (strong) EKCalendar* calendar;
 
 
 - (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback;
 
-- (EKCalendar *)getTheCalendar;
+- (EKCalendar *)calendar;
 
 - (void)fetchCalendarFromRemote:(void (^)(NSArray *events))success;
 

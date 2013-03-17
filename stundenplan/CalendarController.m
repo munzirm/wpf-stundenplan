@@ -11,6 +11,7 @@
 @implementation CalendarController {
 	// The calendar store key
 	NSString *calendarIdentifierKey;
+	EKCalendar* _calendar;
 }
 
 - (id)init {
@@ -24,6 +25,7 @@
 
 	// The event store
 	self.store = [[EKEventStore alloc] init];
+	_calendar = nil;
 
 	return self;
 }
@@ -45,25 +47,26 @@
 /**
  Get the calendar
  */
-- (EKCalendar *)getTheCalendar {
-	if (self.calendar ) {
-		return self.calendar;
+- (EKCalendar *)calendar {
+	if (_calendar) {
+		return _calendar;
 	}
+
 	// Get our custom calendar identifier
 	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
 
 	// When identifier exists, calendar probably already exists
 	if (calendarIdentifier) {
-		self.calendar = [self.store calendarWithIdentifier:calendarIdentifier];
+		_calendar = [self.store calendarWithIdentifier:calendarIdentifier];
 	}
 
 	// Calendar doesn't exist
-	if (!self.calendar ) {
+	if (!_calendar ) {
 		// Create it
-		self.calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:self.store];
+		_calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:self.store];
 
 		// Set user visible calendar name
-		[self.calendar setTitle:@"FH Köln Stundenplan"];
+		[_calendar setTitle:@"FH Köln Stundenplan"];
 
 		// Find appropriate source type. Only local calendars
 		for (EKSource *s in self.store.sources) {
@@ -77,7 +80,7 @@
 		NSString *calendarIdentifier = [_calendar calendarIdentifier];
 
 		NSError *error = nil;
-		BOOL saved = [self.store saveCalendar:self.calendar commit:YES error:&error];
+		BOOL saved = [self.store saveCalendar:_calendar commit:YES error:&error];
 		if (saved) {
 			// Saved successfuly, store identifier in NSUserDefaults
 			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifierKey];
@@ -87,7 +90,7 @@
 		}
 	}
 
-	return self.calendar;
+	return _calendar;
 }
 
 - (void)fetchCalendarFromRemote:(void (^)(NSArray *events))success {
@@ -96,7 +99,8 @@
 	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:self.store onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
 		for (EKEvent* event in events) {
-			event.calendar = self.calendar;
+			event.calendar = _calendar;
+
 			NSError *error = nil;
 			BOOL result = [self.store saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
 			if (!result) {
