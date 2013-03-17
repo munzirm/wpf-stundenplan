@@ -9,19 +9,19 @@
 
 @implementation ModulEvent
 
-- (id)initWithEventTitle:(NSString *)title {
+- (id)initWithEvent:(EKEvent *)event {
 	self = [super init];
 
 	if (self == nil)
 		return nil;
 
-	_title = title;
 
-	NSArray *modulComponents = [_title componentsSeparatedByString:@" "];
-	// WBA1, BS1, BWL1
-	_modulName = [modulComponents objectAtIndex:0];
+	NSArray *modulComponents = [event.title componentsSeparatedByString:@" "];
+	_modulAcronym = [modulComponents objectAtIndex:0];
 	// V, P, S
 	_modulType = [modulComponents objectAtIndex:1];
+
+	//_modulFullName = ...
 
 	return self;
 }

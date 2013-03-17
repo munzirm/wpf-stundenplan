@@ -35,9 +35,9 @@
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _originalEvents) {
-		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEventTitle:event.title];
+		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEvent:event];
 
-		if (![modulEvent.modulName isEqualToString:@"WBA2"] && ![modulEvent.modulName isEqualToString:@"MCI"]) {
+		if (![modulEvent.modulAcronym isEqualToString:@"WBA2"] && ![modulEvent.modulAcronym isEqualToString:@"MCI"]) {
 			 continue;
 		}
 
