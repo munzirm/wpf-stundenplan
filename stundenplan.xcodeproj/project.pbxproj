@@ -32,6 +32,7 @@
 		A81A3E14201F4A02AB352304 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB45426CFF7643E58A2CB518 /* libPods.a */; };
 		B43F646416F542810050CAE4 /* ModulEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646316F542810050CAE4 /* ModulEvent.m */; };
 		B43F646616F5DF310050CAE4 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B43F646516F5DF310050CAE4 /* data.json */; };
+		B43F646B16F601830050CAE4 /* CalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646A16F601830050CAE4 /* CalendarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		B43F646216F542810050CAE4 /* ModulEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEvent.h; sourceTree = "<group>"; };
 		B43F646316F542810050CAE4 /* ModulEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEvent.m; sourceTree = "<group>"; };
 		B43F646516F5DF310050CAE4 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		B43F646916F601830050CAE4 /* CalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarController.h; sourceTree = "<group>"; };
+		B43F646A16F601830050CAE4 /* CalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarController.m; sourceTree = "<group>"; };
 		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -172,6 +175,8 @@
 				590329C016F5E59100DFB8D4 /* TimetableCell.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
+				B43F646916F601830050CAE4 /* CalendarController.h */,
+				B43F646A16F601830050CAE4 /* CalendarController.m */,
 				594BDF4016B3151000328E41 /* Client */,
 				59BA3D4216AB2596000D0FA4 /* Supporting Files */,
 			);
@@ -356,6 +361,7 @@
 				5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */,
 				B43F646416F542810050CAE4 /* ModulEvent.m in Sources */,
 				590329C116F5E59100DFB8D4 /* TimetableCell.m in Sources */,
+				B43F646B16F601830050CAE4 /* CalendarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,6 @@
 
 #import "TimetableCell.h"
 
-#import "FhKoelnF10CalendarClient.h"
-
 #import "ModulEvent.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -19,8 +17,6 @@
 	NSArray *_events;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
-	// The calendar store key
-	NSString *calendarIdentifierKey;
 }
 
 - (void)viewDidLoad {
@@ -29,19 +25,15 @@
 	NSLog(@"navigationController: %@", self.navigationController);
 	NSLog(@"navigationItem: %@", self.navigationItem);
 	((UILabel*) self.navigationItem.titleView).textColor = [UIColor blackColor];
-	
-	// The event store
-	_eventStore  = nil;
-	// Our calendar
-	_calendar    = nil;
+
 	// The days
 	_daySections = [NSMutableDictionary dictionary];
 	// The events per day
 	_sortedDays = nil;
-	// The calendar store key
-	calendarIdentifierKey = @"fh_koeln_stundenplan";
 
-	[self requestAccessToCalendar:^(BOOL granted, NSError *error) {
+	self.calendarController = [[CalendarController alloc] init];
+
+	[self.calendarController requestAccessToCalendar:^(BOOL granted, NSError *error) {
 		if (granted) {
 			[self didGetAccessToCalendar];
 		} else {
@@ -49,48 +41,25 @@
 			NSLog(@"Error: %@", error);
 		}
 	}];
-
-	// Uncomment the following line to preserve selection between presentations.
-	// self.clearsSelectionOnViewWillAppear = NO;
-
-	// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-	// self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-/**
- Request permissions to the calendar
- */
-- (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback; {
-	if (_eventStore == nil) {
-		_eventStore = [[EKEventStore alloc] init];
-	}
-
-	// request permissions
-	if ([_eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-		// iOS 6 and later
-		[_eventStore requestAccessToEntityType:EKEntityTypeEvent completion:callback];
-	} else {
-		// iOS 5
-		callback(FALSE, NULL);
-	}
 }
 
 /**
  Permissions to the calendar permitted
  */
 - (void)didGetAccessToCalendar {
-	[self prepareCalendar];
+	EKCalendar* calendar = [self.calendarController getTheCalendar];
 
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
 	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*356];
-	NSArray *calendars = [NSArray arrayWithObject:_calendar];
-	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+	NSArray *calendars = [NSArray arrayWithObject:calendar];
+	NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
-	_events = [self.eventStore eventsMatchingPredicate:predicate];
+	_events = [self.calendarController.store eventsMatchingPredicate:predicate];
 	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
-		[self fetchCalendarFromRemote:^ {
+		[self.calendarController fetchCalendarFromRemote:^(NSArray *events) {
+			_events = events;
 			[self prepareEventsForDisplay];
 		}];
 	} else {
@@ -155,73 +124,6 @@
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 		[self.tableView reloadData];
 	});
-}
-
-/**
- Get the calendar
- */
-- (EKCalendar *)prepareCalendar {
-	// Get our custom calendar identifier
-	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
-
-	// When identifier exists, calendar probably already exists
-	if (calendarIdentifier) {
-		_calendar = [_eventStore calendarWithIdentifier:calendarIdentifier];
-	}
-
-	// Calendar doesn't exist
-	if (!_calendar) {
-		// Create it
-		_calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:_eventStore];
-
-		// Set user visible calendar name
-		[_calendar setTitle:@"FH Köln Stundenplan"];
-
-		// Find appropriate source type. Only local calendars
-		for (EKSource *s in _eventStore.sources) {
-			if (s.sourceType == EKSourceTypeLocal) {
-				_calendar.source = s;
-				break;
-			}
-		}
-
-		// Save identifier to store it later
-		NSString *calendarIdentifier = [_calendar calendarIdentifier];
-
-		NSError *error = nil;
-		BOOL saved = [_eventStore saveCalendar:_calendar commit:YES error:&error];
-		if (saved) {
-			// Saved successfuly, store identifier in NSUserDefaults
-			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifierKey];
-		} else {
-			// Unable to save calendar
-			NSLog(@"Calendar Saving: %@", error);
-			return nil;
-		}
-	}
-
-	return _calendar;
-}
-
-- (void)fetchCalendarFromRemote:(void (^)())success; {
-	FhKoelnF10CalendarClient* icalCalenderClient = [[FhKoelnF10CalendarClient alloc] init];
-
-	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
-
-		for (EKEvent* event in events) {
-			event.calendar = _calendar;
-			NSError *error = nil;
-			BOOL result = [_eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
-			if (!result) {
-				NSLog(@"Event Storing: %@", error);
-			}
-		}
-
-		_events = events;
-		success();
-	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"Request Operation: %@", error);
-	}];
 }
 
 - (void)didReceiveMemoryWarning

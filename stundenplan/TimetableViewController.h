@@ -7,10 +7,10 @@
 
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
+#import "CalendarController.h"
 
 @interface TimetableViewController : UITableViewController <UIGestureRecognizerDelegate>
 
-@property (strong) EKEventStore* eventStore;
-@property (strong) EKCalendar* calendar;
+@property (strong) CalendarController* calendarController;
 
 @end
