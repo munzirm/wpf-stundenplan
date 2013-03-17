@@ -30,6 +30,17 @@
 	_panGestures = nil;
 }
 
+- (void)prepareForReuse {
+	[super prepareForReuse];
+	
+	[self removeOptionView];
+	self.contentView.hidden = NO;
+	
+	CGRect frame = self.frame;
+	frame.origin.x = 0;
+	self.frame = frame;
+}
+
 #pragma mark - Handle Gestures
 
 - (void)handlePanGestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer {
