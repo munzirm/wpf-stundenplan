@@ -12,6 +12,15 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation IcalTestEventCell
+
+// Ignore the editing mode to no not show the ios standard delete button.
+- (void)setEditing:(BOOL)editing {
+}
+
+// Ignore the editing mode to no not show the ios standard delete button.
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+}
+
 @end
 
 @implementation IcalTestViewController {
@@ -289,6 +298,10 @@
 	
 }
 
+// Required for the swipe to delete interaction.
+- (BOOL)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+}
+
 
 #pragma mark - Table view delegate
 
@@ -301,6 +314,38 @@
 	 // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 */
+}
+
+
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+	NSLog(@"gestureRecognizerShouldBegin:");
+	return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+	NSLog(@"gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:");
+	
+	
+	// Get the table view cell where the swipe occured
+    CGPoint location = [gestureRecognizer locationInView:self.tableView];
+    NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:location];
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+	
+	CGPoint translation = [(UIPanGestureRecognizer*) gestureRecognizer translationInView:self.tableView];
+    CGPoint velocity = [(UIPanGestureRecognizer*) gestureRecognizer velocityInView:self.tableView];
+	
+	NSLog(@"cell: %@", cell);
+	NSLog(@"translation: %@", NSStringFromCGPoint(translation));
+	
+	cell.frame = CGRectMake(translation.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
+	
+	return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+	NSLog(@"gestureRecognizer:shouldReceiveTouch:");
+	return YES;
 }
 
 @end

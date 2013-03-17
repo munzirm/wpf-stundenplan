@@ -16,7 +16,7 @@
 
 @end
 
-@interface IcalTestViewController : UITableViewController
+@interface IcalTestViewController : UITableViewController <UIGestureRecognizerDelegate>
 
 @property (strong) EKEventStore* eventStore;
 @property (strong) EKCalendar* calendar;
