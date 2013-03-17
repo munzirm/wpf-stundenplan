@@ -32,8 +32,8 @@
 /*
  Enable pan gestures only if the gesture start at the left side of the screen.
  */
-- (BOOL)viewDeckController:(IIViewDeckController*)viewDeckController shouldPan:(UIPanGestureRecognizer*)panGestureRecognizer {
-	NSLog(@"shouldPan: %@", panGestureRecognizer);
+- (BOOL)viewDeckController:(IIViewDeckController*)viewDeckController
+				 shouldPan:(UIPanGestureRecognizer*)panGestureRecognizer {
 	if ([self isAnySideOpen]) {
 		return YES;
 	} else {

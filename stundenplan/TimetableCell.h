@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimetableCell : UITableViewCell
+@interface TimetableCell : UITableViewCell <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *eventTime;
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
