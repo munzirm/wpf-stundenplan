@@ -8,7 +8,9 @@
 #import "ModulEvent.h"
 #import "Data.h"
 
-@implementation ModulEvent
+@implementation ModulEvent {
+	EKEvent *_event;
+}
 
 - (id)initWithEvent:(EKEvent *)event {
 	self = [super init];

@@ -102,7 +102,7 @@
 	cell.delegate = self;
 	cell.event = [modulEvents eventOnThisDay:indexPath];
 
-	cell.eventName.text = cell.event.event.title;
+	cell.eventName.text = cell.event.modulAcronym;
 	if ([cell.event.modulAcronym isEqualToString:@"WBA2"])
 		[cell.eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
 	
@@ -111,17 +111,7 @@
 
 	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime];
 
-	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
-	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
-	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
-	cell.eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
-
-	// Todo: Replace EKEvent with ModulEvent
-	ModulEvent *event = [modulEvents eventOnThisDay:indexPath];
-	
-	((TimetableCell*) cell).eventName.text = event.modulAcronym;
-
-	((TimetableCell*) cell).eventColor.backgroundColor = [ColorGenerator randomColor];
+	cell.eventColor.backgroundColor = [ColorGenerator randomColor];
 
 	return cell;
 }

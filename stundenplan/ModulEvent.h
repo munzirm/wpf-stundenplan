@@ -10,8 +10,6 @@
 
 @interface ModulEvent : NSObject
 
-@property (nonatomic, copy, readonly) EKEvent *event;
-
 @property (nonatomic, copy, readonly) NSString *modulAcronym;
 @property (nonatomic, copy, readonly) NSString *modulFullName;
 @property (nonatomic, copy, readonly) NSString *modulType;
