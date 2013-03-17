@@ -47,7 +47,7 @@
 
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*356];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
 	NSArray *calendars = [NSArray arrayWithObject:calendar];
 	NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
@@ -55,8 +55,15 @@
 
 	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
-		[self.calendarController fetchCalendarFromRemote:^(NSArray *events) {
-			modulEvents = [[ModulEvents alloc] initWithEvents:events];
+		[self.calendarController fetchCalendarFromRemote:^(void) {
+			// For demo proposes, display events for the next X days
+			NSDate *startDate = [NSDate date];
+			NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+			NSArray *calendars = [NSArray arrayWithObject:calendar];
+			NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+
+			_events = [self.calendarController.store eventsMatchingPredicate:predicate];
+			modulEvents = [[ModulEvents alloc] initWithEvents:_events];
 			[self prepareEventsForDisplay];
 		}];
 	} else {
@@ -73,7 +80,6 @@
 	// Workaround to remove the delay
 	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
-		NSLog( @"Reloaded");
 		[self.tableView reloadData];
 	});
 }

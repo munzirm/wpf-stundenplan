@@ -48,6 +48,19 @@
  Get the calendar
  */
 - (EKCalendar *)calendar {
+	// DEBUG CLEAR CALENDAR
+	/*NSString *_calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
+	EKCalendar *calendar = [self.store calendarWithIdentifier:_calendarIdentifier];
+	NSError *error = nil;
+	BOOL result = [self.store removeCalendar:calendar commit:YES error:&error];
+	if (result) {
+		NSLog(@"Deleted calendar from event store.");
+	} else {
+		NSLog(@"Deleting calendar failed: %@.", error);
+	}
+	_calendar = nil;*/
+	// END DEBUG
+
 	if (_calendar) {
 		return _calendar;
 	}
@@ -93,25 +106,66 @@
 	return _calendar;
 }
 
-- (void)fetchCalendarFromRemote:(void (^)(NSArray *events))success {
+- (void)fetchCalendarFromRemote:(void (^)(void))success {
 	FhKoelnF10CalendarClient* icalCalenderClient = [[FhKoelnF10CalendarClient alloc] init];
 
 	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:self.store onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
+		// Group and sort events
+		NSSortDescriptor* sort1 = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+		NSSortDescriptor* sort2 = [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES];
+		events = [events sortedArrayUsingDescriptors:@[ sort1, sort2 ]];
+		
+		EKEvent *prevEvent = nil;
+		int eventsCount = [events count];
 		for (EKEvent* event in events) {
-			event.calendar = _calendar;
+			eventsCount--;
+
+			// The first event
+			if (!prevEvent) {
+				prevEvent = event;
+				continue;
+			}
+
+			// Previous event with same name as the current event. Inteval <= 15 minutes. 
+			if (
+				prevEvent &&
+				[prevEvent.title isEqualToString:event.title] &&
+				[event.startDate timeIntervalSinceDate:prevEvent.endDate] <= 900 // 60*15 => 15 Minutes
+				) {
+
+				// Set the start date of the current event to the previous event
+				event.startDate = prevEvent.startDate;
+				// Save the new previous event
+				prevEvent = event;
+
+				if (eventsCount!=0)
+					continue;
+			}
+
+
+			// Add the calendar
+			prevEvent.calendar = _calendar;
 			// icalCalenderClient adds the full name of the modul as note,
 			// but we don't need it
-			event.notes = nil;
+			prevEvent.notes = nil;
 
+			// Increase end date by 15 minutes
+			prevEvent.endDate = [prevEvent.endDate dateByAddingTimeInterval:60*15]; // 60*15 => 15 Minutes
+
+			// Save the event
 			NSError *error = nil;
-			BOOL result = [self.store saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
+			BOOL result = [self.store saveEvent:prevEvent span:EKSpanThisEvent commit:YES error:&error];
 			if (!result) {
 				NSLog(@"Event Storing: %@", error);
 			}
+
+			// Replace the previous event
+			prevEvent = event;
 		}
-		
-		success(events);
+
+		// Call callback method
+		success();
 	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];

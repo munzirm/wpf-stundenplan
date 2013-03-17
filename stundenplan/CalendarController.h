@@ -16,6 +16,6 @@
 
 - (EKCalendar *)calendar;
 
-- (void)fetchCalendarFromRemote:(void (^)(NSArray *events))success;
+- (void)fetchCalendarFromRemote:(void (^)(void))success;
 
 @end

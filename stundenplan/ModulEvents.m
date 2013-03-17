@@ -35,7 +35,7 @@
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _originalEvents) {
-		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEvent:event];
+		/*ModulEvent *modulEvent = [[ModulEvent alloc] initWithEvent:event];
 
 		if (![modulEvent.modulAcronym isEqualToString:@"WBA2"] && ![modulEvent.modulAcronym isEqualToString:@"MCI"]) {
 			 continue;
@@ -43,7 +43,7 @@
 
 		if ([modulEvent.modulType isEqualToString:@"P"]) {
 			 continue;
-		}
+		}*/
 
 		// Reduce event start date to date components (year, month, day)
 		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
