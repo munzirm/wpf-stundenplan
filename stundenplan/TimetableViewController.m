@@ -27,8 +27,6 @@
 	NSLog(@"navigationItem: %@", self.navigationItem);
 	((UILabel*) self.navigationItem.titleView).textColor = [UIColor blackColor];
 
-	modulEvents = [ModulEvents alloc];
-
 	self.calendarController = [[CalendarController alloc] init];
 
 	[self.calendarController requestAccessToCalendar:^(BOOL granted, NSError *error) {
@@ -58,12 +56,12 @@
 	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
 		[self.calendarController fetchCalendarFromRemote:^(NSArray *events) {
-			modulEvents = [modulEvents initWithEvents:events];
+			modulEvents = [[ModulEvents alloc] initWithEvents:events];
 			[self prepareEventsForDisplay];
 		}];
 	} else {
 		NSLog(@"Used: LOCAL");
-		modulEvents = [modulEvents initWithEvents:_events];
+		modulEvents = [[ModulEvents alloc] initWithEvents:_events];
 
 		[self prepareEventsForDisplay];
 	}

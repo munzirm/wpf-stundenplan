@@ -100,6 +100,9 @@
 
 		for (EKEvent* event in events) {
 			event.calendar = _calendar;
+			// icalCalenderClient adds the full name of the modul as note,
+			// but we don't need it
+			event.notes = nil;
 
 			NSError *error = nil;
 			BOOL result = [self.store saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
