@@ -9,6 +9,8 @@
 
 #import "IcalCalenderClient.h"
 
+#import "ModellModulEvent.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 @implementation IcalTestEventCell
@@ -87,46 +89,28 @@
  Permissions to the calendar permitted
  */
 - (void)didGetAccessToCalendar {
-	/*
-	 // DEBUG CLEAR CALENDAR
-	 NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
-	 EKCalendar *calendar = [_eventStore calendarWithIdentifier:calendarIdentifier];
-	 NSError *error = nil;
-	 BOOL result = [_eventStore removeCalendar:calendar commit:YES error:&error];
-	 if (result) {
-	 NSLog(@"Deleted calendar from event store.");
-	 } else {
-	 NSLog(@"Deleting calendar failed: %@.", error);
-	 }
-	 // END DEBUG */
+	[self prepareCalendar];
 
-	[self getCalendar];
-
-	// For demo proposes, display events for the next X dayes
+	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*356];
 	NSArray *calendars = [NSArray arrayWithObject:_calendar];
 	NSPredicate *predicate = [self.eventStore predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
 	_events = [self.eventStore eventsMatchingPredicate:predicate];
-	if (![_events count]) {
-		[self fetchCalendarFromRemote];
+	if ([_events count] == 0) {
 		NSLog(@"Used: REMOTE");
+		[self fetchCalendarFromRemote:^ {
+			[self prepareEventsForDisplay];
+		}];
 	} else {
 		NSLog(@"Used: LOCAL");
+		[self prepareEventsForDisplay];
 	}
 
-	[self prepareEventsForDisplay];
-
-	// Workaround to remove the delay
-	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
-	dispatch_async(dispatch_get_main_queue(), ^(void) {
-		[self.tableView reloadData];
-	});
 }
 
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
-{
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate {
 	// Use the user's current calendar and time zone
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
@@ -141,12 +125,21 @@
 	[dateComps setSecond:0];
 
 	// Convert back
-	NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
-	return beginningOfDay;
+	return [calendar dateFromComponents:dateComps];
 }
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _events) {
+		ModellModulEvent *modulEvent = [[ModellModulEvent alloc] initWithEventTitle:event.title];
+
+		if (![modulEvent.modulName isEqualToString:@"WBA2"] && ![modulEvent.modulName isEqualToString:@"MCI"]) {
+			continue;
+		}
+
+		if ([modulEvent.modulType isEqualToString:@"P"]) {
+			continue;
+		}
+
 		// Reduce event start date to date components (year, month, day)
 		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
 
@@ -166,12 +159,18 @@
 	// Create a sorted list of days
 	NSArray *unsortedDays = [_daySections allKeys];
 	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
+
+	// Workaround to remove the delay
+	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
+	dispatch_async(dispatch_get_main_queue(), ^(void) {
+		[self.tableView reloadData];
+	});
 }
 
 /**
  Get the calendar
  */
-- (EKCalendar *)getCalendar {
+- (EKCalendar *)prepareCalendar {
 	// Get our custom calendar identifier
 	NSString *calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
 
@@ -203,7 +202,7 @@
 		BOOL saved = [_eventStore saveCalendar:_calendar commit:YES error:&error];
 		if (saved) {
 			// Saved successfuly, store identifier in NSUserDefaults
-			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifier];
+			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifierKey];
 		} else {
 			// Unable to save calendar
 			NSLog(@"Calendar Saving: %@", error);
@@ -214,7 +213,7 @@
 	return _calendar;
 }
 
-- (void)fetchCalendarFromRemote {
+- (void)fetchCalendarFromRemote:(void (^)())success; {
 	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
 
 	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
@@ -229,7 +228,7 @@
 		}
 
 		_events = events;
-
+		success();
 	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];
