@@ -125,6 +125,14 @@
 }
 
 - (void) animateToOrigin {
+	if (self.contentView.hidden) {
+		self.contentView.hidden = NO;
+		
+		CGFloat width = self.frame.size.width;
+		self.center = CGPointMake(self.center.x + width, self.center.y);
+		_optionView.center = CGPointMake(_optionView.center.x - width, _optionView.center.y);
+	}
+	
 	// TODO Animationsdauer abhängig von Velocity und/oder dem Abstand machen?
 	[UIView animateWithDuration:0.4 animations:^{
 		CGRect frame = self.frame;
@@ -178,7 +186,7 @@
 		static NSString *CellIdentifier = @"TimetableOptionCell";
 		_optionView = [(UITableView*) self.superview dequeueReusableCellWithIdentifier:CellIdentifier];
 		_optionView.center = CGPointMake(_optionView.center.x + _optionView.frame.size.width, _optionView.center.y);
-		_optionView.delegate = self.delegate;
+		_optionView.originalCell = self;
 		_optionView.event = self.event;
 		[self addSubview:_optionView];
 	}

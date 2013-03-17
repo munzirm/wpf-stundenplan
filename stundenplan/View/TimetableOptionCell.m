@@ -10,19 +10,23 @@
 @implementation TimetableOptionCell
 
 - (IBAction)favorite {
-	[self.delegate favorite:self.event];
+	[self.originalCell animateToOrigin];
+	[self.originalCell.delegate favorite:self.event];
 }
 
 - (IBAction)confirm {
-	[self.delegate confirm:self.event];
+	[self.originalCell animateToOrigin];
+	[self.originalCell.delegate confirm:self.event];
 }
 
 - (IBAction)cancel {
-	[self.delegate cancel:self.event];
+	[self.originalCell animateToOrigin];
+	[self.originalCell.delegate cancel:self.event];
 }
 
 - (IBAction)remove {
-	[self.delegate remove:self.event];
+	[self.originalCell animateToOrigin];
+	[self.originalCell.delegate remove:self.event];
 }
 
 @end
