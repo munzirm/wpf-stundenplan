@@ -10,7 +10,7 @@
 		5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAE716F3FCEC00D83F86 /* MainViewController.m */; };
 		5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */; };
 		590329C116F5E59100DFB8D4 /* TimetableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590329C016F5E59100DFB8D4 /* TimetableCell.m */; };
-		594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4516B3155E00328E41 /* IcalCalenderClient.m */; };
+		594BDF4616B3155E00328E41 /* FhKoelnF10CalendarClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4516B3155E00328E41 /* FhKoelnF10CalendarClient.m */; };
 		59A637CD16ACAC7C00DB146C /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* TimetableViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
 		59BA3D3E16AB2596000D0FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3D16AB2596000D0FA4 /* Foundation.framework */; };
@@ -53,8 +53,8 @@
 		590329BF16F5E59100DFB8D4 /* TimetableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableCell.h; sourceTree = "<group>"; };
 		590329C016F5E59100DFB8D4 /* TimetableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableCell.m; sourceTree = "<group>"; };
 		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
-		594BDF4416B3155E00328E41 /* IcalCalenderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcalCalenderClient.h; path = Client/IcalCalenderClient.h; sourceTree = "<group>"; };
-		594BDF4516B3155E00328E41 /* IcalCalenderClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IcalCalenderClient.m; path = Client/IcalCalenderClient.m; sourceTree = "<group>"; };
+		594BDF4416B3155E00328E41 /* FhKoelnF10CalendarClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FhKoelnF10CalendarClient.h; path = Client/FhKoelnF10CalendarClient.h; sourceTree = "<group>"; };
+		594BDF4516B3155E00328E41 /* FhKoelnF10CalendarClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FhKoelnF10CalendarClient.m; path = Client/FhKoelnF10CalendarClient.m; sourceTree = "<group>"; };
 		59A637CB16ACAC7C00DB146C /* TimetableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableViewController.h; sourceTree = "<group>"; };
 		59A637CC16ACAC7C00DB146C /* TimetableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableViewController.m; sourceTree = "<group>"; };
 		59BA3D3716AB2596000D0FA4 /* stundenplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stundenplan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,8 +114,8 @@
 		594BDF4016B3151000328E41 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				594BDF4416B3155E00328E41 /* IcalCalenderClient.h */,
-				594BDF4516B3155E00328E41 /* IcalCalenderClient.m */,
+				594BDF4416B3155E00328E41 /* FhKoelnF10CalendarClient.h */,
+				594BDF4516B3155E00328E41 /* FhKoelnF10CalendarClient.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 				59BA3D4C16AB2596000D0FA4 /* AppDelegate.m in Sources */,
 				59BA3D5816AB2596000D0FA4 /* ViewController.m in Sources */,
 				59A637CD16ACAC7C00DB146C /* TimetableViewController.m in Sources */,
-				594BDF4616B3155E00328E41 /* IcalCalenderClient.m in Sources */,
+				594BDF4616B3155E00328E41 /* FhKoelnF10CalendarClient.m in Sources */,
 				5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */,
 				5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */,
 				B43F646416F542810050CAE4 /* ModulEvent.m in Sources */,

@@ -14,7 +14,7 @@
 /**
  Class which handles the connection to the ical service the FH Köln.
  */
-@interface IcalCalenderClient : AFHTTPClient
+@interface FhKoelnF10CalendarClient : AFHTTPClient
 
 - (id)init;
 - (id)initWithBaseURL:(NSURL*) url;

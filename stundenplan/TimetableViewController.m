@@ -9,7 +9,7 @@
 
 #import "TimetableCell.h"
 
-#import "IcalCalenderClient.h"
+#import "FhKoelnF10CalendarClient.h"
 
 #import "ModulEvent.h"
 
@@ -204,7 +204,7 @@
 }
 
 - (void)fetchCalendarFromRemote:(void (^)())success; {
-	IcalCalenderClient* icalCalenderClient = [[IcalCalenderClient alloc] init];
+	FhKoelnF10CalendarClient* icalCalenderClient = [[FhKoelnF10CalendarClient alloc] init];
 
 	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:_eventStore onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
 
