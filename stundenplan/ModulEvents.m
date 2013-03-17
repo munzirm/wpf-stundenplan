@@ -6,7 +6,6 @@
 //
 
 #import "ModulEvents.h"
-#import "ModulEvent.h"
 
 @implementation ModulEvents {
 	NSArray *_originalEvents;
@@ -58,7 +57,7 @@
 		}
 
 		// Add the event to the list for this day
-		[eventsOnThisDay addObject:event];
+		[eventsOnThisDay addObject:[[ModulEvent alloc] initWithEvent:event]];
 	}
 
 	// Create a sorted list of days
@@ -112,8 +111,7 @@
 	return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
 }
 
-// Todo: Replace EKEvent with ModulEvent
-- (EKEvent *)eventOnThisDay:(NSIndexPath *)indexPath {
+- (ModulEvent *)eventOnThisDay:(NSIndexPath *)indexPath {
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
     return [eventsOnThisDay objectAtIndex:indexPath.row];

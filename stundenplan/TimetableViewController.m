@@ -14,7 +14,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TimetableViewController {
-	NSArray *_events;
 	ModulEvents *modulEvents;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
@@ -49,26 +48,21 @@
 	NSDate *startDate = [NSDate date];
 	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
 	NSArray *calendars = [NSArray arrayWithObject:calendar];
-	NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+	__block NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
-	_events = [self.calendarController.store eventsMatchingPredicate:predicate];
+	__block NSArray* events = [self.calendarController.store eventsMatchingPredicate:predicate];
 
-	if ([_events count] == 0) {
+	if ([events count] == 0) {
 		NSLog(@"Used: REMOTE");
 		[self.calendarController fetchCalendarFromRemote:^(void) {
-			// For demo proposes, display events for the next X days
-			NSDate *startDate = [NSDate date];
-			NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
-			NSArray *calendars = [NSArray arrayWithObject:calendar];
-			NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
-			_events = [self.calendarController.store eventsMatchingPredicate:predicate];
-			modulEvents = [[ModulEvents alloc] initWithEvents:_events];
+			events = [self.calendarController.store eventsMatchingPredicate:predicate];
+			modulEvents = [[ModulEvents alloc] initWithEvents:events];
 			[self prepareEventsForDisplay];
 		}];
 	} else {
 		NSLog(@"Used: LOCAL");
-		modulEvents = [[ModulEvents alloc] initWithEvents:_events];
+		modulEvents = [[ModulEvents alloc] initWithEvents:events];
 
 		[self prepareEventsForDisplay];
 	}
@@ -76,7 +70,6 @@
 }
 
 - (void)prepareEventsForDisplay {
-	//NSLog( @"%@",_events);
 	// Workaround to remove the delay
 	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -107,24 +100,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"TimetableCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	TimetableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	cell.delegate = self;
+	cell.event = [modulEvents eventOnThisDay:indexPath];
 
-	// Todo: Replace EKEvent with ModulEvent
-	EKEvent *event = [modulEvents eventOnThisDay:indexPath];
-
-	((TimetableCell*) cell).eventName.text = event.title;
+	cell.eventName.text = cell.event.event.title;
 
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm"];
-	NSString *startTime = [dateFormatter stringFromDate:event.startDate];
-	NSString *endTime = [dateFormatter stringFromDate:event.endDate];
+	NSString *startTime = [dateFormatter stringFromDate:cell.event.event.startDate];
+	NSString *endTime = [dateFormatter stringFromDate:cell.event.event.endDate];
 
-	((TimetableCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
 
 	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
-	((TimetableCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
+	cell.eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
 
 	return cell;
 }
@@ -153,6 +146,24 @@
 	 // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 */
+}
+
+#pragma mark - TimetableCellDelegate implementation
+
+- (void)favorite:(ModulEvent*) event {
+	NSLog(@"favorite: %@", event);
+}
+
+- (void)confirm:(ModulEvent*) event {
+	NSLog(@"confirm: %@", event);
+}
+
+- (void)cancel:(ModulEvent*) event {
+	NSLog(@"cancel: %@", event);
+}
+
+- (void)remove:(ModulEvent*) event {
+	NSLog(@"remove: %@", event);
 }
 
 @end

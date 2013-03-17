@@ -135,9 +135,7 @@
 				) {
 
 				// Set the start date of the current event to the previous event
-				event.startDate = prevEvent.startDate;
-				// Save the new previous event
-				prevEvent = event;
+				prevEvent.endDate = event.endDate;
 
 				if (eventsCount!=0)
 					continue;
@@ -149,9 +147,6 @@
 			// icalCalenderClient adds the full name of the modul as note,
 			// but we don't need it
 			prevEvent.notes = nil;
-
-			// Increase end date by 15 minutes
-			prevEvent.endDate = [prevEvent.endDate dateByAddingTimeInterval:60*15]; // 60*15 => 15 Minutes
 
 			// Save the event
 			NSError *error = nil;

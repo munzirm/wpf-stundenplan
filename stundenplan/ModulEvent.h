@@ -10,10 +10,16 @@
 
 @interface ModulEvent : NSObject
 
+@property (nonatomic, copy, readonly) EKEvent *event;
+
 @property (nonatomic, copy, readonly) NSString *modulAcronym;
 @property (nonatomic, copy, readonly) NSString *modulFullName;
 @property (nonatomic, copy, readonly) NSString *modulType;
 
-
 - (id)initWithEvent:(EKEvent *)event;
+
+- (void) setFavorite: (BOOL) favorite;
+- (void) setStatus: (EKEventStatus) status;
+- (void) deleteEvent: (BOOL) favorite;
+
 @end

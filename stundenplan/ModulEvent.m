@@ -15,6 +15,7 @@
 	if (self == nil)
 		return nil;
 
+	_event = event;
 
 	NSArray *modulComponents = [event.title componentsSeparatedByString:@" "];
 	_modulAcronym = [modulComponents objectAtIndex:0];
@@ -26,5 +27,16 @@
 	return self;
 }
 
+- (void) setFavorite: (BOOL) favorite {
+	
+}
+
+- (void) setStatus: (EKEventStatus) status {
+	
+}
+
+- (void) deleteEvent: (BOOL) favorite {
+	
+}
 
 @end

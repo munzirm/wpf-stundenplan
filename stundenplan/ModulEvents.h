@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <EventKit/EventKit.h>
+#import "ModulEvent.h"
 
 @interface ModulEvents : NSObject
 
@@ -19,5 +20,6 @@
 - (NSInteger *)eventCountOnThisDay:(NSInteger)section;
 - (NSString *)dateRepresentingThisDay:(NSInteger)section;
 
-- (EKEvent *)eventOnThisDay:(NSIndexPath *)indexPath;
+- (ModulEvent *)eventOnThisDay:(NSIndexPath *)indexPath;
+
 @end
