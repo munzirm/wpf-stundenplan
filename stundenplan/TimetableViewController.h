@@ -8,8 +8,9 @@
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
 #import "CalendarController.h"
+#import "TimetableCell.h"
 
-@interface TimetableViewController : UITableViewController <UIGestureRecognizerDelegate>
+@interface TimetableViewController : UITableViewController <UIGestureRecognizerDelegate, TimetableCellDelegate>
 
 @property (strong) CalendarController* calendarController;
 

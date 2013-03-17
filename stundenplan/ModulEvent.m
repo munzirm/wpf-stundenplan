@@ -8,9 +8,7 @@
 #import "ModulEvent.h"
 #import "Data.h"
 
-@implementation ModulEvent {
-	EKEvent *_event;
-}
+@implementation ModulEvent
 
 - (id)initWithEvent:(EKEvent *)event {
 	self = [super init];
@@ -42,5 +40,16 @@
 	return self;
 }
 
+- (void) setFavorite: (BOOL) favorite {
+	
+}
+
+- (void) setStatus: (EKEventStatus) status {
+	
+}
+
+- (void) deleteEvent: (BOOL) favorite {
+	
+}
 
 @end

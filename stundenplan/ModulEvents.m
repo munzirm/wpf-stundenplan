@@ -6,7 +6,6 @@
 //
 
 #import "ModulEvents.h"
-#import "ModulEvent.h"
 
 @implementation ModulEvents {
 	NSArray *_originalEvents;
@@ -102,7 +101,6 @@
 	return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
 }
 
-// Todo: Replace EKEvent with ModulEvent
 - (ModulEvent *)eventOnThisDay:(NSIndexPath *)indexPath {
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];

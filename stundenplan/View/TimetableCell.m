@@ -7,9 +7,11 @@
 
 #import "TimetableCell.h"
 
+#import "TimetableOptionCell.h"
+
 @implementation TimetableCell {
 	UIPanGestureRecognizer* _panGestures;
-	UITableView* _optionView;
+	TimetableOptionCell* _optionView;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -176,6 +178,8 @@
 		static NSString *CellIdentifier = @"TimetableOptionCell";
 		_optionView = [(UITableView*) self.superview dequeueReusableCellWithIdentifier:CellIdentifier];
 		_optionView.center = CGPointMake(_optionView.center.x + _optionView.frame.size.width, _optionView.center.y);
+		_optionView.delegate = self.delegate;
+		_optionView.event = self.event;
 		[self addSubview:_optionView];
 	}
 }

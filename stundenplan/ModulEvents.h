@@ -21,4 +21,5 @@
 - (NSString *)dateRepresentingThisDay:(NSInteger)section;
 
 - (ModulEvent *)eventOnThisDay:(NSIndexPath *)indexPath;
+
 @end

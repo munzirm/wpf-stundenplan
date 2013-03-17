@@ -12,7 +12,6 @@
 #import "ColorGenerator.h"
 
 @implementation TimetableViewController {
-	NSArray *_events;
 	ModulEvents *modulEvents;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
@@ -47,26 +46,21 @@
 	NSDate *startDate = [NSDate date];
 	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
 	NSArray *calendars = [NSArray arrayWithObject:calendar];
-	NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+	__block NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
-	_events = [self.calendarController.store eventsMatchingPredicate:predicate];
+	__block NSArray* events = [self.calendarController.store eventsMatchingPredicate:predicate];
 
-	if ([_events count] == 0) {
+	if ([events count] == 0) {
 		NSLog(@"Used: REMOTE");
 		[self.calendarController fetchCalendarFromRemote:^(void) {
-			// For demo proposes, display events for the next X days
-			NSDate *startDate = [NSDate date];
-			NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
-			NSArray *calendars = [NSArray arrayWithObject:calendar];
-			NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 
-			_events = [self.calendarController.store eventsMatchingPredicate:predicate];
-			modulEvents = [[ModulEvents alloc] initWithEvents:_events];
+			events = [self.calendarController.store eventsMatchingPredicate:predicate];
+			modulEvents = [[ModulEvents alloc] initWithEvents:events];
 			[self prepareEventsForDisplay];
 		}];
 	} else {
 		NSLog(@"Used: LOCAL");
-		modulEvents = [[ModulEvents alloc] initWithEvents:_events];
+		modulEvents = [[ModulEvents alloc] initWithEvents:events];
 
 		[self prepareEventsForDisplay];
 	}
@@ -103,20 +97,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"TimetableCell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	TimetableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	cell.delegate = self;
+	cell.event = [modulEvents eventOnThisDay:indexPath];
+
+	cell.eventName.text = cell.event.event.title;
+	if ([cell.event.modulAcronym isEqualToString:@"WBA2"])
+		[cell.eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
+	
+	if ([cell.event.modulAcronym isEqualToString:@"BS1"])
+		[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
+
+	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime];
+
+	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
+	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
+	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
+	cell.eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
 
 	// Todo: Replace EKEvent with ModulEvent
 	ModulEvent *event = [modulEvents eventOnThisDay:indexPath];
-	if ([event.modulAcronym isEqualToString:@"WBA2"])
-		[((TimetableCell*) cell).eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
-
-	if ([event.modulAcronym isEqualToString:@"BS1"])
-		[((TimetableCell*) cell).eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
 	
 	((TimetableCell*) cell).eventName.text = event.modulAcronym;
-
-	((TimetableCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", event.startTime, event.endTime];
-
 
 	((TimetableCell*) cell).eventColor.backgroundColor = [ColorGenerator randomColor];
 
@@ -147,6 +150,24 @@
 	 // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 */
+}
+
+#pragma mark - TimetableCellDelegate implementation
+
+- (void)favorite:(ModulEvent*) event {
+	NSLog(@"favorite: %@", event);
+}
+
+- (void)confirm:(ModulEvent*) event {
+	NSLog(@"confirm: %@", event);
+}
+
+- (void)cancel:(ModulEvent*) event {
+	NSLog(@"cancel: %@", event);
+}
+
+- (void)remove:(ModulEvent*) event {
+	NSLog(@"remove: %@", event);
 }
 
 @end
