@@ -19,8 +19,6 @@ static NSDictionary *dataDictionary = nil;
 	if (error) {
 		NSLog(@"Error: %@", error);
 	}
-
-	NSLog(@"%@",dataDictionary);
 }
 
 +(NSDictionary *)objectForKey:(NSString *)key {
