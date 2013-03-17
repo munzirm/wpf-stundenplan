@@ -9,8 +9,6 @@
 
 @interface ModulEvent : NSObject
 
-@property (nonatomic, copy, readonly) EKEvent *event;
-
 @property (nonatomic) BOOL favorite;
 
 @property (nonatomic, copy, readonly) NSString *modulAcronym;
