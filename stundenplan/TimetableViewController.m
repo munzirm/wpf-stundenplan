@@ -48,7 +48,6 @@
  */
 - (void)didGetAccessToCalendar {
 	EKCalendar* calendar = [self.calendarController calendar];
-	NSLog(@"%@", calendar);
 
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
