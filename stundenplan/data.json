@@ -1,0 +1,914 @@
+{
+	"modules": {
+		"wpf_alle": {
+			"abbr": "wpf_alle",
+			"name": "Alle Wahlpflichtf\u00e4cher der Informatik im Bachelor"
+		},
+		"pf_alle": {
+			"abbr": "pf_alle",
+			"name": "Alle Pflichtf\u00e4cher der Informatik"
+		},
+		"qq1_alle": {
+			"abbr": "qq1_alle",
+			"name": "Alle QQ1-Angebote der Informatik"
+		},
+		"ABAS1": {
+			"abbr": "ABAS1",
+			"name": "Architektur betrieblicher Anwendungssysteme 1 (Als WPF B in IMSE und MMI)"
+		},
+		"ADES": {
+			"abbr": "ADES",
+			"name": "Automation of discrete event systems"
+		},
+		"ADT": {
+			"abbr": "ADT",
+			"name": "Algorithmen der Digitaltechnik"
+		},
+		"AM": {
+			"abbr": "AM",
+			"name": "Anforderungsmanagement (WPF A in MMI und WPF B in IMWI)"
+		},
+		"ANS": {
+			"abbr": "ANS",
+			"name": "Analoge Systeme"
+		},
+		"AOR": {
+			"abbr": "AOR",
+			"name": "Organisation und Management"
+		},
+		"AP2": {
+			"abbr": "AP2",
+			"name": "Algorithmen und Programmierung 2"
+		},
+		"AS": {
+			"abbr": "AS",
+			"name": "Advanced Seminar"
+		},
+		"ATF2": {
+			"abbr": "ATF2",
+			"name": "Automatisierte Fertigung 2 (Automatisierungstechnik)"
+		},
+		"AUS": {
+			"abbr": "AUS",
+			"name": "Automatisierungssysteme"
+		},
+		"AVM1": {
+			"abbr": "AVM1",
+			"name": "Audiovisuelles Medienprojekt 1"
+		},
+		"AVS": {
+			"abbr": "AVS",
+			"name": "Architektur verteilter Systeme (als WPFB in IMWI)"
+		},
+		"AWE": {
+			"abbr": "AWE",
+			"name": "Arbeitswissenschaft \/ Ergonomie"
+		},
+		"AWE2": {
+			"abbr": "AWE2",
+			"name": "Arbeitswissenschaft \/ Ergonomie2"
+		},
+		"BA2 ": {
+			"abbr": "BA2 ",
+			"name": "Betriebliche Anwendungssysteme 2"
+		},
+		"BEPM2": {
+			"abbr": "BEPM2",
+			"name": "Business Engineering + Projektmanagement"
+		},
+		"BI": {
+			"abbr": "BI",
+			"name": "Business Intelligence (als WPF B in IMSE)"
+		},
+		"BI2": {
+			"abbr": "BI2",
+			"name": "Betriebliche Informationssysteme"
+		},
+		"BIL": {
+			"abbr": "BIL",
+			"name": "Betr. Inf. Logistik \/ Produktion und Logistik"
+		},
+		"BS1 ": {
+			"abbr": "BS1 ",
+			"name": "Betriebssysteme und verteilte Systeme 1"
+		},
+		"BSI": {
+			"abbr": "BSI",
+			"name": "Bussysteme und Interfaces"
+		},
+		"BSY": {
+			"abbr": "BSY",
+			"name": "Betriebssysteme"
+		},
+		"BW1 B": {
+			"abbr": "BW1 B",
+			"name": "Betriebswirtschaftslehre 1 (Ing)"
+		},
+		"BW2 B": {
+			"abbr": "BW2 B",
+			"name": "Betriebswirtschaftslehre 2 (Ing)"
+		},
+		"BW3 M": {
+			"abbr": "BW3 M",
+			"name": "Betriebswirtschaftslehre 3 (Ing)"
+		},
+		"BWL1": {
+			"abbr": "BWL1",
+			"name": "Betriebswirtschaftslehre 1 (Inf)"
+		},
+		"BWL2": {
+			"abbr": "BWL2",
+			"name": "Betriebswirtschaftslehre 2 (Inf)"
+		},
+		"CADTS": {
+			"abbr": "CADTS",
+			"name": "CAD - Techniken und Schnittstellen"
+		},
+		"CHIN": {
+			"abbr": "CHIN",
+			"name": "Chinesisch"
+		},
+		"CIR": {
+			"abbr": "CIR",
+			"name": "Principles of control, kinematics and dynamics of industrial robots"
+		},
+		"CK": {
+			"abbr": "CK",
+			"name": "Campuskino"
+		},
+		"COM": {
+			"abbr": "COM",
+			"name": "Controlling und Management"
+		},
+		"DB2": {
+			"abbr": "DB2",
+			"name": "Datenbanken 2"
+		},
+		"DDMO": {
+			"abbr": "DDMO",
+			"name": "Data-driven Modelling and Model Optimization"
+		},
+		"DIS": {
+			"abbr": "DIS",
+			"name": "Digitale Systeme"
+		},
+		"DTK": {
+			"abbr": "DTK",
+			"name": "Deutschkurs AITM"
+		},
+		"EAN": {
+			"abbr": "EAN",
+			"name": "Elektrische Antriebstechnik"
+		},
+		"EE1": {
+			"abbr": "EE1",
+			"name": "Einf\u00fchrung in die Elektrotechnik 1"
+		},
+		"EE2": {
+			"abbr": "EE2",
+			"name": "Einf\u00fchrung in die Elektrotechnik 2"
+		},
+		"EIS": {
+			"abbr": "EIS",
+			"name": "Entwicklungsprojekt interaktive Systeme"
+		},
+		"EL ": {
+			"abbr": "EL ",
+			"name": "Elektronik"
+		},
+		"ELS": {
+			"abbr": "ELS",
+			"name": "Elektronische Systeme"
+		},
+		"EM1": {
+			"abbr": "EM1",
+			"name": "Einf\u00fchrung in die Mechanik 1"
+		},
+		"EM2": {
+			"abbr": "EM2",
+			"name": "Einf\u00fchrung in die Mechanik 2"
+		},
+		"EMI": {
+			"abbr": "EMI",
+			"name": "Einf\u00fchrung in die Medieninformatik"
+		},
+		"EMQ": {
+			"abbr": "EMQ",
+			"name": "Entwicklungsmethoden in Medienprojekten und Qualit\u00e4tssicherung"
+		},
+		"ENT": {
+			"abbr": "ENT",
+			"name": "Technisches Englisch"
+		},
+		"ENW 2": {
+			"abbr": "ENW 2",
+			"name": "Wirtschaftsenglisch 2"
+		},
+		"ENW1A": {
+			"abbr": "ENW1A",
+			"name": "Wirtschaftsenglisch 1"
+		},
+		"ENW1B": {
+			"abbr": "ENW1B",
+			"name": "Wirtschaftsenglisch 1"
+		},
+		"ENW1C": {
+			"abbr": "ENW1C",
+			"name": "Wirtschaftsenglisch 1"
+		},
+		"ERG": {
+			"abbr": "ERG",
+			"name": "Spezielle Gebiete der Thermodynamik"
+		},
+		"ESG": {
+			"abbr": "ESG",
+			"name": "Projekt: Entwicklung von Serious Games"
+		},
+		"ET ": {
+			"abbr": "ET ",
+			"name": "Elektrotechnik"
+		},
+		"ETPKT": {
+			"abbr": "ETPKT",
+			"name": "Elektotechnik Praktikumstest"
+		},
+		"ETT": {
+			"abbr": "ETT",
+			"name": "Theoretische Elektrotechnik II"
+		},
+		"ETTES": {
+			"abbr": "ETTES",
+			"name": "Praktia Tests ET"
+		},
+		"FEM": {
+			"abbr": "FEM",
+			"name": "H\u00f6here Festigkeitslehre \/ Finite Elemente s. Staffelplan"
+		},
+		"FK1": {
+			"abbr": "FK1",
+			"name": "Fertigungstechnik 1 \/ Kunststoffe"
+		},
+		"FMT": {
+			"abbr": "FMT",
+			"name": "Fertigungsme\u00dftechnik"
+		},
+		"FP": {
+			"abbr": "FP",
+			"name": "Fabrikplanung "
+		},
+		"FT1": {
+			"abbr": "FT1",
+			"name": "Fertigungstechnik 1 "
+		},
+		"FT2": {
+			"abbr": "FT2",
+			"name": "Fertigungstechnik 2 (Metall)"
+		},
+		"FT3": {
+			"abbr": "FT3",
+			"name": "Fertigungstechnik 3 \/ Kunststoffverarbeitung"
+		},
+		"FT3M": {
+			"abbr": "FT3M",
+			"name": "Fertigungstechnik 3 - Metalle \/ Automatisierte Fertigung"
+		},
+		"FUI": {
+			"abbr": "FUI",
+			"name": "Finanzierung und Investition"
+		},
+		"GTI2": {
+			"abbr": "GTI2",
+			"name": "Grundlagen der Technischen Informatik II"
+		},
+		"GVK": {
+			"abbr": "GVK",
+			"name": "Grundlagen der visuellen Kommunikation"
+		},
+		"IIWT": {
+			"abbr": "IIWT",
+			"name": "Industrial Internet and Web-Technologies"
+		},
+		"IM1": {
+			"abbr": "IM1",
+			"name": "Informationsmanagement 1"
+		},
+		"IN1": {
+			"abbr": "IN1",
+			"name": "Informatik 1"
+		},
+		"IN2": {
+			"abbr": "IN2",
+			"name": "Informatik 2"
+		},
+		"ING": {
+			"abbr": "ING",
+			"name": "Ingenieurethik Doz: BO&SF"
+		},
+		"ISA": {
+			"abbr": "ISA",
+			"name": "Industrial Security in Automation"
+		},
+		"ITCO1": {
+			"abbr": "ITCO1",
+			"name": "IT-Controlling 1 (WPF B oder als WPF D f\u00fcr IMSE)"
+		},
+		"ITCO2": {
+			"abbr": "ITCO2",
+			"name": "IT-Controlling 2 (WPF B oder als WPF D f\u00fcr IMSE)"
+		},
+		"ITSRM": {
+			"abbr": "ITSRM",
+			"name": "IT-Security and Risk Management (als WPF B in IMSE)"
+		},
+		"IVR": {
+			"abbr": "IVR",
+			"name": "Investitionsrechnung"
+		},
+		"IWKA": {
+			"abbr": "IWKA",
+			"name": "Werkstoffauswahl nach techn. Kriterien Innovative Werkstoffkunde"
+		},
+		"KAT": {
+			"abbr": "KAT",
+			"name": "Industrielle Kommunikationssysteme"
+		},
+		"KCH": {
+			"abbr": "KCH",
+			"name": "Kunststuffchemie SP  Gr2"
+		},
+		"KI1": {
+			"abbr": "KI1",
+			"name": "K\u00fcnstliche Intelligenz 1"
+		},
+		"KL M": {
+			"abbr": "KL M",
+			"name": "Konstruktionslehre"
+		},
+		"KM1": {
+			"abbr": "KM1",
+			"name": "Konstruktion \/  Maschinenelemente  f\u00fcr Maschinenbauer 1"
+		},
+		"KM2": {
+			"abbr": "KM2",
+			"name": "Konstruktion \/  Maschinenelemente f\u00fcr Maschinenbauer 2"
+		},
+		"KOA": {
+			"abbr": "KOA",
+			"name": "Angewandte Konstruktion"
+		},
+		"KOR": {
+			"abbr": "KOR",
+			"name": "Technisches Zeichnen - CAD"
+		},
+		"KT": {
+			"abbr": "KT",
+			"name": "Kommunikationstechnik"
+		},
+		"KUF": {
+			"abbr": "KUF",
+			"name": "Kommunikation und F\u00fchrung"
+		},
+		"LEL": {
+			"abbr": "LEL",
+			"name": "Leistungselektronik"
+		},
+		"LSM": {
+			"abbr": "LSM",
+			"name": "Logik und semantische Modellierung"
+		},
+		"MA1A": {
+			"abbr": "MA1A",
+			"name": "Mathematik Gr. A"
+		},
+		"MA2": {
+			"abbr": "MA2",
+			"name": "Mathematik 2"
+		},
+		"MA2A": {
+			"abbr": "MA2A",
+			"name": "Mathematik 2 Gr. A"
+		},
+		"MA2WI": {
+			"abbr": "MA2WI",
+			"name": "Mathematik 2"
+		},
+		"MAA": {
+			"abbr": "MAA",
+			"name": "Angewandte Mathematik f\u00fcr Maschinenbauer"
+		},
+		"MAAP": {
+			"abbr": "MAAP",
+			"name": "Marketing Absatzpolitik -- Veranst in K\u00f6ln"
+		},
+		"MAN": {
+			"abbr": "MAN",
+			"name": "Numerische Mathematik"
+		},
+		"MAS1": {
+			"abbr": "MAS1",
+			"name": "Modellierung von Anwendungssystemen 1"
+		},
+		"MAW": {
+			"abbr": "MAW",
+			"name": "Statistik"
+		},
+		"MC1": {
+			"abbr": "MC1",
+			"name": "Mensch-Computer Interaktion 1"
+		},
+		"MCI": {
+			"abbr": "MCI",
+			"name": "Mensch-Computer Interaktion"
+		},
+		"MES": {
+			"abbr": "MES",
+			"name": "Messsysteme"
+		},
+		"MESAI": {
+			"abbr": "MESAI",
+			"name": "Manufacturing Execution Systems"
+		},
+		"MG1 M": {
+			"abbr": "MG1 M",
+			"name": "Marketing 1"
+		},
+		"MG2 M": {
+			"abbr": "MG2 M",
+			"name": "Marketing 2"
+		},
+		"MP1 ": {
+			"abbr": "MP1 ",
+			"name": "Medientechnik und Produktion 1"
+		},
+		"MRMUG": {
+			"abbr": "MRMUG",
+			"name": "Medienrezeption und Themen zu Medien und Gesellschaft"
+		},
+		"MSCS": {
+			"abbr": "MSCS",
+			"name": "Modelling and simulation of continuous systems"
+		},
+		"MSDS": {
+			"abbr": "MSDS",
+			"name": "Modelling and simulation of discrete event systems"
+		},
+		"MW": {
+			"abbr": "MW",
+			"name": "Medienwirtschaft"
+		},
+		"NGD": {
+			"abbr": "NGD",
+			"name": "Naturwissenschaftliche Grundlagen digitaler Medien 2"
+		},
+		"OB": {
+			"abbr": "OB",
+			"name": "Oberseminar f\u00fcr Doktoranden"
+		},
+		"OPTI": {
+			"abbr": "OPTI",
+			"name": "Optimization  (bei Prof. B\u00f6hm geblockt)"
+		},
+		"PH ": {
+			"abbr": "PH ",
+			"name": "Physik - Aller Anfang ist schwer"
+		},
+		"PH1A": {
+			"abbr": "PH1A",
+			"name": "Physik 1 Gr. A"
+		},
+		"PH2A": {
+			"abbr": "PH2A",
+			"name": "Physik 2 Gr. A Ing"
+		},
+		"PMA": {
+			"abbr": "PMA",
+			"name": "Projektmanagement"
+		},
+		"PMAUW": {
+			"abbr": "PMAUW",
+			"name": "Projektmanagement \u00dcbung WI"
+		},
+		"PPM": {
+			"abbr": "PPM",
+			"name": "Projekt + Projektmanagement"
+		},
+		"PPS": {
+			"abbr": "PPS",
+			"name": "Praxisprojektseminar"
+		},
+		"PRE": {
+			"abbr": "PRE",
+			"name": "Produktentwicklung SPF B&V"
+		},
+		"PRO": {
+			"abbr": "PRO",
+			"name": "Programmieren"
+		},
+		"PSPR": {
+			"abbr": "PSPR",
+			"name": "Programming, Simulation and Planning in Robotics"
+		},
+		"QM ": {
+			"abbr": "QM ",
+			"name": "Qualit\u00e4tsmanagement"
+		},
+		"QQ1-1": {
+			"abbr": "QQ1-1",
+			"name": "Management und Arbeitsmethodik"
+		},
+		"QQ1-3": {
+			"abbr": "QQ1-3",
+			"name": "Rhetorik"
+		},
+		"QQ1-6": {
+			"abbr": "QQ1-6",
+			"name": "Gehirngerechtes Denken und Lernen"
+		},
+		"QQ1SM": {
+			"abbr": "QQ1SM",
+			"name": "Selbstmanagement f\u00fcr Studium und erfolgreichen Berufseinstieg"
+		},
+		"QS": {
+			"abbr": "QS",
+			"name": "Qualit\u00e4tssicherung"
+		},
+		"RA2": {
+			"abbr": "RA2",
+			"name": "Rechnerarchitektur 2"
+		},
+		"ROA": {
+			"abbr": "ROA",
+			"name": "Robotik"
+		},
+		"RP": {
+			"abbr": "RP",
+			"name": "Rapid Prototyping"
+		},
+		"RT ": {
+			"abbr": "RT ",
+			"name": "Regelungstechnik"
+		},
+		"RUMW": {
+			"abbr": "RUMW",
+			"name": "Ringvorlesung Umwelt"
+		},
+		"RUSS": {
+			"abbr": "RUSS",
+			"name": "Russisch"
+		},
+		"SEMC": {
+			"abbr": "SEMC",
+			"name": "Implementation of automation solutions employing microprocessors"
+		},
+		"SGDB": {
+			"abbr": "SGDB",
+			"name": "Spezielle Gebiete der Datenbanken (als WPF A oder B in MMI)"
+		},
+		"SGITS": {
+			"abbr": "SGITS",
+			"name": "Spezielle Gebiete der IT-Sicherheit"
+		},
+		"SGMCI": {
+			"abbr": "SGMCI",
+			"name": "Spezielle Gebiete der Computer-Mensch-Interaktion (WPF B in IMWI)"
+		},
+		"SGP": {
+			"abbr": "SGP",
+			"name": "Spezielle Gebiete der modernen Physik Quanteninformationsverarbeitung"
+		},
+		"SGS": {
+			"abbr": "SGS",
+			"name": "Spritzgie\u00dfsimulation"
+		},
+		"SR1": {
+			"abbr": "SR1",
+			"name": "Steuer- und Regelungstechnik (Automatisierungssysteme) "
+		},
+		"ST1": {
+			"abbr": "ST1",
+			"name": "Softwaretechnik 1"
+		},
+		"ST2 ": {
+			"abbr": "ST2 ",
+			"name": "Softwaretechnik 2"
+		},
+		"STH": {
+			"abbr": "STH",
+			"name": "Systemtheorie"
+		},
+		"STL": {
+			"abbr": "STL",
+			"name": "Str\u00f6mungslehre"
+		},
+		"TD": {
+			"abbr": "TD",
+			"name": "Grundlagen der Technischen Thermodynamik"
+		},
+		"TESET": {
+			"abbr": "TESET",
+			"name": "Test Elektrotechnik  B1 B2"
+		},
+		"TI": {
+			"abbr": "TI",
+			"name": "Theoretische Informatik"
+		},
+		"TI2": {
+			"abbr": "TI2",
+			"name": "Theoretische Informatik 2"
+		},
+		"TM1": {
+			"abbr": "TM1",
+			"name": "Technische Mechanik 1"
+		},
+		"TM2": {
+			"abbr": "TM2",
+			"name": "Technische Mechanik 2"
+		},
+		"TPHY": {
+			"abbr": "TPHY",
+			"name": "Technische Anwendungen der modernen Physik"
+		},
+		"TUMAW": {
+			"abbr": "TUMAW",
+			"name": "\u00dcbung MA3 Wirtschaftsings"
+		},
+		"TUMZ1": {
+			"abbr": "TUMZ1",
+			"name": "Tutorium Mathe1 - Stud. Tutoren"
+		},
+		"TUPA1": {
+			"abbr": "TUPA1",
+			"name": "Tutorium Physik 1"
+		},
+		"TUPB1": {
+			"abbr": "TUPB1",
+			"name": "Tutorium Physik 1"
+		},
+		"TUPB2": {
+			"abbr": "TUPB2",
+			"name": "Tutorium Physik 2"
+		},
+		"TUSTL": {
+			"abbr": "TUSTL",
+			"name": "Tutorium STL nach Vereinb."
+		},
+		"TUT": {
+			"abbr": "TUT",
+			"name": "Tutorium WK2"
+		},
+		"TUTB1": {
+			"abbr": "TUTB1",
+			"name": "Tutorium Eletrotechnik I"
+		},
+		"TUTB2": {
+			"abbr": "TUTB2",
+			"name": "Tutorium Eletrotechnik II"
+		},
+		"TUTET": {
+			"abbr": "TUTET",
+			"name": "Elektrotechnik Tutorium"
+		},
+		"TUTM1": {
+			"abbr": "TUTM1",
+			"name": "\u00dcbung MA1"
+		},
+		"TUTMA": {
+			"abbr": "TUTMA",
+			"name": "\u00dcbung MA3 fuer Maschinenbauer"
+		},
+		"TZ ": {
+			"abbr": "TZ ",
+			"name": "Techn. Zeichnen"
+		},
+		"UEMA2": {
+			"abbr": "UEMA2",
+			"name": "Mathematik 2 Aktiv\u00fcbung"
+		},
+		"UPS": {
+			"abbr": "UPS",
+			"name": "Unternehmensplanspiel"
+		},
+		"VI3D": {
+			"abbr": "VI3D",
+			"name": "Visualistik und 3D-Interaktion"
+		},
+		"VPP": {
+			"abbr": "VPP",
+			"name": "Virtuelle Prozessplanung"
+		},
+		"WBA2": {
+			"abbr": "WBA2",
+			"name": "Web-basierte Anwendungen 2: Verteilte Systeme"
+		},
+		"WK1": {
+			"abbr": "WK1",
+			"name": "Werkstoffkunde 1 \/ Metalle"
+		},
+		"WK2": {
+			"abbr": "WK2",
+			"name": "Werkstoffkunde 2 \/ Kunststoffe, Glas, Keramik"
+		},
+		"WKK": {
+			"abbr": "WKK",
+			"name": "Spezielle Gebiete der Werkstoffkunde \/ Kunststoffe"
+		},
+		"WKM": {
+			"abbr": "WKM",
+			"name": "Spezielle Gebiete der Werkstoffkunde \/ Metalle"
+		},
+		"WKV": {
+			"abbr": "WKV",
+			"name": "Werkzeuge in der Kunststoffverarbeitung"
+		},
+		"WPF17": {
+			"abbr": "WPF17",
+			"name": "Verteilte Systeme"
+		},
+		"WPF21": {
+			"abbr": "WPF21",
+			"name": "Music and Massmedia  (in englischer Sprache)"
+		},
+		"WPF27": {
+			"abbr": "WPF27",
+			"name": "Case Study: Softwarestrategien eines Automotive Suppliers und eines Maschinenbauunternehmens"
+		},
+		"WPF36": {
+			"abbr": "WPF36",
+			"name": "Mobile IT, IPv6 und IPsec"
+		},
+		"WPF45": {
+			"abbr": "WPF45",
+			"name": "Data Mining"
+		},
+		"WPF51": {
+			"abbr": "WPF51",
+			"name": "Wirtschafts- und Finanzpolitik"
+		},
+		"WPF62": {
+			"abbr": "WPF62",
+			"name": "IPv6 und IPsec"
+		},
+		"WPF63": {
+			"abbr": "WPF63",
+			"name": "Entwicklung mobiler Anwendungen"
+		},
+		"WPF71": {
+			"abbr": "WPF71",
+			"name": "C.I.T.Y. 3D Game Development, Serious Games"
+		},
+		"WPF79": {
+			"abbr": "WPF79",
+			"name": "Enterprise Social Media"
+		},
+		"WPF8": {
+			"abbr": "WPF8",
+			"name": "Praktische IT-Sicherheit"
+		},
+		"WPFA": {
+			"abbr": "WPFA",
+			"name": "Advanced Seminar Informatik (in MMI) BI auf Open Data"
+		},
+		"WPFAP": {
+			"abbr": "WPFAP",
+			"name": "Entwicklung von Apps f\u00fcr Smartphones und Tablets"
+		},
+		"WPFB": {
+			"abbr": "WPFB",
+			"name": "Usability- und Software-Engineering in einem Gesamtprozess (WPF B)"
+		},
+		"WPFBA": {
+			"abbr": "WPFBA",
+			"name": "Spezielle Aspekte betrieblicher Anwendungssysteme"
+		},
+		"WPFBI": {
+			"abbr": "WPFBI",
+			"name": "Business Intelligence"
+		},
+		"WPFBP": {
+			"abbr": "WPFBP",
+			"name": "Berufspraxis Informatik"
+		},
+		"WPFCI": {
+			"abbr": "WPFCI",
+			"name": "Compiler und Interpreter"
+		},
+		"WPFKM": {
+			"abbr": "WPFKM",
+			"name": "Kommunikation und Medien"
+		},
+		"WPFMW": {
+			"abbr": "WPFMW",
+			"name": "Moderne Webanwendungen mit HTML5, CSS3 und JavaScript"
+		},
+		"WPFPT": {
+			"abbr": "WPFPT",
+			"name": "Performance-Tuning auf verschiedenen Ebenen"
+		},
+		"WPFSN": {
+			"abbr": "WPFSN",
+			"name": "System- und Netzmanagement"
+		},
+		"WPFVF": {
+			"abbr": "WPFVF",
+			"name": "Visual Effects in Motion Picture and Video Production"
+		},
+		"WPFVR": {
+			"abbr": "WPFVR",
+			"name": "3D-Modellierung und Virtuelle Realit\u00e4t"
+		},
+		"WRE": {
+			"abbr": "WRE",
+			"name": "Wirtschaftsrecht"
+		},
+		"WS": {
+			"abbr": "WS",
+			"name": "Web Science Kolloqium"
+		}
+	},
+	"majors": {
+		"AI": {
+			"abbr": "AI",
+			"name": "Allgemeine Informatik"
+		},
+		"MI": {
+			"abbr": "MI",
+			"name": "Medieninformatik"
+		},
+		"TI": {
+			"abbr": "TI",
+			"name": "Technische Informatik"
+		},
+		"WI": {
+			"abbr": "WI",
+			"name": "Wirtschaftsinformatik"
+		},
+		"BB": {
+			"abbr": "BB",
+			"name": "Ingenieurwissenschaftliches Grundstudium"
+		},
+		"MMII": {
+			"abbr": "MMII",
+			"name": "Maschinenbau Schwerpunkt Informatik"
+		},
+		"MMF": {
+			"abbr": "MMF",
+			"name": "Maschinenbau Schwerpunkt Fertigung"
+		},
+		"MMK": {
+			"abbr": "MMK",
+			"name": "Maschinenbau Schwerpunkt Konstruktion"
+		},
+		"MM": {
+			"abbr": "MM",
+			"name": "Maschinenbau"
+		},
+		"MWE": {
+			"abbr": "MWE",
+			"name": "Wirtschaftsingenieurwesen \/ Elektrotechnik"
+		},
+		"MWM": {
+			"abbr": "MWM",
+			"name": "Wirtschaftsingenieurwesen  \/ Maschinenbau"
+		},
+		"MW": {
+			"abbr": "MW",
+			"name": "Wirtschaftsingenieurwesen"
+		},
+		"EAT": {
+			"abbr": "EAT",
+			"name": "Automatisierungstechnik"
+		},
+		"EEL": {
+			"abbr": "EEL",
+			"name": "Elektronik"
+		},
+		"II": {
+			"abbr": "II",
+			"name": "Informatik-Ingenieur"
+		},
+		"IM": {
+			"abbr": "IM",
+			"name": "Informatik-Master"
+		},
+		"MMI": {
+			"abbr": "MMI",
+			"name": "Medieninformatik-Master"
+		},
+		"PPDM": {
+			"abbr": "PPDM",
+			"name": "Master Produktdesign und Prozessentwicklung (PRODES)"
+		},
+		"AITM": {
+			"abbr": "AITM",
+			"name": "Automation and IT Master"
+		},
+		"ZV": {
+			"abbr": "ZV",
+			"name": "Zentrale Veranstaltung"
+		},
+		"WEB": {
+			"abbr": "WEB",
+			"name": "Web Science"
+		}
+	}
+}

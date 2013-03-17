@@ -30,6 +30,7 @@
 		59BA3D7716AB27BF000D0FA4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 59BA3D7616AB27BF000D0FA4 /* README.md */; };
 		A81A3E14201F4A02AB352304 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB45426CFF7643E58A2CB518 /* libPods.a */; };
 		B43F646416F542810050CAE4 /* ModellModulEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646316F542810050CAE4 /* ModellModulEvent.m */; };
+		B43F646616F5DF310050CAE4 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B43F646516F5DF310050CAE4 /* data.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		59BA3D7616AB27BF000D0FA4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		B43F646216F542810050CAE4 /* ModellModulEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModellModulEvent.h; sourceTree = "<group>"; };
 		B43F646316F542810050CAE4 /* ModellModulEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModellModulEvent.m; sourceTree = "<group>"; };
+		B43F646516F5DF310050CAE4 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 		59BA3D4116AB2596000D0FA4 /* stundenplan */ = {
 			isa = PBXGroup;
 			children = (
+				B43F646516F5DF310050CAE4 /* data.json */,
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
@@ -282,6 +285,7 @@
 				59BA3D5216AB2596000D0FA4 /* Default-568h@2x.png in Resources */,
 				59BA3D5516AB2596000D0FA4 /* MainStoryboard.storyboard in Resources */,
 				59BA3D7716AB27BF000D0FA4 /* README.md in Resources */,
+				B43F646616F5DF310050CAE4 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
