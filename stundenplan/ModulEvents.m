@@ -12,6 +12,7 @@
 	NSArray *_originalEvents;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
+	NSArray *_modules;
 }
 
 - (id)initWithEvents:(NSArray *)events {
@@ -28,6 +29,9 @@
 	// The events per day
 	_sortedDays = nil;
 
+	// The modules, saves the colors
+	_modules = [NSMutableArray array];
+
 	[self prepareEventsForDisplay];
 
 	return self;
@@ -35,18 +39,10 @@
 
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _originalEvents) {
-		/*ModulEvent *modulEvent = [[ModulEvent alloc] initWithEvent:event];
-
-		if (![modulEvent.modulAcronym isEqualToString:@"WBA2"] && ![modulEvent.modulAcronym isEqualToString:@"MCI"]) {
-			 continue;
-		}
-
-		if ([modulEvent.modulType isEqualToString:@"P"]) {
-			 continue;
-		}*/
-
+		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEvent:event];
+		
 		// Reduce event start date to date components (year, month, day)
-		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:event.startDate];
+		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:modulEvent.startDate];
 
 		// If we don't yet have an array to hold the events for this day, create one
 		NSMutableArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
@@ -58,18 +54,12 @@
 		}
 
 		// Add the event to the list for this day
-		[eventsOnThisDay addObject:event];
+		[eventsOnThisDay addObject:modulEvent];
 	}
 
 	// Create a sorted list of days
 	NSArray *unsortedDays = [_daySections allKeys];
 	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
-	 
-	/*// Workaround to remove the delay
-	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
-	dispatch_async(dispatch_get_main_queue(), ^(void) {
-		[self.tableView reloadData];
-	});*/
 }
 
 - (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate {
@@ -113,7 +103,7 @@
 }
 
 // Todo: Replace EKEvent with ModulEvent
-- (EKEvent *)eventOnThisDay:(NSIndexPath *)indexPath {
+- (ModulEvent *)eventOnThisDay:(NSIndexPath *)indexPath {
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:indexPath.section];
     NSArray *eventsOnThisDay = [_daySections objectForKey:dateRepresentingThisDay];
     return [eventsOnThisDay objectAtIndex:indexPath.row];

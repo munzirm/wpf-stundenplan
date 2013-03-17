@@ -10,6 +10,8 @@
 #import "TimetableCell.h"
 
 #import "ModulEvents.h"
+#import "ModulEvent.h"
+
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -76,7 +78,6 @@
 }
 
 - (void)prepareEventsForDisplay {
-	//NSLog( @"%@",_events);
 	// Workaround to remove the delay
 	// http://stackoverflow.com/questions/8662777/delay-before-reloaddata
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -84,8 +85,7 @@
 	});
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
@@ -110,22 +110,19 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
 	// Todo: Replace EKEvent with ModulEvent
-	EKEvent *event = [modulEvents eventOnThisDay:indexPath];
-	if ([event.title isEqualToString:@"WBA2 V"])
+	ModulEvent *event = [modulEvents eventOnThisDay:indexPath];
+	if ([event.modulAcronym isEqualToString:@"WBA2"])
 		[((TimetableCell*) cell).eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
 
-	if ([event.title isEqualToString:@"WBA2 P"])
+	if ([event.modulAcronym isEqualToString:@"BS1"])
 		[((TimetableCell*) cell).eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
 	
-	((TimetableCell*) cell).eventName.text = event.title;
+	((TimetableCell*) cell).eventName.text = event.modulAcronym;
 
 
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"HH:mm"];
-	NSString *startTime = [dateFormatter stringFromDate:event.startDate];
-	NSString *endTime = [dateFormatter stringFromDate:event.endDate];
 
-	((TimetableCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+
+	((TimetableCell*) cell).eventTime.text = [NSString stringWithFormat:@"%@ - %@", event.startTime, event.endTime];
 
 	CGFloat redColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;

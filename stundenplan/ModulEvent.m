@@ -7,7 +7,9 @@
 
 #import "ModulEvent.h"
 
-@implementation ModulEvent
+@implementation ModulEvent {
+	EKEvent *_event;
+}
 
 - (id)initWithEvent:(EKEvent *)event {
 	self = [super init];
@@ -15,13 +17,24 @@
 	if (self == nil)
 		return nil;
 
+	// Store the original event
+	_event = event;
 
+	// Labels
 	NSArray *modulComponents = [event.title componentsSeparatedByString:@" "];
 	_modulAcronym = [modulComponents objectAtIndex:0];
-	// V, P, S
 	_modulType = [modulComponents objectAtIndex:1];
-
 	//_modulFullName = ...
+
+	// Dates
+	_startDate = _event.startDate;
+	_endDate = _event.endDate;
+
+	// Time
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"HH:mm"];
+	_startTime = [dateFormatter stringFromDate:event.startDate];
+	_endTime = [dateFormatter stringFromDate:event.endDate];
 
 	return self;
 }
