@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAE716F3FCEC00D83F86 /* MainViewController.m */; };
 		5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */; };
-		590329C116F5E59100DFB8D4 /* TimetableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590329C016F5E59100DFB8D4 /* TimetableCell.m */; };
+		590329C516F60A2600DFB8D4 /* TimetableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590329C416F60A2600DFB8D4 /* TimetableCell.m */; };
+		590329C816F60A5000DFB8D4 /* TimetableOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590329C716F60A5000DFB8D4 /* TimetableOptionCell.m */; };
 		594BDF4616B3155E00328E41 /* FhKoelnF10CalendarClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 594BDF4516B3155E00328E41 /* FhKoelnF10CalendarClient.m */; };
 		59A637CD16ACAC7C00DB146C /* TimetableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A637CC16ACAC7C00DB146C /* TimetableViewController.m */; };
 		59BA3D3C16AB2596000D0FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BA3D3B16AB2596000D0FA4 /* UIKit.framework */; };
@@ -51,8 +52,10 @@
 		5900FAE716F3FCEC00D83F86 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5900FAE916F3FFCE00D83F86 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
-		590329BF16F5E59100DFB8D4 /* TimetableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableCell.h; sourceTree = "<group>"; };
-		590329C016F5E59100DFB8D4 /* TimetableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableCell.m; sourceTree = "<group>"; };
+		590329C316F60A2600DFB8D4 /* TimetableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableCell.h; sourceTree = "<group>"; };
+		590329C416F60A2600DFB8D4 /* TimetableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableCell.m; sourceTree = "<group>"; };
+		590329C616F60A5000DFB8D4 /* TimetableOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimetableOptionCell.h; sourceTree = "<group>"; };
+		590329C716F60A5000DFB8D4 /* TimetableOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimetableOptionCell.m; sourceTree = "<group>"; };
 		594BDF3016B2E3A500328E41 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		594BDF4416B3155E00328E41 /* FhKoelnF10CalendarClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FhKoelnF10CalendarClient.h; path = Client/FhKoelnF10CalendarClient.h; sourceTree = "<group>"; };
 		594BDF4516B3155E00328E41 /* FhKoelnF10CalendarClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FhKoelnF10CalendarClient.m; path = Client/FhKoelnF10CalendarClient.m; sourceTree = "<group>"; };
@@ -114,6 +117,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		590329C216F60A2600DFB8D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				590329C316F60A2600DFB8D4 /* TimetableCell.h */,
+				590329C416F60A2600DFB8D4 /* TimetableCell.m */,
+				590329C616F60A5000DFB8D4 /* TimetableOptionCell.h */,
+				590329C716F60A5000DFB8D4 /* TimetableOptionCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		594BDF4016B3151000328E41 /* Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,11 +182,10 @@
 				5900FAE716F3FCEC00D83F86 /* MainViewController.m */,
 				5900FAE916F3FFCE00D83F86 /* MainMenuViewController.h */,
 				B43F646816F5EBAE0050CAE4 /* Model */,
+				590329C216F60A2600DFB8D4 /* View */,
 				5900FAEA16F3FFCE00D83F86 /* MainMenuViewController.m */,
 				59A637CB16ACAC7C00DB146C /* TimetableViewController.h */,
 				59A637CC16ACAC7C00DB146C /* TimetableViewController.m */,
-				590329BF16F5E59100DFB8D4 /* TimetableCell.h */,
-				590329C016F5E59100DFB8D4 /* TimetableCell.m */,
 				59BA3D5616AB2596000D0FA4 /* ViewController.h */,
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
 				B43F646916F601830050CAE4 /* CalendarController.h */,
@@ -360,8 +373,9 @@
 				5900FAE816F3FCEC00D83F86 /* MainViewController.m in Sources */,
 				5900FAEB16F3FFCE00D83F86 /* MainMenuViewController.m in Sources */,
 				B43F646416F542810050CAE4 /* ModulEvent.m in Sources */,
-				590329C116F5E59100DFB8D4 /* TimetableCell.m in Sources */,
 				B43F646B16F601830050CAE4 /* CalendarController.m in Sources */,
+				590329C516F60A2600DFB8D4 /* TimetableCell.m in Sources */,
+				590329C816F60A5000DFB8D4 /* TimetableOptionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

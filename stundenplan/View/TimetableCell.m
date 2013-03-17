@@ -40,11 +40,10 @@
 	// HANDLE OPTION VIEW
 	if (state == UIGestureRecognizerStateBegan) {
 		
-		static NSString *CellIdentifier = @"TimetableCellOption";
+		static NSString *CellIdentifier = @"TimetableOptionCell";
 		_optionView = [(UITableView*) self.superview dequeueReusableCellWithIdentifier:CellIdentifier];
-		_optionView.backgroundColor = [UIColor redColor];
 		_optionView.center = CGPointMake(
-										 _optionView.frame.size.width / 2 + self.frame.size.width,
+										 _optionView.frame.size.width * 1.5,
 										 _optionView.center.y);
 		
 		[self addSubview:_optionView];
