@@ -68,9 +68,9 @@
 			"abbr": "AWE2",
 			"name": "Arbeitswissenschaft \/ Ergonomie2"
 		},
-		"BA2 ": {
-			"abbr": "BA2 ",
-			"name": "Betriebliche Anwendungssysteme 2"
+		"BA2": {
+			"abbr": "BA2",
+			"name": "BA2"
 		},
 		"BEPM2": {
 			"abbr": "BEPM2",
@@ -88,8 +88,8 @@
 			"abbr": "BIL",
 			"name": "Betr. Inf. Logistik \/ Produktion und Logistik"
 		},
-		"BS1 ": {
-			"abbr": "BS1 ",
+		"BS1": {
+			"abbr": "BS1",
 			"name": "Betriebssysteme und verteilte Systeme 1"
 		},
 		"BSI": {
@@ -172,8 +172,8 @@
 			"abbr": "EIS",
 			"name": "Entwicklungsprojekt interaktive Systeme"
 		},
-		"EL ": {
-			"abbr": "EL ",
+		"EL": {
+			"abbr": "EL",
 			"name": "Elektronik"
 		},
 		"ELS": {
@@ -224,8 +224,8 @@
 			"abbr": "ESG",
 			"name": "Projekt: Entwicklung von Serious Games"
 		},
-		"ET ": {
-			"abbr": "ET ",
+		"ET": {
+			"abbr": "ET",
 			"name": "Elektrotechnik"
 		},
 		"ETPKT": {
@@ -334,7 +334,7 @@
 		},
 		"KCH": {
 			"abbr": "KCH",
-			"name": "Kunststuffchemie SP  Gr2"
+			"name": "Kunststuffchemie SP Gr2"
 		},
 		"KI1": {
 			"abbr": "KI1",
@@ -346,11 +346,11 @@
 		},
 		"KM1": {
 			"abbr": "KM1",
-			"name": "Konstruktion \/  Maschinenelemente  f\u00fcr Maschinenbauer 1"
+			"name": "Konstruktion \/ Maschinenelemente f\u00fcr Maschinenbauer 1"
 		},
 		"KM2": {
 			"abbr": "KM2",
-			"name": "Konstruktion \/  Maschinenelemente f\u00fcr Maschinenbauer 2"
+			"name": "Konstruktion \/ Maschinenelemente f\u00fcr Maschinenbauer 2"
 		},
 		"KOA": {
 			"abbr": "KOA",
@@ -436,8 +436,8 @@
 			"abbr": "MG2 M",
 			"name": "Marketing 2"
 		},
-		"MP1 ": {
-			"abbr": "MP1 ",
+		"MP1": {
+			"abbr": "MP1",
 			"name": "Medientechnik und Produktion 1"
 		},
 		"MRMUG": {
@@ -466,10 +466,10 @@
 		},
 		"OPTI": {
 			"abbr": "OPTI",
-			"name": "Optimization  (bei Prof. B\u00f6hm geblockt)"
+			"name": "Optimization (bei Prof. B\u00f6hm geblockt)"
 		},
-		"PH ": {
-			"abbr": "PH ",
+		"PH": {
+			"abbr": "PH",
 			"name": "Physik - Aller Anfang ist schwer"
 		},
 		"PH1A": {
@@ -508,8 +508,8 @@
 			"abbr": "PSPR",
 			"name": "Programming, Simulation and Planning in Robotics"
 		},
-		"QM ": {
-			"abbr": "QM ",
+		"QM": {
+			"abbr": "QM",
 			"name": "Qualit\u00e4tsmanagement"
 		},
 		"QQ1-1": {
@@ -544,8 +544,8 @@
 			"abbr": "RP",
 			"name": "Rapid Prototyping"
 		},
-		"RT ": {
-			"abbr": "RT ",
+		"RT": {
+			"abbr": "RT",
 			"name": "Regelungstechnik"
 		},
 		"RUMW": {
@@ -588,8 +588,8 @@
 			"abbr": "ST1",
 			"name": "Softwaretechnik 1"
 		},
-		"ST2 ": {
-			"abbr": "ST2 ",
+		"ST2": {
+			"abbr": "ST2",
 			"name": "Softwaretechnik 2"
 		},
 		"STH": {
@@ -606,7 +606,7 @@
 		},
 		"TESET": {
 			"abbr": "TESET",
-			"name": "Test Elektrotechnik  B1 B2"
+			"name": "Test Elektrotechnik B1 B2"
 		},
 		"TI": {
 			"abbr": "TI",
@@ -676,8 +676,8 @@
 			"abbr": "TUTMA",
 			"name": "\u00dcbung MA3 fuer Maschinenbauer"
 		},
-		"TZ ": {
-			"abbr": "TZ ",
+		"TZ": {
+			"abbr": "TZ",
 			"name": "Techn. Zeichnen"
 		},
 		"UEMA2": {
@@ -726,7 +726,7 @@
 		},
 		"WPF21": {
 			"abbr": "WPF21",
-			"name": "Music and Massmedia  (in englischer Sprache)"
+			"name": "Music and Massmedia (in englischer Sprache)"
 		},
 		"WPF27": {
 			"abbr": "WPF27",
@@ -868,7 +868,7 @@
 		},
 		"MWM": {
 			"abbr": "MWM",
-			"name": "Wirtschaftsingenieurwesen  \/ Maschinenbau"
+			"name": "Wirtschaftsingenieurwesen \/ Maschinenbau"
 		},
 		"MW": {
 			"abbr": "MW",
