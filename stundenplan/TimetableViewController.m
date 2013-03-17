@@ -119,6 +119,9 @@
 	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime];
 
 	cell.eventColor.backgroundColor = [ColorGenerator randomColor];
+	if (cell.event.favorite) {
+		cell.contentView.backgroundColor = [ColorGenerator randomColor];
+	}
 
 	return cell;
 }
