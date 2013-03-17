@@ -125,7 +125,6 @@
 	CGFloat greenColor = ((arc4random()>>24)&0xFF)/256.0;
 	CGFloat blueColor = ((arc4random()>>24)&0xFF)/256.0;
 	((TimetableCell*) cell).eventColor.backgroundColor = [UIColor colorWithRed:redColor green:greenColor blue:blueColor alpha:1.0];
-	((TimetableCell*) cell).eventColor.layer.cornerRadius = 5.0;
 
 	return cell;
 }

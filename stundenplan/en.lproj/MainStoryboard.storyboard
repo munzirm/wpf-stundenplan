@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -79,13 +79,13 @@
                                 </view>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" type="default" id="1wi-G9-jAN"/>
+                                    <constraint firstAttribute="trailing" secondItem="QmN-JG-Hjc" secondAttribute="trailing" constant="310" id="2og-Et-30G"/>
                                     <constraint firstItem="lVR-AE-nUU" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" constant="10" id="BGN-jw-0qV"/>
                                     <constraint firstAttribute="trailing" secondItem="lVR-AE-nUU" secondAttribute="trailing" constant="9" id="FVe-RP-fIb"/>
-                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" constant="17" id="MIa-8z-DDj"/>
-                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" constant="17" id="OAf-4d-SoW"/>
                                     <constraint firstItem="whU-Hi-BOF" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" constant="40" id="bOb-cT-Nm6"/>
-                                    <constraint firstAttribute="trailing" secondItem="QmN-JG-Hjc" secondAttribute="trailing" constant="293" id="c8Q-w3-ODE"/>
-                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="centerY" secondItem="ODF-fY-wGR" secondAttribute="centerY" type="default" id="s3o-vQ-zNs"/>
+                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="bottom" secondItem="ODF-fY-wGR" secondAttribute="bottom" type="default" id="bhO-y4-pwP"/>
+                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" type="default" id="s64-ZE-MgQ"/>
                                     <constraint firstItem="whU-Hi-BOF" firstAttribute="baseline" secondItem="lVR-AE-nUU" secondAttribute="baseline" type="default" id="vaW-bP-tnf"/>
                                 </constraints>
                                 <connections>
