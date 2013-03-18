@@ -37,6 +37,7 @@
 	
 	[self removeOptionView];
 	self.contentView.hidden = NO;
+	self.contentView.backgroundColor = nil;
 	
 	CGRect frame = self.frame;
 	frame.origin.x = 0;
