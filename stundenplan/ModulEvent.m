@@ -46,10 +46,13 @@
 }
 
 - (NSString *)modulType {
-	NSLog(@"%@",_modulType);
 	NSDictionary *types =  @{@"S":@"Seminar", @"P":@"Praktikum", @"V":@"Vorlesung", @"UE":@"Übung"};
 
 	return [types objectForKey:_modulType];
+}
+
+- (void)setModulColor:(UIColor *)color {
+	_modulColor = color;
 }
 
 - (void) setStatus: (EKEventStatus) status {
