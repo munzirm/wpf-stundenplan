@@ -10,6 +10,7 @@
 
 @implementation ModulEvent {
 	EKEvent *_event;
+	NSString *_modulType;
 }
 
 - (id)initWithEvent:(EKEvent *)event {
@@ -28,7 +29,6 @@
 	NSDictionary *data = [Data objectForKey:@"modules" andForKey:_modulAcronym];
 	_modulFullName = [data valueForKey:@"name"];
 
-
 	// Dates
 	_startDate = _event.startDate;
 	_endDate = _event.endDate;
@@ -39,7 +39,17 @@
 	_startTime = [dateFormatter stringFromDate:event.startDate];
 	_endTime = [dateFormatter stringFromDate:event.endDate];
 
+	// Location
+	_modulLocation = _event.location;
+
 	return self;
+}
+
+- (NSString *)modulType {
+	NSLog(@"%@",_modulType);
+	NSDictionary *types =  @{@"S":@"Seminar", @"P":@"Praktikum", @"V":@"Vorlesung", @"UE":@"Übung"};
+
+	return [types objectForKey:_modulType];
 }
 
 - (void) setStatus: (EKEventStatus) status {

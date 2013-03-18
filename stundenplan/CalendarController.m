@@ -148,6 +148,9 @@
 			// but we don't need it
 			prevEvent.notes = nil;
 
+			// Replace two whitespaces with one...
+			prevEvent.title = [prevEvent.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+
 			// Save the event
 			NSError *error = nil;
 			BOOL result = [self.store saveEvent:prevEvent span:EKSpanThisEvent commit:YES error:&error];

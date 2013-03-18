@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *eventTime;
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 @property (weak, nonatomic) IBOutlet UIView *eventColor;
+@property (weak, nonatomic) IBOutlet UILabel *eventType;
+@property (weak, nonatomic) IBOutlet UILabel *eventLocation;
 
 - (void) animateToOrigin;
 

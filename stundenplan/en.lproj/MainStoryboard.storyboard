@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -41,17 +41,17 @@
         <scene sceneID="fvh-6J-WNg">
             <objects>
                 <tableViewController storyboardIdentifier="TimetableViewController" title="Stundenplan" id="grH-kV-RKi" customClass="TimetableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0qb-Eu-eBV">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="0qb-Eu-eBV">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimetableCell" id="ODF-fY-wGR" customClass="TimetableCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Modul name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whU-Hi-BOF">
@@ -65,40 +65,64 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVR-AE-nUU">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="75" id="8JS-ax-TVz"/>
-                                                <constraint firstAttribute="height" constant="21" id="cPn-EX-s2k"/>
+                                                <constraint firstAttribute="height" constant="21" id="Kws-ie-qDQ"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-JG-Hjc">
                                             <color key="backgroundColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Modul Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sv1-jo-LkH">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="HAT-3H-wRH"/>
+                                                <constraint firstAttribute="width" constant="79" id="lIP-h2-iBe"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Modul Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qx0-kS-nN8">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="81" id="4RB-Sj-tEe"/>
+                                                <constraint firstAttribute="height" constant="21" id="xMh-fD-smX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" type="default" id="1wi-G9-jAN"/>
-                                    <constraint firstAttribute="trailing" secondItem="QmN-JG-Hjc" secondAttribute="trailing" constant="310" id="2og-Et-30G"/>
-                                    <constraint firstItem="lVR-AE-nUU" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" constant="10" id="BGN-jw-0qV"/>
-                                    <constraint firstAttribute="trailing" secondItem="lVR-AE-nUU" secondAttribute="trailing" constant="9" id="FVe-RP-fIb"/>
-                                    <constraint firstItem="whU-Hi-BOF" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" constant="40" id="bOb-cT-Nm6"/>
-                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="bottom" secondItem="ODF-fY-wGR" secondAttribute="bottom" type="default" id="bhO-y4-pwP"/>
-                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" type="default" id="s64-ZE-MgQ"/>
-                                    <constraint firstItem="whU-Hi-BOF" firstAttribute="baseline" secondItem="lVR-AE-nUU" secondAttribute="baseline" type="default" id="vaW-bP-tnf"/>
+                                    <constraint firstItem="Sv1-jo-LkH" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" constant="-2" id="J1k-BE-gX9"/>
+                                    <constraint firstItem="whU-Hi-BOF" firstAttribute="leading" secondItem="Sv1-jo-LkH" secondAttribute="leading" type="default" id="OBX-rk-ISW"/>
+                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" type="default" id="RQb-HY-oyA"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qx0-kS-nN8" secondAttribute="bottom" constant="1" id="TQL-qj-fic"/>
+                                    <constraint firstItem="whU-Hi-BOF" firstAttribute="leading" secondItem="Qx0-kS-nN8" secondAttribute="leading" type="default" id="bo1-d9-d43"/>
+                                    <constraint firstItem="whU-Hi-BOF" firstAttribute="baseline" secondItem="lVR-AE-nUU" secondAttribute="baseline" type="default" id="ffz-Bq-X1l"/>
+                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="bottom" secondItem="ODF-fY-wGR" secondAttribute="bottom" type="default" id="ngs-5y-OIv"/>
+                                    <constraint firstItem="Sv1-jo-LkH" firstAttribute="leading" secondItem="ODF-fY-wGR" secondAttribute="leading" constant="19" id="ohB-WR-3UD"/>
+                                    <constraint firstAttribute="trailing" secondItem="lVR-AE-nUU" secondAttribute="trailing" constant="20" type="default" id="pgP-d4-akm"/>
+                                    <constraint firstItem="lVR-AE-nUU" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" constant="20" type="default" id="rDq-G8-z6H"/>
+                                    <constraint firstItem="QmN-JG-Hjc" firstAttribute="top" secondItem="ODF-fY-wGR" secondAttribute="top" type="default" id="uAQ-f6-TaF"/>
+                                    <constraint firstAttribute="trailing" secondItem="QmN-JG-Hjc" secondAttribute="trailing" constant="315" id="vGw-ol-G69"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="eventColor" destination="QmN-JG-Hjc" id="rnv-cr-m0E"/>
+                                    <outlet property="eventLocation" destination="Qx0-kS-nN8" id="Awd-gq-9eI"/>
                                     <outlet property="eventName" destination="whU-Hi-BOF" id="0ot-cr-zg3"/>
                                     <outlet property="eventTime" destination="lVR-AE-nUU" id="EgX-BT-57j"/>
+                                    <outlet property="eventType" destination="Sv1-jo-LkH" id="Qvf-Zw-ZH6"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimetableOptionCell" id="unZ-i0-mFo" customClass="TimetableOptionCell">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-0v-Hmg">
@@ -160,12 +184,12 @@
                                 <constraints>
                                     <constraint firstItem="qv9-Kk-9Vd" firstAttribute="leading" secondItem="Rfq-Wi-0ev" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="37P-V4-SdT"/>
                                     <constraint firstAttribute="trailing" secondItem="wEi-vp-zjS" secondAttribute="trailing" constant="20" type="default" id="8mT-WG-yvd"/>
-                                    <constraint firstItem="qv9-Kk-9Vd" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" type="default" id="Ela-Na-Gfa"/>
+                                    <constraint firstItem="qv9-Kk-9Vd" firstAttribute="baseline" secondItem="wEi-vp-zjS" secondAttribute="baseline" type="default" id="Fts-Rc-Cfc"/>
                                     <constraint firstItem="wEi-vp-zjS" firstAttribute="leading" secondItem="qv9-Kk-9Vd" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="HxS-LJ-gDd"/>
+                                    <constraint firstItem="Jij-0v-Hmg" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" constant="19" id="brc-oR-A3N"/>
                                     <constraint firstItem="Jij-0v-Hmg" firstAttribute="leading" secondItem="unZ-i0-mFo" secondAttribute="leading" constant="20" type="default" id="cjm-mC-bdD"/>
-                                    <constraint firstItem="wEi-vp-zjS" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" type="default" id="icw-Hi-7xL"/>
-                                    <constraint firstItem="Jij-0v-Hmg" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" type="default" id="m1N-mc-KEY"/>
-                                    <constraint firstItem="Rfq-Wi-0ev" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" type="default" id="nSA-Uw-SPI"/>
+                                    <constraint firstItem="Rfq-Wi-0ev" firstAttribute="baseline" secondItem="Jij-0v-Hmg" secondAttribute="baseline" type="default" id="fCc-lI-iUH"/>
+                                    <constraint firstItem="Rfq-Wi-0ev" firstAttribute="baseline" secondItem="qv9-Kk-9Vd" secondAttribute="baseline" type="default" id="tPG-hi-iCV"/>
                                 </constraints>
                             </tableViewCell>
                         </prototypes>
@@ -337,8 +361,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="eventColor" candidateClass="UIView"/>
+                <relationship kind="outlet" name="eventLocation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="eventName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="eventTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventType" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="TimetableOptionCell" superclassName="UITableViewCell">

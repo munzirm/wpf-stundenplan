@@ -206,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				B4AFD04616F66567005395A2 /* open-sans */,
-				B4AFD06416F67788005395A2 /* JSON */,
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
@@ -220,6 +219,7 @@
 				59BA3D5716AB2596000D0FA4 /* ViewController.m */,
 				B43F646916F601830050CAE4 /* CalendarController.h */,
 				B43F646A16F601830050CAE4 /* CalendarController.m */,
+				B4AFD06416F67788005395A2 /* JSON */,
 				B43F646816F5EBAE0050CAE4 /* Model */,
 				590329C216F60A2600DFB8D4 /* View */,
 				594BDF4016B3151000328E41 /* Client */,

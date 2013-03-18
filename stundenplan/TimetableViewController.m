@@ -109,15 +109,20 @@
 	cell.delegate = self;
 	cell.event = [modulEvents eventOnThisDay:indexPath];
 
-	cell.eventName.text = cell.event.modulAcronym;
-	if ([cell.event.modulAcronym isEqualToString:@"WBA2"])
-		[cell.eventName setFont:[UIFont fontWithName:@"GillSans" size:20.0]];
-	
-	if ([cell.event.modulAcronym isEqualToString:@"BS1"])
-		[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
+	// Name
+	[cell.eventName setText:cell.event.modulAcronym];
+	[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
 
-	cell.eventTime.text = [NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime];
+	// Type
+	[cell.eventType setText:[cell.event modulType]];
 
+	// Location
+	[cell.eventLocation setText:cell.event.modulLocation];
+
+	// Time
+	[cell.eventTime setText:[NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime]];
+
+	// Color
 	cell.eventColor.backgroundColor = [ColorGenerator randomColor];
 	if (cell.event.favorite) {
 		cell.contentView.backgroundColor = [ColorGenerator randomColor];
