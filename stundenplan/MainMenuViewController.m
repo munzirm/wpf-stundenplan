@@ -9,6 +9,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+@implementation MainMenuSectionHeader
+@end
+
 @implementation MainMenuModuleCell
 @end
 
@@ -70,19 +73,24 @@
 	return _sections.count;
 }
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return [_sections objectAtIndex:section];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 32;
 }
 
-// TODO vlt besser den header ganz selbst machen wg. layout
-//- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section:(NSInteger)section {
-//}
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	static NSString* CellIdentifier = @"MainMenuSectionHeader";
+	MainMenuSectionHeader* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+	cell.sectionLabel.text = [_sections objectAtIndex:section];
+	
+	return cell;
+}
 
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
-		return _modules.count;
+		return _modules.count + 1;
 	} else if (section == 1) {
 		return _filters.count;
 	} else if (section == 2) {
@@ -97,12 +105,15 @@
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 	
 	if (indexPath.section == 0) {
-		((MainMenuModuleCell*) cell).moduleLabel.text =
-				[_modules objectAtIndex:indexPath.row];
-		((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor =
-				[_moduleColors objectAtIndex:indexPath.row];
-		((MainMenuModuleCell*) cell).moduleColorIndicator.layer.cornerRadius = 5.0;
-		
+		if (indexPath.row == 0) {
+			((MainMenuModuleCell*) cell).moduleLabel.text = @"Alle";
+			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = nil;
+			((MainMenuModuleCell*) cell).backgroundColor = [UIColor blueColor];
+		} else {
+			((MainMenuModuleCell*) cell).moduleLabel.text = [_modules objectAtIndex:indexPath.row - 1];
+			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [_moduleColors objectAtIndex:indexPath.row - 1];
+			((MainMenuModuleCell*) cell).backgroundColor = nil;
+		}
 	} else if (indexPath.section == 1) {
 		((MainMenuFilterCell*) cell).filterLabel.text =
 				[_filters objectAtIndex:indexPath.row];

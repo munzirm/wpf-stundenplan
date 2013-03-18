@@ -36,12 +36,15 @@
 	[super prepareForReuse];
 	
 	[self removeOptionView];
-	self.contentView.hidden = NO;
-	self.contentView.backgroundColor = nil;
 	
 	CGRect frame = self.frame;
 	frame.origin.x = 0;
 	self.frame = frame;
+	
+	self.contentView.hidden = NO;
+	self.contentView.backgroundColor = nil;
+	
+	self.eventColor.backgroundColor = nil;
 }
 
 #pragma mark - Handle Gestures

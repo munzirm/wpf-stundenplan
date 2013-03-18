@@ -123,8 +123,11 @@
 	[cell.eventTime setText:[NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime]];
 
 	// Color
-	cell.eventColor.backgroundColor = [ColorGenerator randomColor];
-	if (cell.event.favorite) {
+	if (!cell.event.favorite) {
+		cell.eventColor.backgroundColor = [ColorGenerator randomColor];
+		cell.contentView.backgroundColor = indexPath.row % 2 == 0 ?
+		[UIColor lightGrayColor] : nil;
+	} else {
 		cell.contentView.backgroundColor = [ColorGenerator randomColor];
 	}
 

@@ -7,6 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
+@interface MainMenuSectionHeader : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel* sectionLabel;
+@property (weak, nonatomic) IBOutlet UIButton* sectionConfigurationButton;
+@end
+
 @interface MainMenuModuleCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel* moduleLabel;
 @property (weak, nonatomic) IBOutlet UIView* moduleColorIndicator;
