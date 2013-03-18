@@ -45,11 +45,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-q0-acm">
+                                <color key="backgroundColor" red="0.83302065138549908" green="1" blue="0.6561220007564923" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" type="user" id="V2g-w5-Z8Z"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vAg-qr-KSz">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="354" id="Z6Z-iK-n5f"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimetableCell" id="ODF-fY-wGR" customClass="TimetableCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="64"/>
@@ -205,9 +208,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vAg-qr-KSz" firstAttribute="bottom" secondItem="znV-b2-sNg" secondAttribute="bottom" type="user" id="6Vd-m3-UsO"/>
                             <constraint firstItem="vAg-qr-KSz" firstAttribute="trailing" secondItem="znV-b2-sNg" secondAttribute="trailing" type="default" id="7rZ-1e-I9Q"/>
-                            <constraint firstItem="vAg-qr-KSz" firstAttribute="bottom" secondItem="znV-b2-sNg" secondAttribute="bottom" type="default" id="aZ9-uy-pGi"/>
+                            <constraint firstItem="vAg-qr-KSz" firstAttribute="top" secondItem="znV-b2-sNg" secondAttribute="top" constant="64" type="user" id="Jti-mI-NKv"/>
+                            <constraint firstItem="Zr4-q0-acm" firstAttribute="top" secondItem="znV-b2-sNg" secondAttribute="top" type="default" id="M2T-ac-r2R"/>
+                            <constraint firstItem="Zr4-q0-acm" firstAttribute="leading" secondItem="znV-b2-sNg" secondAttribute="leading" type="default" id="XlK-kb-Jte"/>
                             <constraint firstItem="vAg-qr-KSz" firstAttribute="leading" secondItem="znV-b2-sNg" secondAttribute="leading" type="default" id="qAo-Re-1ET"/>
+                            <constraint firstItem="Zr4-q0-acm" firstAttribute="trailing" secondItem="znV-b2-sNg" secondAttribute="trailing" type="default" id="s03-fg-q2V"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UvS-KW-DY8"/>
