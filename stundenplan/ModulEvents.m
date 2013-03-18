@@ -6,12 +6,13 @@
 //
 
 #import "ModulEvents.h"
+#import "ColorGenerator.h"
 
 @implementation ModulEvents {
 	NSArray *_originalEvents;
 	NSMutableDictionary *_daySections;
 	NSArray *_sortedDays;
-	NSArray *_modules;
+	NSMutableDictionary *_modules;
 }
 
 - (id)initWithEvents:(NSArray *)events {
@@ -29,16 +30,28 @@
 	_sortedDays = nil;
 
 	// The modules, saves the colors
-	_modules = [NSMutableArray array];
+	_modules = [NSMutableDictionary dictionary];
 
 	[self prepareEventsForDisplay];
 
 	return self;
 }
 
+-(NSMutableDictionary *)modules {
+	return _modules;
+}
+
 - (void)prepareEventsForDisplay {
 	for (EKEvent *event in _originalEvents) {
 		ModulEvent *modulEvent = [[ModulEvent alloc] initWithEvent:event];
+
+		// One color for each modul
+		if ( [_modules objectForKey:modulEvent.modulAcronym] == nil ) {
+			modulEvent.modulColor = [ColorGenerator randomColor];
+			[_modules setObject:modulEvent.modulColor forKey:modulEvent.modulAcronym];
+		} else {
+			modulEvent.modulColor = [_modules objectForKey:modulEvent.modulAcronym];
+		}
 		
 		// Reduce event start date to date components (year, month, day)
 		NSDate *dateRepresentingThisDay = [self dateAtBeginningOfDayForDate:modulEvent.startDate];

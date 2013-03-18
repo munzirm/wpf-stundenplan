@@ -124,11 +124,10 @@
 
 	// Color
 	if (!cell.event.favorite) {
-		cell.eventColor.backgroundColor = [ColorGenerator randomColor];
-		cell.contentView.backgroundColor = indexPath.row % 2 == 0 ?
-		[UIColor lightGrayColor] : nil;
+		cell.eventColor.backgroundColor = cell.event.modulColor;
+		cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? [UIColor lightGrayColor] : nil;
 	} else {
-		cell.contentView.backgroundColor = [ColorGenerator randomColor];
+		cell.contentView.backgroundColor = cell.event.modulColor;
 	}
 
 	return cell;

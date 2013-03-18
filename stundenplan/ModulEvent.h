@@ -14,6 +14,7 @@
 @property (nonatomic, copy, readonly) NSString *modulAcronym;
 @property (nonatomic, copy, readonly) NSString *modulFullName;
 //@property (nonatomic, copy, readonly) NSString *modulType;
+@property (nonatomic, copy, readonly) UIColor *modulColor;
 @property (nonatomic, copy, readonly) NSString *modulLocation;
 @property (nonatomic, copy, readonly) NSDate *startDate;
 @property (nonatomic, copy, readonly) NSDate *endDate;
@@ -22,9 +23,8 @@
 
 - (id)initWithEvent:(EKEvent *)event;
 
-
 - (NSString *)modulType;
-
+- (void)setModulColor:(UIColor *)color;
 - (void) setStatus: (EKEventStatus) status;
 - (void) deleteEvent: (BOOL) todo;
 
