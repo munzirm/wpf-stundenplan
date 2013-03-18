@@ -10,7 +10,10 @@
 #import "CalendarController.h"
 #import "TimetableCell.h"
 
-@interface TimetableViewController : UITableViewController <UIGestureRecognizerDelegate, UIActionSheetDelegate, TimetableCellDelegate>
+@interface TimetableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, TimetableCellDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView* timeView;
+@property (weak, nonatomic) IBOutlet UITableView* tableView;
 
 @property (strong) CalendarController* calendarController;
 
