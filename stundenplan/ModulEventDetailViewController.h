@@ -8,7 +8,13 @@
 
 #import "ModulEvent.h"
 
-@interface ModulEventDetailViewController : UITableViewController
+@interface ModulEventDetailViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UILabel *fullName;
+@property (strong, nonatomic) IBOutlet UILabel *type;
+@property (strong, nonatomic) IBOutlet UILabel *date;
+
+
 
 @property (nonatomic, strong) ModulEvent *modulEvent;
 
