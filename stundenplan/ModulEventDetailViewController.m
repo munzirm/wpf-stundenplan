@@ -8,25 +8,13 @@
 
 #import "ModulEventDetailViewController.h"
 
-@interface ModulEventDetailViewController ()
-
-@end
-
 @implementation ModulEventDetailViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	NSLog(@"%@", _modulEvent);
+	self.title = _modulEvent.modulAcronym;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

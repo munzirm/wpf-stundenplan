@@ -7,6 +7,7 @@
 
 #import "TimetableViewController.h"
 #import "TimetableCell.h"
+#import "ModulEventDetailViewController.h"
 #import "ModulEvents.h"
 #import "ModulEvent.h"
 #import "ColorGenerator.h"
@@ -186,5 +187,14 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showModulEventDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ModulEventDetailViewController *destViewController = segue.destinationViewController;
+		destViewController.modulEvent = [modulEvents eventOnThisDay:indexPath];
+    }
+}
+
 
 @end

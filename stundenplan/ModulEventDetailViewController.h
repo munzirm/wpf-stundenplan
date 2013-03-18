@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 FH-K√∂ln. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ModulEvent.h"
 
 @interface ModulEventDetailViewController : UITableViewController
+
+@property (nonatomic, strong) ModulEvent *modulEvent;
 
 @end

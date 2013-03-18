@@ -48,6 +48,7 @@
 		B4AFD05C16F66567005395A2 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD05116F66567005395A2 /* OpenSans-SemiboldItalic.ttf */; };
 		B4AFD05F16F674E1005395A2 /* ColorGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD05E16F674E1005395A2 /* ColorGenerator.m */; };
 		B4AFD06316F67751005395A2 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD06216F67751005395A2 /* Data.m */; };
+		B4EFFD5B16F7821B00D7EF2C /* ModulEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EFFD5A16F7821B00D7EF2C /* ModulEventDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		B4AFD05E16F674E1005395A2 /* ColorGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGenerator.m; sourceTree = "<group>"; };
 		B4AFD06116F67751005395A2 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		B4AFD06216F67751005395A2 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
+		B4EFFD5916F7821B00D7EF2C /* ModulEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEventDetailViewController.h; sourceTree = "<group>"; };
+		B4EFFD5A16F7821B00D7EF2C /* ModulEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEventDetailViewController.m; sourceTree = "<group>"; };
 		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -205,6 +208,8 @@
 		59BA3D4116AB2596000D0FA4 /* stundenplan */ = {
 			isa = PBXGroup;
 			children = (
+				B4EFFD5916F7821B00D7EF2C /* ModulEventDetailViewController.h */,
+				B4EFFD5A16F7821B00D7EF2C /* ModulEventDetailViewController.m */,
 				B4AFD04616F66567005395A2 /* open-sans */,
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
@@ -462,6 +467,7 @@
 				B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */,
 				B4AFD05F16F674E1005395A2 /* ColorGenerator.m in Sources */,
 				B4AFD06316F67751005395A2 /* Data.m in Sources */,
+				B4EFFD5B16F7821B00D7EF2C /* ModulEventDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
