@@ -19,8 +19,7 @@
 	return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	
 	self.title = _modulEvent.modulAcronym;
@@ -30,6 +29,13 @@
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    static UIImage *bgtextureImage = nil;
+    if (bgtextureImage == nil) {
+        bgtextureImage = [UIImage imageNamed:@"bgtexture.png"];
+    }
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgtextureImage];
+    
 }
 
 - (void)didReceiveMemoryWarning

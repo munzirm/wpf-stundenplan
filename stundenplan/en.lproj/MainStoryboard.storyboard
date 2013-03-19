@@ -45,7 +45,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-q0-acm">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-q0-acm" customClass="DailyPlan">
                                 <color key="backgroundColor" red="0.83302065138549908" green="1" blue="0.6561220007564923" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" type="user" id="V2g-w5-Z8Z"/>
@@ -261,7 +261,7 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="pTI-61-oWr">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="xHD-sU-MYW" style="IBUITableViewCellStyleDefault" id="6RB-fD-A8W">
                                 <rect key="frame" x="0.0" y="46" width="320" height="45"/>
@@ -646,6 +646,9 @@
         <image name="modulcoloroverlay.png" width="20" height="20"/>
     </resources>
     <classes>
+        <class className="DailyPlan" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyPlan.h"/>
+        </class>
         <class className="IIViewDeckController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
         </class>
