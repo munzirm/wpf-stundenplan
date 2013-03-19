@@ -14,8 +14,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="J3W-ti-P4C" kind="custom" id="6z4-U6-2uT"/>
-                        <segue destination="8nS-gh-oHA" kind="custom" id="4HA-Iu-gDV"/>
+                        <segue destination="J3W-ti-P4C" kind="push" id="pi9-Tk-QSt"/>
+                        <segue destination="8nS-gh-oHA" kind="push" id="MFb-CM-rD9"/>
+                        <segue destination="9cH-8i-RLm" kind="push" id="YTU-ZE-595"/>
+                        <segue destination="5IB-eZ-HNP" kind="push" id="Rqj-b4-j9V"/>
+                        <segue destination="pKY-MX-MsK" kind="push" id="jOp-6I-zAA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDL-xE-WTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,6 +29,7 @@
         <scene sceneID="er8-Av-Ob8">
             <objects>
                 <navigationController storyboardIdentifier="MainContent" definesPresentationContext="YES" id="8nS-gh-oHA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bUQ-jk-DWH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4fX-IK-DWr">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -37,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="-93" y="-870"/>
         </scene>
-        <!--Timetable View Controller-->
+        <!--Timetable View Controller - Stundenplan-->
         <scene sceneID="LTn-9f-Zh6">
             <objects>
                 <viewController storyboardIdentifier="TimetableViewController" id="IK8-Kw-0x4" customClass="TimetableViewController" sceneMemberID="viewController">
@@ -245,7 +249,7 @@
                             <constraint firstItem="Zr4-q0-acm" firstAttribute="trailing" secondItem="znV-b2-sNg" secondAttribute="trailing" type="default" id="s03-fg-q2V"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="UvS-KW-DY8"/>
+                    <navigationItem key="navigationItem" title="Stundenplan" id="UvS-KW-DY8"/>
                     <connections>
                         <outlet property="tableView" destination="vAg-qr-KSz" id="e0Z-dE-xrA"/>
                     </connections>
@@ -505,6 +509,7 @@
                             <outlet property="delegate" destination="J3W-ti-P4C" id="Jqq-M1-6Ms"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="aJA-aC-VhQ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldm-Xo-MQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -565,7 +570,8 @@
         <!--Navigation Controller-->
         <scene sceneID="Msv-y9-JrC">
             <objects>
-                <navigationController definesPresentationContext="YES" id="5IB-eZ-HNP" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ModuleConfiguration" definesPresentationContext="YES" id="5IB-eZ-HNP" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Fl8-al-wuN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ddu-va-hSd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -618,7 +624,8 @@
         <!--Navigation Controller-->
         <scene sceneID="rbo-mz-8dZ">
             <objects>
-                <navigationController definesPresentationContext="YES" id="pKY-MX-MsK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Settings" definesPresentationContext="YES" id="pKY-MX-MsK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="sWU-5p-O1O"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2J0-HG-JC9">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -633,7 +640,8 @@
         <!--Navigation Controller-->
         <scene sceneID="AMa-7Y-GLy">
             <objects>
-                <navigationController definesPresentationContext="YES" id="9cH-8i-RLm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ModuleSearch" definesPresentationContext="YES" id="9cH-8i-RLm" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5qW-jC-r86"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dao-b1-MAc">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

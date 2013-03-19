@@ -37,7 +37,6 @@
 
 - (void) openTimetableViewController {
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
-	NSLog(@"openTimetable: %@", self.centerController);
 }
 
 - (void) openSearchModuleViewController {
@@ -50,6 +49,24 @@
 
 - (void) openSettingsViewController {
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
+}
+
+- (void) addNavigationControllerMenu {
+	UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] initWithTitle:@"="
+																   style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(openOrCloseSidebar:)];
+	NSLog(@"addNavigationControllerMenu: %@", self.centerController);
+	[self.centerController view];
+	self.centerController.navigationController.topViewController.navigationItem.leftBarButtonItem = menuButton;
+}
+
+- (void)openOrCloseSidebar:(id)sender {
+	if ([self isSideOpen:IIViewDeckLeftSide]) {
+		[self closeLeftViewAnimated:YES];
+	} else {
+		[self openLeftViewAnimated:YES];
+	}
 }
 
 // Currently we use no seque here to switch to the correct sidebar page.
