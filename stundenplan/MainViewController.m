@@ -14,7 +14,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationControllerBehavior = IIViewDeckNavigationControllerIntegrated;
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
 	
@@ -37,7 +36,8 @@
 }
 
 - (void) openTimetableViewController {
-	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"TimetableViewController"];
+	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
+	NSLog(@"openTimetable: %@", self.centerController);
 }
 
 - (void) openSearchModuleViewController {
