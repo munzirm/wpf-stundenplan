@@ -200,6 +200,12 @@
 		_optionView.center = CGPointMake(_optionView.center.x + _optionView.frame.size.width, _optionView.center.y);
 		_optionView.originalCell = self;
 		_optionView.event = self.event;
+        /*static UIImage *timetableoptioncellImage = nil;
+        if (timetableoptioncellImage == nil) {
+            timetableoptioncellImage = [UIImage imageNamed:@"timetableoptioncell.png"];
+        }
+        _optionView.backgroundView = [[UIView alloc] init];
+        _optionView.backgroundView.backgroundColor = [UIColor colorWithPatternImage:timetableoptioncellImage];*/
 		[self addSubview:_optionView];
 	}
 }

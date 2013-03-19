@@ -37,8 +37,8 @@
 		B43F646416F542810050CAE4 /* ModulEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646316F542810050CAE4 /* ModulEvent.m */; };
 		B43F646616F5DF310050CAE4 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = B43F646516F5DF310050CAE4 /* data.json */; };
 		B43F646B16F601830050CAE4 /* CalendarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43F646A16F601830050CAE4 /* CalendarController.m */; };
-		B489B83D16F899FF000C18D6 /* timetableoptionscell.png in Resources */ = {isa = PBXBuildFile; fileRef = B489B83B16F899FF000C18D6 /* timetableoptionscell.png */; };
-		B489B83E16F899FF000C18D6 /* timetableoptionscell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B489B83C16F899FF000C18D6 /* timetableoptionscell@2x.png */; };
+		B4532D5A16F8C4C100826B19 /* timetableoptioncell.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D5816F8C4C100826B19 /* timetableoptioncell.png */; };
+		B4532D5B16F8C4C100826B19 /* timetableoptioncell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D5916F8C4C100826B19 /* timetableoptioncell@2x.png */; };
 		B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD04416F61D97005395A2 /* ModulEvents.m */; };
 		B4AFD05216F66567005395A2 /* Apache License Version 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04716F66567005395A2 /* Apache License Version 2.txt */; };
 		B4AFD05316F66567005395A2 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04816F66567005395A2 /* OpenSans-Bold.ttf */; };
@@ -119,8 +119,8 @@
 		B43F646516F5DF310050CAE4 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		B43F646916F601830050CAE4 /* CalendarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarController.h; sourceTree = "<group>"; };
 		B43F646A16F601830050CAE4 /* CalendarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarController.m; sourceTree = "<group>"; };
-		B489B83B16F899FF000C18D6 /* timetableoptionscell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timetableoptionscell.png; path = ../../../Desktop/timetableoptionscell.png; sourceTree = "<group>"; };
-		B489B83C16F899FF000C18D6 /* timetableoptionscell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "timetableoptionscell@2x.png"; path = "../../../Desktop/timetableoptionscell@2x.png"; sourceTree = "<group>"; };
+		B4532D5816F8C4C100826B19 /* timetableoptioncell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetableoptioncell.png; sourceTree = "<group>"; };
+		B4532D5916F8C4C100826B19 /* timetableoptioncell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timetableoptioncell@2x.png"; sourceTree = "<group>"; };
 		B4AFD04316F61D97005395A2 /* ModulEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEvents.h; sourceTree = "<group>"; };
 		B4AFD04416F61D97005395A2 /* ModulEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEvents.m; sourceTree = "<group>"; };
 		B4AFD04716F66567005395A2 /* Apache License Version 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License Version 2.txt"; sourceTree = "<group>"; };
@@ -346,8 +346,8 @@
 		B4F9A61316F7CC3300FDACB0 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				B489B83B16F899FF000C18D6 /* timetableoptionscell.png */,
-				B489B83C16F899FF000C18D6 /* timetableoptionscell@2x.png */,
+				B4532D5816F8C4C100826B19 /* timetableoptioncell.png */,
+				B4532D5916F8C4C100826B19 /* timetableoptioncell@2x.png */,
 				B4F9A61816F7DB8100FDACB0 /* modulcoloroverlay.png */,
 				B4F9A61916F7DB8100FDACB0 /* modulcoloroverlay@2x.png */,
 				B4F9A61416F7D23600FDACB0 /* timetablecell.png */,
@@ -450,8 +450,8 @@
 				B4F9A61716F7D23600FDACB0 /* timetablecell@2x.png in Resources */,
 				B4F9A61A16F7DB8100FDACB0 /* modulcoloroverlay.png in Resources */,
 				B4F9A61B16F7DB8100FDACB0 /* modulcoloroverlay@2x.png in Resources */,
-				B489B83D16F899FF000C18D6 /* timetableoptionscell.png in Resources */,
-				B489B83E16F899FF000C18D6 /* timetableoptionscell@2x.png in Resources */,
+				B4532D5A16F8C4C100826B19 /* timetableoptioncell.png in Resources */,
+				B4532D5B16F8C4C100826B19 /* timetableoptioncell@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
