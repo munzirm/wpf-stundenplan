@@ -6,22 +6,26 @@
 //
 
 #import "AppDelegate.h"
+#import "ColorGenerator.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-	
-	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    static UIImage *navigationImage = nil;
+    if (navigationImage == nil) {
+        navigationImage = [UIImage imageNamed:@"navigationbar.png"];
+    }
+    [[UINavigationBar appearance] setBackgroundImage:navigationImage forBarMetrics:UIBarMetricsDefault];
 	
 	[[UINavigationBar appearance] setTitleTextAttributes: @{
-								UITextAttributeTextColor: [UIColor blackColor],
-						  UITextAttributeTextShadowColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
-						 UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
-									 UITextAttributeFont: [UIFont fontWithName:@"Helvetica-Light" size:20.0f]
+								UITextAttributeTextColor: UIColorFromRGB(0x424242),
+						  UITextAttributeTextShadowColor: [UIColor whiteColor],
+						 UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(1.0, 1.0)],
+									 UITextAttributeFont: [UIFont fontWithName:@"OpenSans-Semibold" size:20.0f]
 	 }];
-	
+
     return YES;
 }
 
