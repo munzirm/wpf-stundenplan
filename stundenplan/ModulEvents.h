@@ -14,6 +14,7 @@
 - (id)initWithEvents:(NSArray *)events;
 
 - (NSArray *)events;
+- (NSDictionary *)modules;
 
 - (NSInteger *)dayCount;
 

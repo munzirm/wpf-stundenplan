@@ -14,8 +14,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	NSLog(@"MainViewController viewDidLoad: %@", self.storyboard);
-	
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
 	
