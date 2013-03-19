@@ -41,6 +41,9 @@
 	 self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 	 self.navigationController.navigationBar.backgroundColor = [UIColor grayColor];
 	 */
+    
+    UIImage *image = [UIImage imageNamed:@"bgtexture.png"];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
 
 	self.calendarController = [[CalendarController alloc] init];
 	[self.calendarController moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {

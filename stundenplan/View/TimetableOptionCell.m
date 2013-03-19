@@ -18,7 +18,7 @@
             timetableoptioncellImage = [UIImage imageNamed:@"timetableoptioncell.png"];
         }
         self.backgroundView = [[UIView alloc] init];
-       self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:timetableoptioncellImage];
+        self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:timetableoptioncellImage];
 	}
 	
     return self;
