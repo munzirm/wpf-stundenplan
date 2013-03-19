@@ -30,11 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"'="
-																			 style:UIBarButtonItemStylePlain
-																			target:self
-																			action:@selector(openOrCloseSidebar:)];
-
 	/*
 	 NSLog(@"navigationBar: %@", self.navigationController.navigationBar);
 	 self.navigationController.navigationBar.topItem.titleView.backgroundColor = [UIColor greenColor];
@@ -55,10 +50,6 @@
 	} failure:^(NSError *error) {
 		NSLog(@"Error while load module events in timetable: %@", error);
 	}];
-}
-
-- (void)openOrCloseSidebar:(id)sender {
-	NSLog(@"openOrCloseSidebar!");
 }
 
 - (void)prepareEventsForDisplay {

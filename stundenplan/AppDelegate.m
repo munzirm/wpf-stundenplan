@@ -12,9 +12,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+	
+	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+	
+	[[UINavigationBar appearance] setTitleTextAttributes: @{
+								UITextAttributeTextColor: [UIColor blackColor],
+						  UITextAttributeTextShadowColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
+						 UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
+									 UITextAttributeFont: [UIFont fontWithName:@"Helvetica-Light" size:20.0f]
+	 }];
+	
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -8,4 +8,13 @@
 #import <ViewDeck/IIViewDeckController.h>
 
 @interface MainViewController : IIViewDeckController <IIViewDeckControllerDelegate>
+
+- (void) openTimetableViewController;
+
+- (void) openSearchModuleViewController;
+
+- (void) openConfigureModuleViewController: (NSString*) moduleLabel;
+
+- (void) openSettingsViewController;
+
 @end
