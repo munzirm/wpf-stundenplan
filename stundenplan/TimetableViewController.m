@@ -110,7 +110,7 @@
 	// the label object
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, 320.0, 20.0)];
 	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.textColor = [UIColor blackColor];
+	headerLabel.textColor = UIColorFromRGB(0x424242);
 	headerLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:11.0];
     headerLabel.shadowColor = [UIColor whiteColor];
     headerLabel.shadowOffset = CGSizeMake(1.0, 1.0);
@@ -145,19 +145,30 @@
 	// Name
 	[cell.eventName setText:cell.event.modulAcronym];
 	[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:17.0]];
+    [cell.eventName setTextColor:UIColorFromRGB(0x424242)];
+    [cell.eventName setShadowColor:[UIColor whiteColor]];
+    [cell.eventName setShadowOffset:CGSizeMake(1.0, 1.0)];
 
 	// Type
 	[cell.eventType setText:[cell.event modulType]];
 	[cell.eventType setFont:[UIFont fontWithName:@"OpenSans-Light" size:11.0]];
-
+    [cell.eventType setTextColor:UIColorFromRGB(0x424242)];
+    [cell.eventType setShadowColor:[UIColor whiteColor]];
+    [cell.eventType setShadowOffset:CGSizeMake(1.0, 1.0)];
 
 	// Location
 	[cell.eventLocation setText:cell.event.modulLocation];
 	[cell.eventLocation setFont:[UIFont fontWithName:@"OpenSans-Light" size:10.0]];
+    [cell.eventLocation setTextColor:UIColorFromRGB(0x424242)];
+    [cell.eventLocation setShadowColor:[UIColor whiteColor]];
+    [cell.eventLocation setShadowOffset:CGSizeMake(1.0, 1.0)];
 
 	// Time
 	[cell.eventTime setText:cell.event.startTime];
 	[cell.eventTime setFont:[UIFont fontWithName:@"OpenSans-Bold" size:11.0]];
+    [cell.eventTime setTextColor:UIColorFromRGB(0x424242)];
+    [cell.eventTime setShadowColor:[UIColor whiteColor]];
+    [cell.eventTime setShadowOffset:CGSizeMake(1.0, 1.0)];
 
 	// Color
 	cell.eventColor.backgroundColor = cell.event.modulColor;
@@ -194,20 +205,12 @@
 	NSLog(@"favorite: %@", event);
 }
 
-- (void)confirm:(ModulEvent*) event {
-	NSLog(@"confirm: %@", event);
-}
-
-- (void)cancel:(ModulEvent*) event {
-	NSLog(@"cancel: %@", event);
-}
-
 - (void)remove:(ModulEvent*) event {
-	_actionSheet = [[UIActionSheet alloc] initWithTitle:@"Löschen?"
+	_actionSheet = [[UIActionSheet alloc] initWithTitle:@"Veranstaltung löschen?"
 											   delegate:self
 									  cancelButtonTitle:@"Abbrechen"
-								 destructiveButtonTitle:@"Alle Folgetermine"
-									  otherButtonTitles:@"Nur diesen Termin", nil];
+								 destructiveButtonTitle:@"Nur diesen Termin"
+									  otherButtonTitles:@"Alle Folgetermine", nil];
 	[_actionSheet showInView:self.view];
 }
 

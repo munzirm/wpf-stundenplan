@@ -16,8 +16,6 @@
 @property (weak, nonatomic) ModulEvent* event;
 
 - (IBAction)favorite;
-- (IBAction)confirm;
-- (IBAction)cancel;
 - (IBAction)remove;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -164,11 +164,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-0v-Hmg">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-0v-Hmg">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="KrR-pC-F1Y"/>
+                                                        <constraint firstAttribute="height" constant="44" id="brG-Or-vCr"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Fav">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" image="favicon.png">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,37 +181,14 @@
                                                         <action selector="favorite" destination="unZ-i0-mFo" eventType="touchUpInside" id="Fux-I6-elS"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-Wi-0ev">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEi-vp-zjS">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="2YI-um-ffC"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Yo">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="confirm" destination="unZ-i0-mFo" eventType="touchUpInside" id="eXa-QI-aDF"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qv9-Kk-9Vd">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="No">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="cancel" destination="unZ-i0-mFo" eventType="touchUpInside" id="eTM-mY-k1x"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEi-vp-zjS">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Never">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" image="deleteicon.png">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -216,19 +197,35 @@
                                                         <action selector="remove" destination="unZ-i0-mFo" eventType="touchUpInside" id="EcI-yq-ONf"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ani-FQ-0eZ">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="qLI-Ol-AHf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" image="editicon.png">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="eYQ-HP-M6P" kind="push" identifier="showModulEventDetail" id="B3R-pT-TxG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="qv9-Kk-9Vd" firstAttribute="leading" secondItem="Rfq-Wi-0ev" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="37P-V4-SdT"/>
-                                            <constraint firstAttribute="trailing" secondItem="wEi-vp-zjS" secondAttribute="trailing" constant="20" type="default" id="8mT-WG-yvd"/>
-                                            <constraint firstItem="Jij-0v-Hmg" firstAttribute="baseline" secondItem="Rfq-Wi-0ev" secondAttribute="baseline" type="default" id="GOd-ui-XZh"/>
-                                            <constraint firstItem="wEi-vp-zjS" firstAttribute="leading" secondItem="qv9-Kk-9Vd" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="HxS-LJ-gDd"/>
-                                            <constraint firstItem="wEi-vp-zjS" firstAttribute="baseline" secondItem="qv9-Kk-9Vd" secondAttribute="baseline" type="default" id="ICr-fK-s4d"/>
-                                            <constraint firstItem="qv9-Kk-9Vd" firstAttribute="baseline" secondItem="Rfq-Wi-0ev" secondAttribute="baseline" type="default" id="TDD-Q8-uXK"/>
-                                            <constraint firstItem="Jij-0v-Hmg" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" constant="9" id="c0G-9a-6EN"/>
-                                            <constraint firstItem="Jij-0v-Hmg" firstAttribute="leading" secondItem="unZ-i0-mFo" secondAttribute="leading" constant="20" type="default" id="cjm-mC-bdD"/>
+                                            <constraint firstItem="Ani-FQ-0eZ" firstAttribute="bottom" secondItem="wEi-vp-zjS" secondAttribute="bottom" type="default" id="LZ2-vd-w3N"/>
+                                            <constraint firstItem="Ani-FQ-0eZ" firstAttribute="top" secondItem="wEi-vp-zjS" secondAttribute="top" type="default" id="OZR-n3-pjd"/>
+                                            <constraint firstItem="Ani-FQ-0eZ" firstAttribute="top" secondItem="Jij-0v-Hmg" secondAttribute="top" type="default" id="WcE-CS-pYo"/>
+                                            <constraint firstItem="Jij-0v-Hmg" firstAttribute="top" secondItem="unZ-i0-mFo" secondAttribute="top" constant="7" id="Xoq-d0-XfT"/>
+                                            <constraint firstItem="Jij-0v-Hmg" firstAttribute="leading" secondItem="unZ-i0-mFo" secondAttribute="leading" constant="47" id="aWk-Tu-thQ"/>
+                                            <constraint firstItem="Jij-0v-Hmg" firstAttribute="bottom" secondItem="Ani-FQ-0eZ" secondAttribute="bottom" type="default" id="bnB-GW-yH8"/>
+                                            <constraint firstAttribute="trailing" secondItem="wEi-vp-zjS" secondAttribute="trailing" constant="47" type="user" id="hu4-Pf-97I"/>
+                                            <constraint firstItem="Ani-FQ-0eZ" firstAttribute="centerX" secondItem="unZ-i0-mFo" secondAttribute="centerX" type="default" id="nMM-YB-pdt"/>
                                         </constraints>
                                     </tableViewCell>
                                 </prototypes>
@@ -655,6 +652,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="deleteicon.png" width="50" height="50"/>
+        <image name="editicon.png" width="50" height="50"/>
+        <image name="favicon.png" width="50" height="50"/>
         <image name="modulcoloroverlay.png" width="20" height="20"/>
     </resources>
     <classes>
@@ -731,8 +731,6 @@
         <class className="TimetableOptionCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableOptionCell.h"/>
             <relationships>
-                <relationship kind="action" name="cancel"/>
-                <relationship kind="action" name="confirm"/>
                 <relationship kind="action" name="favorite"/>
                 <relationship kind="action" name="remove"/>
             </relationships>
@@ -750,4 +748,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="B3R-pT-TxG"/>
+    </inferredMetricsTieBreakers>
 </document>

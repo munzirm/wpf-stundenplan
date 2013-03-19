@@ -10,8 +10,6 @@
 @protocol TimetableCellDelegate <NSObject>
 
 - (void)favorite:(ModulEvent*) event;
-- (void)confirm:(ModulEvent*) event;
-- (void)cancel:(ModulEvent*) event;
 - (void)remove:(ModulEvent*) event;
 
 @end

@@ -65,12 +65,21 @@
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-	
-	UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] initWithTitle:@"="
-																   style:UIBarButtonItemStylePlain
-																  target:self
-																  action:@selector(openOrCloseSidebar:)];
-	
+	UIImage *image = [UIImage imageNamed:@"menu.png"];
+    CGRect frameimg = CGRectMake(0, 0, image.size.width,image.size.height);
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:frameimg];
+    
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+
+    [button addTarget:self action:@selector(openOrCloseSidebar:) forControlEvents:UIControlEventTouchUpInside];
+    
+	/*UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu.png"]
+                                                    landscapeImagePhone:nil
+                                                    style:UIBarButtonItemStyle
+                                                    target:self
+                                                    action:@selector(openOrCloseSidebar:)];*/
+	UIBarButtonItem *menuButton =[[UIBarButtonItem alloc] initWithCustomView:button]; 
 	viewController.navigationItem.leftBarButtonItem = menuButton;
 }
 
