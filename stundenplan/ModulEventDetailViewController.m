@@ -7,26 +7,24 @@
 
 #import "ModulEventDetailViewController.h"
 
-@implementation ModulEventDetailViewController
+@implementation ModulEventDetailViewController {
+	NSArray* _sections;
+}
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		_sections = @[ @"", @"Übersicht", @"" ];
+	}
+	return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// TODO self.title = _modulEvent.modulAcronym;
-	// TODO [_fullName setText:_modulEvent.modulFullName];
 	
-	// TODO [_date setText:[NSString stringWithFormat:@"%@: %@ - %@", _modulEvent.weekday, _modulEvent.startTime, _modulEvent.endTime]];
-	// TODO [_type setText:_modulEvent.modulType];
-
+	self.title = _modulEvent.modulAcronym;
+	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 	
@@ -42,38 +40,64 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return _sections.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return [_sections objectAtIndex:section];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (section == 0) {
+		return 1;
+	} else if (section == 1) {
+		return 3;
+	} else if (section == 2) {
+		return 1;
+	} else {
+		return -1;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    NSString *CellIdentifier = @"Cell";
+	if (indexPath.section == 1) {
+		CellIdentifier = @"CellDetail";
+	}
+	if (indexPath.section == 2) {
+		CellIdentifier = @"CellDelete";
+	}
+	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+	
+	// TODO [_type setText:];
+	
+
     // Configure the cell...
-    
+	if (indexPath.section == 0) {
+		cell.textLabel.text = @"Name";
+		cell.detailTextLabel.text = _modulEvent.modulFullName;
+	} else if (indexPath.section == 1) {
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"Typ";
+			cell.detailTextLabel.text = _modulEvent.modulType;
+		} else if (indexPath.row == 1) {
+			cell.textLabel.text = @"Datum";
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _modulEvent.weekday, _modulEvent.startTime, _modulEvent.endTime];
+		} else if (indexPath.row == 2) {
+		}
+	} else if (indexPath.section == 2) {
+		cell.textLabel.text = @"Löschen";
+	}
+	
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
+}
 
 /*
  // Override to support editing the table view.
