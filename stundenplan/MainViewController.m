@@ -12,10 +12,14 @@
 #import "ModulConfigurationViewController.h"
 #import "SettingsViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.view.layer.cornerRadius = 10;
 	
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
