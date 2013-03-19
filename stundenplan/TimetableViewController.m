@@ -7,9 +7,37 @@
 
 #import "TimetableViewController.h"
 #import "TimetableCell.h"
+#import "ModulEventDetailViewController.h"
 #import "ModulEvents.h"
 #import "ModulEvent.h"
 #import "ColorGenerator.h"
+
+#import <QuartzCore/QuartzCore.h>
+
+@implementation UIColor (LightAndDark)
+
+- (UIColor *)lighterColor
+{
+    float h, s, b, a;
+    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h
+                          saturation:s
+                          brightness:MIN(b * 1.3, 1.0)
+                               alpha:a];
+    return nil;
+}
+
+- (UIColor *)darkerColor
+{
+    float h, s, b, a;
+    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
+        return [UIColor colorWithHue:h
+                          saturation:s
+                          brightness:b * 0.75
+                               alpha:a];
+    return nil;
+}
+@end
 
 @implementation TimetableViewController {
 	ModulEvents *modulEvents;
@@ -65,6 +93,17 @@
 	return [modulEvents dateRepresentingThisDay:section];
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    static UIImage *bgImage = nil;
+    if (bgImage == nil) {
+        bgImage = [UIImage imageNamed:@"timetablecell.png"];
+    }
+	cell.backgroundView = [[UIView alloc] init];
+   // cell.backgroundView = [[UIImageView alloc] initWithImage:bgImage];
+	((UIView *)cell.backgroundView).backgroundColor = [UIColor colorWithPatternImage:bgImage];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"TimetableCell";
 	
@@ -74,24 +113,41 @@
 
 	// Name
 	[cell.eventName setText:cell.event.modulAcronym];
-	[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:20.0]];
+	[cell.eventName setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:17.0]];
 
 	// Type
 	[cell.eventType setText:[cell.event modulType]];
+	[cell.eventType setFont:[UIFont fontWithName:@"OpenSans-Light" size:11.0]];
+
 
 	// Location
 	[cell.eventLocation setText:cell.event.modulLocation];
+	[cell.eventLocation setFont:[UIFont fontWithName:@"OpenSans-Light" size:10.0]];
 
 	// Time
-	[cell.eventTime setText:[NSString stringWithFormat:@"%@ - %@", cell.event.startTime, cell.event.endTime]];
+	[cell.eventTime setText:cell.event.startTime];
+	[cell.eventTime setFont:[UIFont fontWithName:@"OpenSans-Bold" size:11.0]];
+
 
 	// Color
-	if (!cell.event.favorite) {
+	cell.eventColor.backgroundColor = cell.event.modulColor;
+	cell.eventColor.layer.cornerRadius = 8.5;
+	// ToDo: Klappt nicht :(
+    static UIImage *overlayImage = nil;
+    if (overlayImage == nil) {
+        overlayImage = [UIImage imageNamed:@"modulcoloroverlay.png"];
+    }
+	cell.eventColorOverlay = [[UIImageView alloc] initWithImage:overlayImage];
+	cell.eventColorOverlay.backgroundColor = [UIColor clearColor];
+
+
+	/*if (!cell.event.favorite) {
+		cell.eventColor.layer.cornerRadius = 8.0;
 		cell.eventColor.backgroundColor = cell.event.modulColor;
 		cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? [UIColor lightGrayColor] : nil;
 	} else {
 		cell.contentView.backgroundColor = cell.event.modulColor;
-	}
+	}*/
 
 	return cell;
 }
@@ -149,5 +205,14 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showModulEventDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ModulEventDetailViewController *destViewController = segue.destinationViewController;
+		destViewController.modulEvent = [modulEvents eventOnThisDay:indexPath];
+    }
+}
+
 
 @end

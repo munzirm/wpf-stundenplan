@@ -29,12 +29,14 @@
 	NSDictionary *data = [Data objectForKey:@"modules" andForKey:_modulAcronym];
 	_modulFullName = [data valueForKey:@"name"];
 
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	// Dates
 	_startDate = _event.startDate;
 	_endDate = _event.endDate;
+	[dateFormatter setDateFormat:@"EEEE"];
+	_weekday = [dateFormatter stringFromDate:event.startDate];
 
 	// Time
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"HH:mm"];
 	_startTime = [dateFormatter stringFromDate:event.startDate];
 	_endTime = [dateFormatter stringFromDate:event.endDate];

@@ -48,6 +48,11 @@
 		B4AFD05C16F66567005395A2 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD05116F66567005395A2 /* OpenSans-SemiboldItalic.ttf */; };
 		B4AFD05F16F674E1005395A2 /* ColorGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD05E16F674E1005395A2 /* ColorGenerator.m */; };
 		B4AFD06316F67751005395A2 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD06216F67751005395A2 /* Data.m */; };
+		B4F9A60C16F7BA9D00FDACB0 /* ModulEventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F9A60B16F7BA9D00FDACB0 /* ModulEventDetailViewController.m */; };
+		B4F9A61616F7D23600FDACB0 /* timetablecell.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F9A61416F7D23600FDACB0 /* timetablecell.png */; };
+		B4F9A61716F7D23600FDACB0 /* timetablecell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F9A61516F7D23600FDACB0 /* timetablecell@2x.png */; };
+		B4F9A61A16F7DB8100FDACB0 /* modulcoloroverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F9A61816F7DB8100FDACB0 /* modulcoloroverlay.png */; };
+		B4F9A61B16F7DB8100FDACB0 /* modulcoloroverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4F9A61916F7DB8100FDACB0 /* modulcoloroverlay@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +125,12 @@
 		B4AFD05E16F674E1005395A2 /* ColorGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGenerator.m; sourceTree = "<group>"; };
 		B4AFD06116F67751005395A2 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		B4AFD06216F67751005395A2 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
+		B4F9A60A16F7BA9D00FDACB0 /* ModulEventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEventDetailViewController.h; sourceTree = "<group>"; };
+		B4F9A60B16F7BA9D00FDACB0 /* ModulEventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEventDetailViewController.m; sourceTree = "<group>"; };
+		B4F9A61416F7D23600FDACB0 /* timetablecell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetablecell.png; sourceTree = "<group>"; };
+		B4F9A61516F7D23600FDACB0 /* timetablecell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timetablecell@2x.png"; sourceTree = "<group>"; };
+		B4F9A61816F7DB8100FDACB0 /* modulcoloroverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modulcoloroverlay.png; sourceTree = "<group>"; };
+		B4F9A61916F7DB8100FDACB0 /* modulcoloroverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modulcoloroverlay@2x.png"; sourceTree = "<group>"; };
 		DB45426CFF7643E58A2CB518 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -205,6 +216,9 @@
 		59BA3D4116AB2596000D0FA4 /* stundenplan */ = {
 			isa = PBXGroup;
 			children = (
+				B4F9A61316F7CC3300FDACB0 /* images */,
+				B4F9A60A16F7BA9D00FDACB0 /* ModulEventDetailViewController.h */,
+				B4F9A60B16F7BA9D00FDACB0 /* ModulEventDetailViewController.m */,
 				B4AFD04616F66567005395A2 /* open-sans */,
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
@@ -310,6 +324,17 @@
 			name = JSON;
 			sourceTree = "<group>";
 		};
+		B4F9A61316F7CC3300FDACB0 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				B4F9A61816F7DB8100FDACB0 /* modulcoloroverlay.png */,
+				B4F9A61916F7DB8100FDACB0 /* modulcoloroverlay@2x.png */,
+				B4F9A61416F7D23600FDACB0 /* timetablecell.png */,
+				B4F9A61516F7D23600FDACB0 /* timetablecell@2x.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -400,6 +425,10 @@
 				B4AFD05A16F66567005395A2 /* OpenSans-Regular.ttf in Resources */,
 				B4AFD05B16F66567005395A2 /* OpenSans-Semibold.ttf in Resources */,
 				B4AFD05C16F66567005395A2 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				B4F9A61616F7D23600FDACB0 /* timetablecell.png in Resources */,
+				B4F9A61716F7D23600FDACB0 /* timetablecell@2x.png in Resources */,
+				B4F9A61A16F7DB8100FDACB0 /* modulcoloroverlay.png in Resources */,
+				B4F9A61B16F7DB8100FDACB0 /* modulcoloroverlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +491,7 @@
 				B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */,
 				B4AFD05F16F674E1005395A2 /* ColorGenerator.m in Sources */,
 				B4AFD06316F67751005395A2 /* Data.m in Sources */,
+				B4F9A60C16F7BA9D00FDACB0 /* ModulEventDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
