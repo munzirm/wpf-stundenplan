@@ -69,6 +69,27 @@
 	});
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	// create the parent view that will hold header Label (x, y, widht, height)
+	UIView* sectionView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+    sectionView.backgroundColor = [UIColor redColor];
+	
+	// create the button object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, 320.0, 20.0)];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.textColor = [UIColor blackColor];
+	headerLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:11.0];
+    
+	headerLabel.text = [modulEvents dateRepresentingThisDay:section];
+	[sectionView addSubview:headerLabel];
+    
+	return sectionView;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 20.0;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -79,9 +100,9 @@
 	return [modulEvents eventCountOnThisDay:section];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	return [modulEvents dateRepresentingThisDay:section];
-}
+}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"TimetableCell";
