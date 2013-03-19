@@ -14,31 +14,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@implementation UIColor (LightAndDark)
-
-- (UIColor *)lighterColor
-{
-    float h, s, b, a;
-    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
-        return [UIColor colorWithHue:h
-                          saturation:s
-                          brightness:MIN(b * 1.3, 1.0)
-                               alpha:a];
-    return nil;
-}
-
-- (UIColor *)darkerColor
-{
-    float h, s, b, a;
-    if ([self getHue:&h saturation:&s brightness:&b alpha:&a])
-        return [UIColor colorWithHue:h
-                          saturation:s
-                          brightness:b * 0.75
-                               alpha:a];
-    return nil;
-}
-@end
-
 @implementation TimetableViewController {
 	ModulEvents *modulEvents;
 	NSMutableDictionary *_daySections;
@@ -69,6 +44,7 @@
 			NSLog(@"Error: %@", error);
 		}
 	}];
+
 }
 
 /**
@@ -137,7 +113,6 @@
         bgImage = [UIImage imageNamed:@"timetablecell.png"];
     }
 	cell.backgroundView = [[UIView alloc] init];
-   // cell.backgroundView = [[UIImageView alloc] initWithImage:bgImage];
 	((UIView *)cell.backgroundView).backgroundColor = [UIColor colorWithPatternImage:bgImage];
 }
 
@@ -169,14 +144,6 @@
 	// Color
 	cell.eventColor.backgroundColor = cell.event.modulColor;
 	cell.eventColor.layer.cornerRadius = 8.5;
-	// ToDo: Klappt nicht :(
-    static UIImage *overlayImage = nil;
-    if (overlayImage == nil) {
-        overlayImage = [UIImage imageNamed:@"modulcoloroverlay.png"];
-    }
-	cell.eventColorOverlay = [[UIImageView alloc] initWithImage:overlayImage];
-	cell.eventColorOverlay.backgroundColor = [UIColor clearColor];
-
 
 	/*if (!cell.event.favorite) {
 		cell.eventColor.layer.cornerRadius = 8.0;
