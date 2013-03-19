@@ -23,8 +23,12 @@
 - (id)init;
 - (id)initWithBaseURL:(NSURL*) url;
 
-- (void) eventForStore:(EKEventStore *)store
-			   success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-			   failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
+- (void) fetchEventsForStore:(EKEventStore *)store
+					 success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+					 failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
+
+- (void) fetchModulesForStore:(EKEventStore *)store
+					  success:(void (^)(AFHTTPRequestOperation* operation, NSArray* modules))success
+					  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure;
 
 @end

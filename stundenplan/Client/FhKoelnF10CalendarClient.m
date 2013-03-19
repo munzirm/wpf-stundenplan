@@ -30,9 +30,9 @@
 
 #pragma mark - Asynchronous calls defined in the client API
 
-- (void) eventForStore:(EKEventStore *)store
-			   success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-			   failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
+- (void) fetchEventsForStore:(EKEventStore *)store
+					 success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+					 failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 
 	// Yeah, no "XSS" magic here, but we have no free input for this fields in our app.
 	NSMutableArray* parameters = [NSMutableArray array];
@@ -111,6 +111,51 @@
 	}
 	
 	return result;
+}
+
+- (void) fetchModulesForStore:(EKEventStore *)store
+					  success:(void (^)(AFHTTPRequestOperation* operation, NSArray* modules))success
+					  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
+	
+	// Yeah, no "XSS" magic here, but we have no free input for this fields in our app.
+	NSMutableArray* parameters = [NSMutableArray array];
+	if (_course) {
+		[parameters addObject:[NSString stringWithFormat:@"SG_KZ = '%@'", _course]];
+	}
+	if (_semester) {
+		[parameters addObject:[NSString stringWithFormat:@"SEMESTER_NR = '%@'", _semester]];
+	}
+	if (_modul) {
+		[parameters addObject:[NSString stringWithFormat:@"KURZBEZ = '%@'", _modul]];
+	}
+	
+	NSString* query = parameters.count == 0 ? @"null is null" : [parameters componentsJoinedByString:@" AND "];
+	NSLog(@"GET %@", query);
+	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
+	
+	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request andEventStore:store success:^(AFCalendarRequestOperation* operation) {
+		if (success) {
+			success(operation, [self modulesForEvents:operation.responseEvents]);
+		}
+	} failure:^(AFCalendarRequestOperation* operation, NSError *error) {
+		if (failure) {
+			failure(operation, error);
+		}
+	}];
+	
+	[self enqueueHTTPRequestOperation:operation];
+}
+
+- (NSArray*) modulesForEvents: (NSArray*) events {
+	NSMutableArray* modules = [NSMutableArray array];
+	for (EKEvent* event in events) {
+		NSArray *modulComponents = [event.title componentsSeparatedByString:@" "];
+		if (![modules containsObject:[modulComponents objectAtIndex:0]]) {
+			[modules addObject:[modulComponents objectAtIndex:0]];
+		}
+	}
+	[modules sortUsingSelector:@selector(compare:)];
+	return modules;
 }
 
 @end

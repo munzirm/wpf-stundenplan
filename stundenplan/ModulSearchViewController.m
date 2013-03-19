@@ -7,114 +7,131 @@
 
 #import "ModulSearchViewController.h"
 
-@interface ModulSearchViewController ()
+#import "CalendarController.h"
+#import "Data.h"
 
-@end
+#import <ActionSheetPicker/ActionSheetPicker.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
-@implementation ModulSearchViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+@implementation ModulSearchViewController {
+	CalendarController* _calendarController;
+	UIBarButtonItem* _saveButton;
+	NSString* _course;
+	NSString* _semester;
+	UIPickerView* _coursePicker;
+	UIPickerView* _semesterPicker;
+	NSArray* _modules;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+	_saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Speichern"
+												   style:UIBarButtonItemStylePlain
+												  target:self
+												  action:@selector(openOrCloseSidebar:)];
+	_saveButton.enabled = NO;
+	self.navigationItem.rightBarButtonItem = _saveButton;
+	
+	[self updateData];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (section == 0) {
+		return 2;
+	} else {
+		return _modules.count;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString* cellIdentifier = indexPath.section == 0 ? @"SearchCell" : @"ModuleCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    
+    if (indexPath.section == 0) {
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"Studiengang";
+			cell.detailTextLabel.text = _course;
+		} else if (indexPath.row == 1) {
+			cell.textLabel.text = @"Semester";
+			cell.detailTextLabel.text = _semester;
+		}
+	} else if (indexPath.section == 1) {
+		cell.textLabel.text = [_modules objectAtIndex:indexPath.row];
+	}
+	
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		if (indexPath.row == 0) {
+			[self selectCourse];
+		} else if (indexPath.row == 1) {
+			[self selectSemester];
+		}
+	} else if (indexPath.section == 1) {
+		BOOL selectedItems = [self.tableView indexPathsForSelectedRows].count != 0;
+		_saveButton.enabled = selectedItems;
+	}
+}
+
+- (void) selectCourse {
+	// TODO use Data class here.
+	NSArray* rows = @[ @"AI", @"MI", @"TI" ];
+	
+	[ActionSheetStringPicker showPickerWithTitle:@"Studiengang" rows:rows initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+		_course = selectedValue;
+		[self.tableView reloadData];
+		[self updateData];
+	} cancelBlock:^(ActionSheetStringPicker *picker) {
+	} origin:self.tableView];
+}
+
+- (void) selectSemester {
+	// TODO use Data class here.
+	NSArray* rows = @[
+			@"1. Semester",
+   			@"2. Semester",
+   			@"3. Semester",
+			@"4. Semester",
+   			@"5. Semester",
+   			@"6. Semester"
+	];
+	
+	[ActionSheetStringPicker showPickerWithTitle:@"Semester" rows:rows initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+		_semester = selectedValue;
+		[self.tableView reloadData];
+		[self updateData];
+	} cancelBlock:^(ActionSheetStringPicker *picker) {
+	} origin:self.tableView];
+}
+
+- (void) updateData {
+	NSString* course = _course ? [_course substringToIndex:2] : nil;
+	NSString* semester = _semester ? [_semester substringToIndex:1] : nil;
+	
+	[SVProgressHUD showWithStatus:@"Suche..."];
+	
+	_calendarController = [[CalendarController alloc] init];
+	[_calendarController searchCourse:course andSemester:semester success:^(NSArray *modules) {
+		_modules = modules;
+		[SVProgressHUD dismiss];
+		[self.tableView reloadData];
+	} failure:^(NSError *error) {
+		[SVProgressHUD dismiss];
+		NSLog(@"Error while update data: %@", error);
+	}];
+	
 }
 
 @end
