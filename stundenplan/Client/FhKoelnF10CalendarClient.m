@@ -66,8 +66,9 @@
 - (NSArray*) summerizeAndCleanupEventData:(NSArray*) events {
 	// Group and sort events
 	NSSortDescriptor* titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+	NSSortDescriptor* locationSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"location" ascending:YES];
 	NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES];
-	events = [events sortedArrayUsingDescriptors:@[ titleSortDescriptor, dateSortDescriptor ]];
+	events = [events sortedArrayUsingDescriptors:@[ titleSortDescriptor, locationSortDescriptor, dateSortDescriptor ]];
 	
 	NSMutableArray* result = [NSMutableArray array];
 	EKEvent* prevEvent = nil;
@@ -75,23 +76,24 @@
 	
 	for (EKEvent* event in events) {
 		eventsCount--;
-		
+
+		// Replace two whitespaces with one...
+		event.title = [event.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+
 		// The first event
 		if (!prevEvent) {
 			prevEvent = event;
 			continue;
 		}
 		
-		// Replace two whitespaces with one...
-		event.title = [event.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
-		
 		// Original data contains the full name of the modul as note, but we don't need it
 		event.notes = nil;
 		
-		// Previous event with same name as the current event. Interval <= 15 minutes.
+		// Previous event with same name and same location as the current event. Interval <= 15 minutes.
 		if (
 			prevEvent &&
 			[prevEvent.title isEqualToString:event.title] &&
+			[prevEvent.location isEqualToString:event.location] &&
 			[event.startDate timeIntervalSinceDate:prevEvent.endDate] <= 900 // 60*15 => 15 Minutes
 			) {
 			
