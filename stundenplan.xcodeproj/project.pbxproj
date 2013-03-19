@@ -42,6 +42,8 @@
 		B4532D5E16F8CC7F00826B19 /* bgtexture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D5C16F8CC7F00826B19 /* bgtexture@2x.png */; };
 		B4532D5F16F8CC7F00826B19 /* bgtexture.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D5D16F8CC7F00826B19 /* bgtexture.png */; };
 		B4532D6216F8D49F00826B19 /* DailyPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = B4532D6116F8D49F00826B19 /* DailyPlan.m */; };
+		B4532D6516F8FCEC00826B19 /* timetablesectionheader.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D6316F8FCEC00826B19 /* timetablesectionheader.png */; };
+		B4532D6616F8FCEC00826B19 /* timetablesectionheader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D6416F8FCEC00826B19 /* timetablesectionheader@2x.png */; };
 		B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD04416F61D97005395A2 /* ModulEvents.m */; };
 		B4AFD05216F66567005395A2 /* Apache License Version 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04716F66567005395A2 /* Apache License Version 2.txt */; };
 		B4AFD05316F66567005395A2 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04816F66567005395A2 /* OpenSans-Bold.ttf */; };
@@ -128,6 +130,8 @@
 		B4532D5D16F8CC7F00826B19 /* bgtexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bgtexture.png; path = View/bgtexture.png; sourceTree = "<group>"; };
 		B4532D6016F8D49F00826B19 /* DailyPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyPlan.h; sourceTree = "<group>"; };
 		B4532D6116F8D49F00826B19 /* DailyPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyPlan.m; sourceTree = "<group>"; };
+		B4532D6316F8FCEC00826B19 /* timetablesectionheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetablesectionheader.png; sourceTree = "<group>"; };
+		B4532D6416F8FCEC00826B19 /* timetablesectionheader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timetablesectionheader@2x.png"; sourceTree = "<group>"; };
 		B4AFD04316F61D97005395A2 /* ModulEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEvents.h; sourceTree = "<group>"; };
 		B4AFD04416F61D97005395A2 /* ModulEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEvents.m; sourceTree = "<group>"; };
 		B4AFD04716F66567005395A2 /* Apache License Version 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License Version 2.txt"; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 		B4F9A61316F7CC3300FDACB0 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B4532D6316F8FCEC00826B19 /* timetablesectionheader.png */,
+				B4532D6416F8FCEC00826B19 /* timetablesectionheader@2x.png */,
 				B4532D5D16F8CC7F00826B19 /* bgtexture.png */,
 				B4532D5C16F8CC7F00826B19 /* bgtexture@2x.png */,
 				B4532D5816F8C4C100826B19 /* timetableoptioncell.png */,
@@ -465,6 +471,8 @@
 				B4532D5B16F8C4C100826B19 /* timetableoptioncell@2x.png in Resources */,
 				B4532D5E16F8CC7F00826B19 /* bgtexture@2x.png in Resources */,
 				B4532D5F16F8CC7F00826B19 /* bgtexture.png in Resources */,
+				B4532D6516F8FCEC00826B19 /* timetablesectionheader.png in Resources */,
+				B4532D6616F8FCEC00826B19 /* timetablesectionheader@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
