@@ -9,13 +9,32 @@
 
 @interface CalendarController : NSObject
 
+/**
+ Return the ModulEvents object.
+ */
 - (void) moduleEventsWithSuccess: (void (^)(ModulEvents* moduleEvents))success
 						 failure: (void (^)(NSError* error))failure;
 
-- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
+/**
+ Return the modules as dictionary.
+ */
+- (void) modulesWithSuccess: (void (^)(NSDictionary* modules))success
 					failure: (void (^)(NSError* error))failure;
 
-- (void) eventsWithsuccess: (void (^)(NSArray* events))success
+/**
+ Return an ModulEvent array.
+ */
+- (void) eventsWithSuccess: (void (^)(NSArray* events))success
 				   failure: (void (^)(NSError* error))failure;
+
+/**
+ Testing only! :D
+ */
+- (void) addAllEventsWithSuccess: (void (^)())success
+						 failure: (void (^)(NSError* error))failure;
+
+- (void) storeEvents: (NSArray*) events
+			 success: (void (^)())success
+			 failure: (void (^)(NSError* error))failure;
 
 @end

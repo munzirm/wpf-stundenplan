@@ -34,6 +34,7 @@
 			   success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
 			   failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 
+	// Yeah, no "XSS" magic here, but we have no free input for this fields in our app.
 	NSMutableArray* parameters = [NSMutableArray array];
 	if (_course) {
 		[parameters addObject:[NSString stringWithFormat:@"SG_KZ = '%@'", _course]];
@@ -51,7 +52,7 @@
 
 	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request andEventStore:store success:^(AFCalendarRequestOperation* operation) {
 		if (success) {
-			success(operation, operation.responseEvents);
+			success(operation, [self summerizeAndCleanupEventData:operation.responseEvents]);
 		}
 	} failure:^(AFCalendarRequestOperation* operation, NSError *error) {
 		if (failure) {
@@ -60,6 +61,54 @@
 	}];
 
 	[self enqueueHTTPRequestOperation:operation];
+}
+
+- (NSArray*) summerizeAndCleanupEventData:(NSArray*) events {
+	// Group and sort events
+	NSSortDescriptor* titleSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+	NSSortDescriptor* dateSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES];
+	events = [events sortedArrayUsingDescriptors:@[ titleSortDescriptor, dateSortDescriptor ]];
+	
+	NSMutableArray* result = [NSMutableArray array];
+	EKEvent* prevEvent = nil;
+	int eventsCount = [events count];
+	
+	for (EKEvent* event in events) {
+		eventsCount--;
+		
+		// The first event
+		if (!prevEvent) {
+			prevEvent = event;
+			continue;
+		}
+		
+		// Replace two whitespaces with one...
+		prevEvent.title = [prevEvent.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+		
+		// Original data contains the full name of the modul as note, but we don't need it
+		prevEvent.notes = nil;
+		
+		// Previous event with same name as the current event. Interval <= 15 minutes.
+		if (
+			prevEvent &&
+			[prevEvent.title isEqualToString:event.title] &&
+			[event.startDate timeIntervalSinceDate:prevEvent.endDate] <= 900 // 60*15 => 15 Minutes
+			) {
+			
+			// Set the start date of the current event to the previous event
+			prevEvent.endDate = event.endDate;
+			
+			if (eventsCount!=0)
+				continue;
+		}
+		
+		[result addObject:prevEvent];
+		
+		// Replace the previous event
+		prevEvent = event;
+	}
+	
+	return result;
 }
 
 @end

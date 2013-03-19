@@ -43,30 +43,91 @@ enum CalendarControllerStatus {
 						 failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
-		if (success) {
-			success(self.events);
+		if (self.events.events > 0) {
+			
+			if (success) {
+				success(self.events);
+			}
+			
+		} else if (self.events.events == 0) {
+			
+			NSLog(@"Keine Events...? Ich mach einfach welche rein dude...");
+			
+			[self addAllEventsWithSuccess:^{
+				NSLog(@"Events hinzugefügt .. yeah");
+				
+				if (success) {
+					success(self.events);
+				}
+				
+			} failure:failure];
 		}
 		
 	} failure:failure];
 }
 
-- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
+- (void) modulesWithSuccess: (void (^)(NSDictionary* modules))success
 					failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
 		if (success) {
-			success(@[@"Test1"]);
+			success(self.events.modules);
 		}
 		
 	} failure:failure];
 }
 
-- (void) eventsWithsuccess: (void (^)(NSArray* events))success
+- (void) eventsWithSuccess: (void (^)(NSArray* events))success
 				   failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
 		if (success) {
 			success(self.events.events);
+		}
+		
+	} failure:failure];
+}
+
+- (void) addAllEventsWithSuccess: (void (^)())success
+						 failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		FhKoelnF10CalendarClient* client = [[FhKoelnF10CalendarClient alloc] init];
+		client.course = @"MI";
+		client.semester = @"4";
+		
+		[client eventForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
+			
+			[self storeEvents:events success:success failure:failure];
+			
+		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			if (failure) {
+				failure(error);
+			}
+		}];
+		
+	} failure:failure];
+}
+
+- (void) storeEvents: (NSArray*) events
+			 success: (void (^)())success
+			 failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		for (EKEvent* event in events) {
+			// Add the calendar
+			event.calendar = _calendar;
+			
+			// Save the event
+			NSError *error = nil;
+			BOOL result = [_store saveEvent:event span:EKSpanThisEvent commit:YES error:&error];
+			if (!result) {
+				NSLog(@"Event storing error: %@", error);
+			}
+		}
+		
+		if (success) {
+			success();
 		}
 		
 	} failure:failure];
@@ -112,14 +173,6 @@ enum CalendarControllerStatus {
 	
 	NSLog(@"Used: LOCAL -- found %i events", events.count);
 	return [[ModulEvents alloc] initWithEvents:events];
-}
-
-- (void) fetch {
-	NSLog(@"Used: REMOTE");
-	[self fetchCalendarFromRemote:^(void) {
-// TODO		events = [self.calendarController.store eventsMatchingPredicate:predicate];
-// TODO		modulEvents = [[ModulEvents alloc] initWithEvents:events];
-	}];
 }
 
 /**
@@ -180,76 +233,8 @@ enum CalendarControllerStatus {
 			NSLog(@"Calendar Saving: %@", error);
 		}
 	}
-
-	return _calendar;
-}
-
-- (void)fetchCalendarFromRemote:(void (^)(void))success {
-	FhKoelnF10CalendarClient* icalCalenderClient = [[FhKoelnF10CalendarClient alloc] init];
-
-	icalCalenderClient.course = @"MI";
-	icalCalenderClient.semester = @"4";
 	
-	[icalCalenderClient eventForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
-
-		// Group and sort events
-		NSSortDescriptor* sort1 = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
-		NSSortDescriptor* sort2 = [NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:YES];
-		events = [events sortedArrayUsingDescriptors:@[ sort1, sort2 ]];
-		
-		EKEvent *prevEvent = nil;
-		int eventsCount = [events count];
-		for (EKEvent* event in events) {
-			eventsCount--;
-
-			// The first event
-			if (!prevEvent) {
-				prevEvent = event;
-				continue;
-			}
-
-			// Previous event with same name as the current event. Interval <= 15 minutes. 
-			if (
-				prevEvent &&
-				[prevEvent.title isEqualToString:event.title] &&
-				[event.startDate timeIntervalSinceDate:prevEvent.endDate] <= 900 // 60*15 => 15 Minutes
-				) {
-
-				// Set the start date of the current event to the previous event
-				prevEvent.endDate = event.endDate;
-
-				if (eventsCount!=0)
-					continue;
-			}
-
-
-			// Add the calendar
-			prevEvent.calendar = _calendar;
-			// icalCalenderClient adds the full name of the modul as note,
-			// but we don't need it
-			prevEvent.notes = nil;
-
-			// Replace two whitespaces with one...
-			prevEvent.title = [prevEvent.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
-
-			// Save the event
-			NSError *error = nil;
-			BOOL result = [_store saveEvent:prevEvent span:EKSpanThisEvent commit:YES error:&error];
-			if (!result) {
-				NSLog(@"Event Storing: %@", error);
-			}
-
-			// Replace the previous event
-			prevEvent = event;
-		}
-
-		// Call callback method
-		if (success) {
-			success();
-		}
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		NSLog(@"Request Operation: %@", error);
-	}];
+	return _calendar;
 }
 
 @end
