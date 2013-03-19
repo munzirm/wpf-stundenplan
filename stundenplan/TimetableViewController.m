@@ -60,6 +60,44 @@
 	});
 }
 
+- (void)snapTheCell {
+	NSInteger cellHeight = 64;
+    NSInteger sectionHeight = 20;
+	NSInteger offsetOverage = (NSInteger) self.tableView.contentOffset.y % cellHeight;
+    // Get the fist visible cell
+    NSIndexPath *visiblePaths = [[self.tableView indexPathsForVisibleRows] objectAtIndex:0];
+    NSInteger sectionHeights = visiblePaths.section * sectionHeight;
+    
+	if (offsetOverage > 0) {
+		NSInteger newOffset;
+        
+		if (offsetOverage >= (cellHeight/2)) {
+            // Enough to show the cell
+			newOffset = self.tableView.contentOffset.y + (cellHeight - offsetOverage) + sectionHeights;
+		} else {
+            // Hide the cell
+			newOffset = self.tableView.contentOffset.y - offsetOverage + sectionHeights;
+		}
+        
+        // Animate
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.1];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+		[self.tableView setContentOffset:CGPointMake(0, newOffset) animated:NO];
+		[UIView commitAnimations];
+	}
+}
+
+/*- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	[self snapTheCell];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	if (decelerate == NO) {
+		[self snapTheCell];
+	}
+}*/
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	// the parent view that will hold header label (x, y, widht, height)
 	UIView* sectionView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
@@ -96,10 +134,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [modulEvents eventCountOnThisDay:section];
 }
-
-/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return [modulEvents dateRepresentingThisDay:section];
-}*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"TimetableCell";
@@ -152,20 +186,6 @@
 //- (BOOL)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 //}
 
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	NSLog(@"selected!");
-	// Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-	 // ...
-	 // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 */
-}
 
 #pragma mark - TimetableCellDelegate implementation
 
