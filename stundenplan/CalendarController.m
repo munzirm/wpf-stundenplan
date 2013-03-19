@@ -96,10 +96,36 @@ enum CalendarControllerStatus {
 		client.course = @"MI";
 		client.semester = @"4";
 		
-		[client eventForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
+		[client fetchEventsForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
 			
 			[self storeEvents:events success:success failure:failure];
 			
+		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			if (failure) {
+				failure(error);
+			}
+		}];
+		
+	} failure:failure];
+}
+
+/**
+ Search the modules for the given courses and events.
+ */
+- (void) searchCourse: (NSString*) course
+		  andSemester: (NSString*) semester
+			  success: (void (^)(NSArray* modules))success
+			  failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		FhKoelnF10CalendarClient* client = [[FhKoelnF10CalendarClient alloc] init];
+		client.course = course;
+		client.semester = semester;
+		
+		[client fetchModulesForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *modules) {
+			if (success) {
+				success(modules);
+			}
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			if (failure) {
 				failure(error);

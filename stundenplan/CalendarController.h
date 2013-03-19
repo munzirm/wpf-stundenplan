@@ -33,6 +33,14 @@
 - (void) addAllEventsWithSuccess: (void (^)())success
 						 failure: (void (^)(NSError* error))failure;
 
+/**
+ Search the modules for the given courses and events.
+ */
+- (void) searchCourse: (NSString*) course
+		  andSemester: (NSString*) semester
+			  success: (void (^)(NSArray* modules))success
+			  failure: (void (^)(NSError* error))failure;
+
 - (void) storeEvents: (NSArray*) events
 			 success: (void (^)())success
 			 failure: (void (^)(NSError* error))failure;
