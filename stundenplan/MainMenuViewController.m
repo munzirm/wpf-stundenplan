@@ -79,6 +79,7 @@
 	MainMenuSectionHeader* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	cell.sectionLabel.text = [_sections objectAtIndex:section];
+	cell.sectionConfigurationButton.hidden = section != 0;
 	
 	return cell;
 }
@@ -130,6 +131,41 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		if (indexPath.row == 0) {
+			[self filterModules:nil];
+		} else {
+			[self filterModules:[_modules objectAtIndex:indexPath.row - 1]];
+		}
+	} else if (indexPath.section == 1) {
+		[self setFilterFlag:[_filters objectAtIndex:indexPath.row] to:YES];
+	} else if (indexPath.section == 2) {
+		// Todo show settings
+	}
+}
+
+- (IBAction)configureModule:(UIButton*)sender {
+	// cell -> contentView -> button
+	MainMenuModuleCell* cell = (MainMenuModuleCell*) sender.superview.superview;
+	[self.viewDeckController openConfigureModuleViewController:cell.textLabel.text];
+	[self.viewDeckController closeLeftViewAnimated:YES];
+}
+
+- (IBAction)addModules:(UIButton*)sender {
+	NSLog(@"addModules: %@", sender);
+	[self.viewDeckController openSearchModuleViewController];
+	[self.viewDeckController closeLeftViewAnimated:YES];
+}
+
+- (void)filterModules:(NSString*) filter {
+	NSLog(@"filterModules: %@", filter);
+	[self.viewDeckController openTimetableViewController];
+	[self.viewDeckController closeLeftViewAnimated:YES];
+}
+
+- (void)setFilterFlag:(NSString*) filter to:(BOOL) flag {
+	NSLog(@"setFilterFlag: %@", filter);
+	[self.viewDeckController closeLeftViewAnimated:YES];
 }
 
 @end

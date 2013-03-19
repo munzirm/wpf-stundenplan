@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
 @interface MainMenuSectionHeader : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel* sectionLabel;
@@ -28,4 +28,10 @@
 @end
 
 @interface MainMenuViewController : UITableViewController
+
+@property (weak, nonatomic) MainViewController* viewDeckController;
+
+- (IBAction)configureModule:(UIButton*)sender;
+- (IBAction)addModules:(UIButton*)sender;
+
 @end

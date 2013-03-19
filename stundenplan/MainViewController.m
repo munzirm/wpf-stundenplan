@@ -14,13 +14,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.navigationControllerBehavior = IIViewDeckNavigationControllerIntegrated;
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
 	
 	[self setLeftSize:100];
 	
-	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
 	self.leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
+	[self openTimetableViewController];
 }
 
 /*
@@ -34,5 +35,26 @@
 		return [panGestureRecognizer locationInView:self.centerController.view].x < 40;
 	}
 }
+
+- (void) openTimetableViewController {
+	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"TimetableViewController"];
+}
+
+- (void) openSearchModuleViewController {
+	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"ModuleSearch"];
+}
+
+- (void) openConfigureModuleViewController: (NSString*) moduleLabel {
+	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"ModuleConfiguration"];
+}
+
+- (void) openSettingsViewController {
+	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
+}
+
+// Currently we use no seque here to switch to the correct sidebar page.
+// See seque in the storyboard are only as a visuell overview!
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//}
 
 @end
