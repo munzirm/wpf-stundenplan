@@ -74,22 +74,26 @@
 	_sortedDays = [unsortedDays sortedArrayUsingSelector:@selector(compare:)];
 }
 
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate {
-	// Use the user's current calendar and time zone
+- (NSDate *)dayAndMonthAndYearForDate:(NSDate *)date {
+    // Use the user's current calendar and time zone
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
 	[calendar setTimeZone:timeZone];
-
+    
 	// Selectively convert the date components (year, month, day) of the input date
-	NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:inputDate];
-
+	NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
+    
 	// Set the time components manually
 	[dateComps setHour:0];
 	[dateComps setMinute:0];
 	[dateComps setSecond:0];
-
+    
 	// Convert back
 	return [calendar dateFromComponents:dateComps];
+}
+
+- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)date {
+	return [self dayAndMonthAndYearForDate:date];
 }
 
 - (NSArray *)events {
@@ -110,8 +114,25 @@
 - (NSString *)dateRepresentingThisDay:(NSInteger)section {
 	NSDate *dateRepresentingThisDay = [_sortedDays objectAtIndex:section];
 	NSDateFormatter *sectionDateFormatter = [[NSDateFormatter alloc] init];
+
+    NSDate *today = [self dayAndMonthAndYearForDate:[NSDate date]];
+    // tomorrow
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+    [calendar setTimeZone:timeZone];
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:1]; // for tomorrow
+    NSDate *tomorrow = [calendar dateByAddingComponents:dateComponents toDate:today options:0];
+
 	[sectionDateFormatter setDateFormat:@"dd.MM.yyyy"];
-	return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
+    if ([today isEqualToDate:dateRepresentingThisDay]) {
+        return [NSString stringWithFormat:@"%@, %@", @"Heute", [sectionDateFormatter stringFromDate:dateRepresentingThisDay]];
+    } else if ([tomorrow isEqualToDate:dateRepresentingThisDay]) {
+        return [NSString stringWithFormat:@"%@, %@", @"Morgen", [sectionDateFormatter stringFromDate:dateRepresentingThisDay]];
+    } else {
+        [sectionDateFormatter setDateFormat:@"EEEE, dd.MM.yyyy"];
+        return [sectionDateFormatter stringFromDate:dateRepresentingThisDay];
+    }
 }
 
 - (ModulEvent *)eventOnThisDay:(NSIndexPath *)indexPath {

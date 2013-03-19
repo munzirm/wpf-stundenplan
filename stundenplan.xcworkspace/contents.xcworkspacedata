@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../Desktop/timetableoptionscell.png">
-   </FileRef>
-   <FileRef
-      location = "group:../../Desktop/timetableoptionscell@2x.png">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef

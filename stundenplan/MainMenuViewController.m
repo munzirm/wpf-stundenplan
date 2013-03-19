@@ -52,6 +52,8 @@
 		_filterFlags = [@[ @YES, @NO, @NO, @NO, @NO ] mutableCopy];
 		
 		_more = @[ @"Einstellungen" ];
+        
+
 	}
 	return self;
 }
@@ -62,6 +64,12 @@
 	CGRect frame = self.tableView.frame;
 	frame.size.width = 320 - 100;
 	self.tableView.frame = frame;
+    
+    static UIImage *bgtextureImage = nil;
+    if (bgtextureImage == nil) {
+        bgtextureImage = [UIImage imageNamed:@"bgtexture.png"];
+    }
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgtextureImage];
 }
 
 #pragma mark - Table view data source
