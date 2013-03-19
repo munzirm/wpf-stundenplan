@@ -27,7 +27,7 @@
 	_saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Speichern"
 												   style:UIBarButtonItemStylePlain
 												  target:self
-												  action:@selector(openOrCloseSidebar:)];
+												  action:@selector(saveData)];
 	_saveButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = _saveButton;
 	
@@ -131,6 +131,14 @@
 		[SVProgressHUD dismiss];
 		NSLog(@"Error while update data: %@", error);
 	}];
+	
+}
+
+- (void) saveData {
+	NSMutableArray* selectedModules = [NSMutableArray array];
+	for (NSIndexPath* selectedIndexPath in [self.tableView indexPathsForSelectedRows]) {
+		[selectedModules addObject:[_modules objectAtIndex:selectedIndexPath.row]];
+	}
 	
 }
 
