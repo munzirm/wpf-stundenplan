@@ -30,15 +30,23 @@
 
 #pragma mark - Asynchronous calls defined in the client API
 
-- (void) query:(NSString *)query
-			withEventStore:(EKEventStore *)store
-			onSuccess:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-			onFailure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
+- (void) eventForStore:(EKEventStore *)store
+			   success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+			   failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
 
-	if (!query) {
-		query = @"null is null";
+	NSMutableArray* parameters = [NSMutableArray array];
+	if (_course) {
+		[parameters addObject:[NSString stringWithFormat:@"SG_KZ = '%@'", _course]];
+	}
+	if (_semester) {
+		[parameters addObject:[NSString stringWithFormat:@"SEMESTER_NR = '%@'", _semester]];
+	}
+	if (_modul) {
+		[parameters addObject:[NSString stringWithFormat:@"KURZBEZ = '%@'", _modul]];
 	}
 
+	NSString* query = parameters.count == 0 ? @"null is null" : [parameters componentsJoinedByString:@" AND "];
+	NSLog(@"GET %@", query);
 	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
 
 	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request andEventStore:store success:^(AFCalendarRequestOperation* operation) {

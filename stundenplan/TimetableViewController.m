@@ -27,51 +27,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	NSLog(@"navigationController: %@", self.navigationController);
-	NSLog(@"navigationItem: %@", self.navigationItem);
-	((UILabel*) self.navigationItem.titleView).textColor = [UIColor blackColor];
-
+	/*
+	NSLog(@"navigationBar: %@", self.navigationController.navigationBar);
+	self.navigationController.navigationBar.topItem.titleView.backgroundColor = [UIColor greenColor];
+	self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+	self.navigationController.navigationBar.backgroundColor = [UIColor grayColor];
+	*/
+	
 	self.calendarController = [[CalendarController alloc] init];
-
-	[self.calendarController requestAccessToCalendar:^(BOOL granted, NSError *error) {
-		if (granted) {
-			[self didGetAccessToCalendar];
-		} else {
-			// no permissions to access calendars
-			NSLog(@"Error: %@", error);
-		}
-	}];
-}
-
-/**
- Permissions to the calendar permitted
- */
-- (void)didGetAccessToCalendar {
-	EKCalendar* calendar = [self.calendarController calendar];
-
-	// For demo proposes, display events for the next X days
-	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
-	NSArray *calendars = [NSArray arrayWithObject:calendar];
-	__block NSPredicate *predicate = [self.calendarController.store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
-
-	__block NSArray* events = [self.calendarController.store eventsMatchingPredicate:predicate];
-
-	if ([events count] == 0) {
-		NSLog(@"Used: REMOTE");
-		[self.calendarController fetchCalendarFromRemote:^(void) {
-
-			events = [self.calendarController.store eventsMatchingPredicate:predicate];
-			modulEvents = [[ModulEvents alloc] initWithEvents:events];
-			[self prepareEventsForDisplay];
-		}];
-	} else {
-		NSLog(@"Used: LOCAL");
-		modulEvents = [[ModulEvents alloc] initWithEvents:events];
-
+	[self.calendarController moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {
+		modulEvents = moduleEvents;
 		[self prepareEventsForDisplay];
-	}
-
+	} failure:^(NSError *error) {
+		NSLog(@"Error while load module events in timetable: %@", error);
+	}];
 }
 
 - (void)prepareEventsForDisplay {
@@ -81,12 +50,6 @@
 		[self.tableView reloadData];
 	});
 }
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Table view data source
 

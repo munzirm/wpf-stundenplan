@@ -5,17 +5,17 @@
 //  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <EventKit/EventKit.h>
+#import "ModulEvents.h"
 
 @interface CalendarController : NSObject
-@property (strong) EKEventStore* store;
 
+- (void) moduleEventsWithSuccess: (void (^)(ModulEvents* moduleEvents))success
+						 failure: (void (^)(NSError* error))failure;
 
-- (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback;
+- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
+					failure: (void (^)(NSError* error))failure;
 
-- (EKCalendar *)calendar;
-
-- (void)fetchCalendarFromRemote:(void (^)(void))success;
+- (void) eventsWithsuccess: (void (^)(NSArray* events))success
+				   failure: (void (^)(NSError* error))failure;
 
 @end

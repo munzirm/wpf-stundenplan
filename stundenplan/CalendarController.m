@@ -6,42 +6,120 @@
 //
 
 #import "CalendarController.h"
+
 #import "FhKoelnF10CalendarClient.h"
+
+enum CalendarControllerStatus {
+	NOT_CHECKED,
+	GRANTED,
+	NOT_GRANTED
+} typedef CalendarControllerStatus;
 
 @implementation CalendarController {
 	// The calendar store key
 	NSString *calendarIdentifierKey;
+	CalendarControllerStatus _status;
+	EKEventStore* _store;
 	EKCalendar* _calendar;
 }
 
 - (id)init {
 	self = [super init];
 
-	if (self == nil)
-		return nil;
-
-	// The calendar store key
-	calendarIdentifierKey = @"fh_koeln_stundenplan";
-
-	// The event store
-	self.store = [[EKEventStore alloc] init];
-	_calendar = nil;
+	if (self) {
+		// The calendar store key
+		calendarIdentifierKey = @"fh_koeln_stundenplan2";
+	
+		// The event store
+		_status = NOT_CHECKED;
+		_store = [[EKEventStore alloc] init];
+		_calendar = nil;
+	}
 
 	return self;
 }
 
-/**
- Request permissions to the calendar
- */
-- (void)requestAccessToCalendar:(void (^)(BOOL granted, NSError *error))callback {
-	// request permissions
-	if ([self.store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-		// iOS 6 and later
-		[self.store requestAccessToEntityType:EKEntityTypeEvent completion:callback];
-	} else {
-		// iOS 5
-		callback(FALSE, NULL);
+- (void) moduleEventsWithSuccess: (void (^)(ModulEvents* moduleEvents))success
+						 failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		if (success) {
+			success(self.events);
+		}
+		
+	} failure:failure];
+}
+
+- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
+					failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		if (success) {
+			success(@[@"Test1"]);
+		}
+		
+	} failure:failure];
+}
+
+- (void) eventsWithsuccess: (void (^)(NSArray* events))success
+				   failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		if (success) {
+			success(self.events.events);
+		}
+		
+	} failure:failure];
+}
+
+- (void) checkGrantsWithSuccess: (void (^)())success
+						failure: (void (^)(NSError* error))failure {
+	switch (_status) {
+		case GRANTED:
+			if (success) {
+				success();
+			}
+			return;
+		case NOT_GRANTED:
+			if (failure) {
+				failure(nil);
+			}
+		default:
+			break;
 	}
+	
+	[_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+		_status = granted ? GRANTED : NOT_GRANTED;
+		if (granted && success) {
+			success();
+		}
+		if (!granted && failure) {
+			failure(error);
+		}
+	}];
+}
+
+- (ModulEvents*) events {
+	EKCalendar* calendar = [self calendar];
+	
+	// For demo proposes, display events for the next X days
+	NSDate *startDate = [NSDate date];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+	NSArray *calendars = [NSArray arrayWithObject:calendar];
+	NSPredicate *predicate = [_store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+	
+	NSArray* events = [_store eventsMatchingPredicate:predicate];
+	
+	NSLog(@"Used: LOCAL -- found %i events", events.count);
+	return [[ModulEvents alloc] initWithEvents:events];
+}
+
+- (void) fetch {
+	NSLog(@"Used: REMOTE");
+	[self fetchCalendarFromRemote:^(void) {
+// TODO		events = [self.calendarController.store eventsMatchingPredicate:predicate];
+// TODO		modulEvents = [[ModulEvents alloc] initWithEvents:events];
+	}];
 }
 
 /**
@@ -70,19 +148,19 @@
 
 	// When identifier exists, calendar probably already exists
 	if (calendarIdentifier) {
-		_calendar = [self.store calendarWithIdentifier:calendarIdentifier];
+		_calendar = [_store calendarWithIdentifier:calendarIdentifier];
 	}
 
 	// Calendar doesn't exist
-	if (!_calendar ) {
+	if (!_calendar) {
 		// Create it
-		_calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:self.store];
+		_calendar = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:_store];
 
 		// Set user visible calendar name
 		[_calendar setTitle:@"FH Köln Stundenplan"];
 
 		// Find appropriate source type. Only local calendars
-		for (EKSource *s in self.store.sources) {
+		for (EKSource *s in _store.sources) {
 			if (s.sourceType == EKSourceTypeLocal) {
 				_calendar.source = s;
 				break;
@@ -93,7 +171,7 @@
 		NSString *calendarIdentifier = [_calendar calendarIdentifier];
 
 		NSError *error = nil;
-		BOOL saved = [self.store saveCalendar:_calendar commit:YES error:&error];
+		BOOL saved = [_store saveCalendar:_calendar commit:YES error:&error];
 		if (saved) {
 			// Saved successfuly, store identifier in NSUserDefaults
 			[[NSUserDefaults standardUserDefaults] setObject:calendarIdentifier forKey:calendarIdentifierKey];
@@ -109,7 +187,10 @@
 - (void)fetchCalendarFromRemote:(void (^)(void))success {
 	FhKoelnF10CalendarClient* icalCalenderClient = [[FhKoelnF10CalendarClient alloc] init];
 
-	[icalCalenderClient query:@"SG_KZ = 'MI' and SEMESTER_NR = '4'" withEventStore:self.store onSuccess:^(AFHTTPRequestOperation* operation, NSArray* events) {
+	icalCalenderClient.course = @"MI";
+	icalCalenderClient.semester = @"4";
+	
+	[icalCalenderClient eventForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
 
 		// Group and sort events
 		NSSortDescriptor* sort1 = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
@@ -153,7 +234,7 @@
 
 			// Save the event
 			NSError *error = nil;
-			BOOL result = [self.store saveEvent:prevEvent span:EKSpanThisEvent commit:YES error:&error];
+			BOOL result = [_store saveEvent:prevEvent span:EKSpanThisEvent commit:YES error:&error];
 			if (!result) {
 				NSLog(@"Event Storing: %@", error);
 			}
@@ -163,8 +244,10 @@
 		}
 
 		// Call callback method
-		success();
-	} onFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		if (success) {
+			success();
+		}
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		NSLog(@"Request Operation: %@", error);
 	}];
 }
