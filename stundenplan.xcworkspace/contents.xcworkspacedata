@@ -1,1 +1,16 @@
-<?xml version='1.0' encoding='UTF-8'?><Workspace version='1.0'><FileRef location='group:Pods/Pods.xcodeproj'/><FileRef location='group:stundenplan.xcodeproj'/></Workspace>
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../../Desktop/timetableoptionscell.png">
+   </FileRef>
+   <FileRef
+      location = "group:../../Desktop/timetableoptionscell@2x.png">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:stundenplan.xcodeproj">
+   </FileRef>
+</Workspace>
