@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) NSString* course;
 @property (strong, nonatomic) NSString* semester;
-@property (strong, nonatomic) NSString* modul;
+@property (strong, nonatomic) NSArray* modules;
 
 - (id)init;
 - (id)initWithBaseURL:(NSURL*) url;

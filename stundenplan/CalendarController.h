@@ -28,18 +28,19 @@
 				   failure: (void (^)(NSError* error))failure;
 
 /**
- Testing only! :D
- */
-- (void) addAllEventsWithSuccess: (void (^)())success
-						 failure: (void (^)(NSError* error))failure;
-
-/**
  Search the modules for the given courses and events.
  */
 - (void) searchCourse: (NSString*) course
 		  andSemester: (NSString*) semester
 			  success: (void (^)(NSArray* modules))success
 			  failure: (void (^)(NSError* error))failure;
+
+/**
+ Search async the events for this modules and store them automatically.
+ */
+- (void) addModules: (NSArray*) modules
+			success: (void (^)())success
+			failure: (void (^)(NSError* error))failure;
 
 - (void) storeEvents: (NSArray*) events
 			 success: (void (^)())success

@@ -34,6 +34,11 @@ enum CalendarControllerStatus {
 		_status = NOT_CHECKED;
 		_store = [[EKEventStore alloc] init];
 		_calendar = nil;
+		
+		// Only for testing:
+		for (EKCalendar* calendar in _store.calendars) {
+			NSLog(@"Found calendar: %@", calendar);
+		}
 	}
 
 	return self;
@@ -53,7 +58,8 @@ enum CalendarControllerStatus {
 			
 			NSLog(@"Keine Events...? Ich mach einfach welche rein dude...");
 			
-			[self addAllEventsWithSuccess:^{
+			[self addModules:@[ @"BS1", @"ST1" ] success:^{
+				
 				NSLog(@"Events hinzugefügt .. yeah");
 				
 				if (success) {
@@ -88,27 +94,6 @@ enum CalendarControllerStatus {
 	} failure:failure];
 }
 
-- (void) addAllEventsWithSuccess: (void (^)())success
-						 failure: (void (^)(NSError* error))failure {
-	[self checkGrantsWithSuccess:^{
-		
-		FhKoelnF10CalendarClient* client = [[FhKoelnF10CalendarClient alloc] init];
-		client.course = @"MI";
-		client.semester = @"4";
-		
-		[client fetchEventsForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
-			
-			[self storeEvents:events success:success failure:failure];
-			
-		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			if (failure) {
-				failure(error);
-			}
-		}];
-		
-	} failure:failure];
-}
-
 /**
  Search the modules for the given courses and events.
  */
@@ -126,6 +111,27 @@ enum CalendarControllerStatus {
 			if (success) {
 				success(modules);
 			}
+		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			if (failure) {
+				failure(error);
+			}
+		}];
+		
+	} failure:failure];
+}
+
+- (void) addModules: (NSArray*) modules
+			success: (void (^)())success
+			failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+		
+		FhKoelnF10CalendarClient* client = [[FhKoelnF10CalendarClient alloc] init];
+		client.modules = modules;
+		
+		[client fetchEventsForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
+			
+			[self storeEvents:events success:success failure:failure];
+			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			if (failure) {
 				failure(error);
