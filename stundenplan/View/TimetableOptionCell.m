@@ -9,6 +9,21 @@
 
 @implementation TimetableOptionCell
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+    
+	if (self) {
+        static UIImage *timetableoptioncellImage = nil;
+        if (timetableoptioncellImage == nil) {
+            timetableoptioncellImage = [UIImage imageNamed:@"timetableoptioncell.png"];
+        }
+        self.backgroundView = [[UIView alloc] init];
+        self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:timetableoptioncellImage];
+	}
+	
+    return self;
+}
+
 - (IBAction)favorite {
 	[self.originalCell.delegate favorite:self.event];
 	[self.originalCell animateToOrigin];

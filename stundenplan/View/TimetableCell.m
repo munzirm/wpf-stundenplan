@@ -21,7 +21,15 @@
 		_panGestures.delegate = self;
 		[_panGestures addTarget:self action:@selector(handlePanGestureRecognizer:)];
 		[self addGestureRecognizer:_panGestures];
+        
+        static UIImage *timetablecellImage = nil;
+        if (timetablecellImage == nil) {
+            timetablecellImage = [UIImage imageNamed:@"timetablecell.png"];
+        }
+        self.backgroundView = [[UIView alloc] init];
+        self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:timetablecellImage];
 	}
+    
 	return self;
 }
 
