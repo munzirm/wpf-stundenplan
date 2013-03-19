@@ -29,6 +29,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"'="
+																			 style:UIBarButtonItemStylePlain
+																			target:self
+																			action:@selector(openOrCloseSidebar:)];
 
 	/*
 	 NSLog(@"navigationBar: %@", self.navigationController.navigationBar);
@@ -44,6 +49,10 @@
 	} failure:^(NSError *error) {
 		NSLog(@"Error while load module events in timetable: %@", error);
 	}];
+}
+
+- (void)openOrCloseSidebar:(id)sender {
+	NSLog(@"openOrCloseSidebar!");
 }
 
 - (void)prepareEventsForDisplay {
@@ -124,6 +133,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	NSLog(@"selected!");
 	// Navigation logic may go here. Create and push another view controller.
 	/*
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
