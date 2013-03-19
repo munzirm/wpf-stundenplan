@@ -58,7 +58,7 @@
 	if (section == 0) {
 		return 1;
 	} else if (section == 1) {
-		return 3;
+		return 2;
 	} else if (section == 2) {
 		return 1;
 	} else {
@@ -83,8 +83,7 @@
 
     // Configure the cell...
 	if (indexPath.section == 0) {
-		cell.textLabel.text = @"Name";
-		cell.detailTextLabel.text = _modulEvent.modulFullName;
+		cell.textLabel.text =_modulEvent.modulFullName;
 	} else if (indexPath.section == 1) {
 		if (indexPath.row == 0) {
 			cell.textLabel.text = @"Typ";
@@ -92,7 +91,6 @@
 		} else if (indexPath.row == 1) {
 			cell.textLabel.text = @"Datum";
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _modulEvent.weekday, _modulEvent.startTime, _modulEvent.endTime];
-		} else if (indexPath.row == 2) {
 		}
 	} else if (indexPath.section == 2) {
 		cell.textLabel.text = @"Löschen";

@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) ModulEvent* event;
 
+@property (weak, nonatomic) IBOutlet UILabel *eventDuration;
 @property (weak, nonatomic) IBOutlet UILabel *eventTime;
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 @property (weak, nonatomic) IBOutlet UIView *eventColor;

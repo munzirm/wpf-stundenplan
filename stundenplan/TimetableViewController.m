@@ -170,6 +170,20 @@
     [cell.eventTime setShadowColor:[UIColor whiteColor]];
     [cell.eventTime setShadowOffset:CGSizeMake(1.0, 1.0)];
 
+    // Duration
+    NSDateFormatter *datefFormatter = [[NSDateFormatter alloc] init];
+    [datefFormatter setDateFormat:@"HH:mm"];
+    NSDate *begin = [datefFormatter dateFromString:cell.event.startTime];
+    NSDate *end = [datefFormatter dateFromString:cell.event.endTime];
+    NSTimeInterval interval = [end timeIntervalSinceDate:begin];
+    int hours = (int)interval / 3600;
+    int minutes = (interval - (hours*3600)) / 60;
+    [cell.eventDuration setText:[NSString stringWithFormat:@"%dh %dm", hours, minutes]];
+	[cell.eventDuration setFont:[UIFont fontWithName:@"OpenSans-Light" size:10.0]];
+    [cell.eventDuration setTextColor:UIColorFromRGB(0x424242)];
+    [cell.eventDuration setShadowColor:[UIColor whiteColor]];
+    [cell.eventDuration setShadowOffset:CGSizeMake(1.0, 1.0)];
+    
 	// Color
 	cell.eventColor.backgroundColor = cell.event.modulColor;
 	cell.eventColor.layer.cornerRadius = 8.5;
