@@ -7,7 +7,7 @@
 
 #import <ViewDeck/IIViewDeckController.h>
 
-@interface MainViewController : IIViewDeckController <IIViewDeckControllerDelegate>
+@interface MainViewController : IIViewDeckController <IIViewDeckControllerDelegate, UINavigationControllerDelegate>
 
 - (void) openTimetableViewController;
 

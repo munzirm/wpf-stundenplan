@@ -8,6 +8,9 @@
 #import "MainViewController.h"
 
 #import "TimetableViewController.h"
+#import "ModulSearchViewController.h"
+#import "ModulConfigurationViewController.h"
+#import "SettingsViewController.h"
 
 @implementation MainViewController
 
@@ -36,29 +39,39 @@
 }
 
 - (void) openTimetableViewController {
-	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
+	if (![self.centerController.navigationController.topViewController isKindOfClass:TimetableViewController.class]) {
+		((UINavigationController*) self.centerController).delegate = nil;
+		self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
+		((UINavigationController*) self.centerController).delegate = self;
+	}
 }
 
 - (void) openSearchModuleViewController {
+	((UINavigationController*) self.centerController).delegate = nil;
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"ModuleSearch"];
+	((UINavigationController*) self.centerController).delegate = self;
 }
 
 - (void) openConfigureModuleViewController: (NSString*) moduleLabel {
+	((UINavigationController*) self.centerController).delegate = nil;
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"ModuleConfiguration"];
+	((UINavigationController*) self.centerController).delegate = self;
 }
 
 - (void) openSettingsViewController {
+	((UINavigationController*) self.centerController).delegate = nil;
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
+	((UINavigationController*) self.centerController).delegate = self;
 }
 
-- (void) addNavigationControllerMenu {
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+	
 	UIBarButtonItem* menuButton = [[UIBarButtonItem alloc] initWithTitle:@"="
 																   style:UIBarButtonItemStylePlain
 																  target:self
 																  action:@selector(openOrCloseSidebar:)];
-	NSLog(@"addNavigationControllerMenu: %@", self.centerController);
-	[self.centerController view];
-	self.centerController.navigationController.topViewController.navigationItem.leftBarButtonItem = menuButton;
+	
+	viewController.navigationItem.leftBarButtonItem = menuButton;
 }
 
 - (void)openOrCloseSidebar:(id)sender {
