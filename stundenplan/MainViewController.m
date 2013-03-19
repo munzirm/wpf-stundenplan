@@ -17,16 +17,10 @@
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
 	
-	[self setLeftSize:280];
+	[self setLeftSize:100];
 	
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
 	self.leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

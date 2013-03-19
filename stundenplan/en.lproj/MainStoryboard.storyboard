@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="OMX-6P-be7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -149,7 +149,7 @@
                                             <outlet property="eventName" destination="whU-Hi-BOF" id="0ot-cr-zg3"/>
                                             <outlet property="eventTime" destination="lVR-AE-nUU" id="EgX-BT-57j"/>
                                             <outlet property="eventType" destination="Sv1-jo-LkH" id="Qvf-Zw-ZH6"/>
-                                            <segue destination="grs-Uy-9Ox" kind="push" identifier="showModulEventDetail" id="dge-Jy-wiQ"/>
+                                            <segue destination="Eio-jV-EiX" kind="push" identifier="showModulEventDetail" id="ytg-jh-WXM"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimetableOptionCell" id="unZ-i0-mFo" customClass="TimetableOptionCell">
@@ -251,72 +251,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceT-zG-Wen" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="394" y="-870"/>
+            <point key="canvasLocation" x="542" y="-870"/>
         </scene>
-        <!--Modul Event Detail View Controller-->
-        <scene sceneID="MtH-5o-AET">
+        <!--Table View Controller-->
+        <scene sceneID="mrt-Wp-WbA">
             <objects>
-                <viewController id="grs-Uy-9Ox" customClass="ModulEventDetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pKc-Uk-L9h">
+                <tableViewController id="Eio-jV-EiX" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hSQ-Z9-MF9">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnF-jp-uR4">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="bqT-fq-aEj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Qu-2q-5on">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPd-1d-quL">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SrD-zJ-fOb">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="8IU-YW-WJY"/>
-                                    <constraint firstAttribute="height" constant="46" id="S0w-br-wwm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal" title="Veranstaltung löschen">
-                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="LnF-jp-uR4" firstAttribute="top" secondItem="pKc-Uk-L9h" secondAttribute="top" constant="15" id="6eq-Di-qvI"/>
-                            <constraint firstAttribute="bottom" secondItem="SrD-zJ-fOb" secondAttribute="bottom" constant="26" id="7vQ-UF-u9G"/>
-                            <constraint firstItem="nPd-1d-quL" firstAttribute="leading" secondItem="pKc-Uk-L9h" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8ur-bq-kGR"/>
-                            <constraint firstItem="nPd-1d-quL" firstAttribute="top" secondItem="pKc-Uk-L9h" secondAttribute="top" constant="71" id="AEP-Eh-FIy"/>
-                            <constraint firstItem="9Qu-2q-5on" firstAttribute="top" secondItem="nPd-1d-quL" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="APE-b9-s3e"/>
-                            <constraint firstAttribute="trailing" secondItem="LnF-jp-uR4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="T45-F2-5WT"/>
-                            <constraint firstItem="9Qu-2q-5on" firstAttribute="leading" secondItem="pKc-Uk-L9h" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dkq-wo-SaF"/>
-                            <constraint firstItem="LnF-jp-uR4" firstAttribute="leading" secondItem="pKc-Uk-L9h" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jZh-xK-U5r"/>
-                            <constraint firstItem="LnF-jp-uR4" firstAttribute="centerX" secondItem="SrD-zJ-fOb" secondAttribute="centerX" type="default" id="zBW-ve-IXd"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="QV9-4C-gCU"/>
-                    <connections>
-                        <outlet property="date" destination="nPd-1d-quL" id="czY-8P-TPi"/>
-                        <outlet property="fullName" destination="LnF-jp-uR4" id="rL7-sf-uhE"/>
-                        <outlet property="type" destination="9Qu-2q-5on" id="d7s-1t-uDa"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XUh-pz-xGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aUg-YB-Xua">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Eio-jV-EiX" id="AgH-tw-1x5"/>
+                            <outlet property="delegate" destination="Eio-jV-EiX" id="WVN-0m-WU6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Mjx-wp-qpU"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7xF-na-xPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="828" y="-870"/>
+            <point key="canvasLocation" x="1074" y="-870"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="FmW-Z2-fSC">
@@ -351,6 +316,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="9cH-8i-RLm" kind="modal" id="tPq-F4-03k"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -394,6 +362,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="5IB-eZ-HNP" kind="modal" id="gHN-mG-BP4"/>
+                                            </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5y7-TM-np4">
                                             <color key="backgroundColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -470,6 +441,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="moreLabel" destination="ZiV-p6-IcR" id="9G4-px-42z"/>
+                                    <segue destination="pKY-MX-MsK" kind="modal" id="GRe-Wg-Azd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -483,10 +455,211 @@
             </objects>
             <point key="canvasLocation" x="-93" y="-25"/>
         </scene>
+        <!--Modul Search View Controller - Modul hinzufügen-->
+        <scene sceneID="AdZ-3y-Hcc">
+            <objects>
+                <tableViewController id="ZV2-tB-849" customClass="ModulSearchViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0ka-Z4-UfJ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oNC-UQ-Jfp">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Modul hinzufügen" id="AXt-tA-jba"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zxE-d7-xtc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="-25"/>
+        </scene>
+        <!--Modul Configuration View Controller - Modul Optionen-->
+        <scene sceneID="50h-9u-Byg">
+            <objects>
+                <tableViewController id="kVc-c7-A5X" customClass="ModulConfigurationViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9aB-rF-kYq">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sEA-Jw-mun">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Modul Optionen" id="nzA-IZ-AEJ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7fe-0O-b1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="703"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Msv-y9-JrC">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="5IB-eZ-HNP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ddu-va-hSd">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kVc-c7-A5X" kind="relationship" relationship="rootViewController" id="iOa-Rz-hdr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bJS-bp-gRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="703"/>
+        </scene>
+        <!--Settings View Controller - Einstellungen-->
+        <scene sceneID="DBq-dG-evc">
+            <objects>
+                <tableViewController id="R4v-sd-l2v" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="74j-ZD-4cC">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CHr-RR-DY1">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Einstellungen" id="ZDg-Gg-nNG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h2i-7f-SbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1074" y="1431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rbo-mz-8dZ">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="pKY-MX-MsK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2J0-HG-JC9">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="R4v-sd-l2v" kind="relationship" relationship="rootViewController" id="PYL-Hc-R3g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bgw-C3-MpY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="542" y="1431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AMa-7Y-GLy">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="9cH-8i-RLm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dao-b1-MAc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZV2-tB-849" kind="relationship" relationship="rootViewController" id="E7B-Ak-ORq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KxC-iT-GVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="530" y="-25"/>
+        </scene>
     </scenes>
     <resources>
         <image name="modulcoloroverlay.png" width="20" height="20"/>
     </resources>
+    <classes>
+        <class className="IIViewDeckController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
+        </class>
+        <class className="MainMenuFilterCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuFilterCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="filterLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="filterSelectionIndicator" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="MainMenuModuleCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuModuleCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="moduleColorIndicator" candidateClass="UIView"/>
+                <relationship kind="outlet" name="moduleConfigurationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moduleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainMenuMoreCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuMoreCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="moreLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainMenuSectionHeader" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuSectionHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="sectionConfigurationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="sectionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
+        </class>
+        <class className="MainViewController" superclassName="IIViewDeckController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+        </class>
+        <class className="ModulConfigurationViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulConfigurationViewController.h"/>
+        </class>
+        <class className="ModulSearchViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulSearchViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+        </class>
+        <class className="TimetableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="eventColor" candidateClass="UIView"/>
+                <relationship kind="outlet" name="eventColorOverlay" candidateClass="UIView"/>
+                <relationship kind="outlet" name="eventLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventType" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TimetableOptionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableOptionCell.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel"/>
+                <relationship kind="action" name="confirm"/>
+                <relationship kind="action" name="favorite"/>
+                <relationship kind="action" name="remove"/>
+            </relationships>
+        </class>
+        <class className="TimetableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="timeView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
