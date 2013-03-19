@@ -56,15 +56,12 @@
 	return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	CGRect frame = self.tableView.frame;
+	frame.size.width = 320 - 100;
+	self.tableView.frame = frame;
 }
 
 #pragma mark - Table view data source
