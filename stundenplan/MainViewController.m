@@ -31,7 +31,7 @@
 	if ([self isAnySideOpen]) {
 		return YES;
 	} else {
-		return [panGestureRecognizer locationInView:self.centerController.view].x < 40;
+		return [panGestureRecognizer locationInView:self.centerController.view].x < 60;
 	}
 }
 

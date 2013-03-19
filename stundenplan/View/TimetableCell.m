@@ -215,8 +215,7 @@
 		return YES;
 	}
 	
-	CGFloat x = [gestureRecognizer locationInView:self].x;
-	return (x > 40 && x < 100) || x > (320 - 100);
+	return [gestureRecognizer locationInView:self].x > 240;
 }
 
 @end
