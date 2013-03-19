@@ -17,6 +17,8 @@
 	self.panningMode = IIViewDeckDelegatePanning;
 	self.delegate = self;
 	
+	[self setLeftSize:280];
+	
 	self.centerController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainContent"];
 	self.leftController = [self.storyboard instantiateViewControllerWithIdentifier:@"MainMenu"];
 }

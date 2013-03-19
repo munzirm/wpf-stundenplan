@@ -83,10 +83,10 @@
 		}
 		
 		// Replace two whitespaces with one...
-		prevEvent.title = [prevEvent.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+		event.title = [event.title stringByReplacingOccurrencesOfString:@"  " withString:@" "];
 		
 		// Original data contains the full name of the modul as note, but we don't need it
-		prevEvent.notes = nil;
+		event.notes = nil;
 		
 		// Previous event with same name as the current event. Interval <= 15 minutes.
 		if (
