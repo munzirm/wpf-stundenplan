@@ -57,9 +57,9 @@ enum CalendarControllerStatus {
             [_store removeCalendar:calendar commit:YES error:&error];
             if (error) {
                 NSLog(@"Error while remove calendar %@: %@", calendar, error);
+            } else {
+                NSLog(@"REMOVED!");
             }
-        } else {
-            NSLog(@"REMOVED!");
         }
     }
 }
