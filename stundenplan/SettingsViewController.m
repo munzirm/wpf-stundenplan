@@ -13,17 +13,8 @@
 
 @implementation SettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -31,6 +22,12 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    static UIImage *bgtextureImage = nil;
+    if (bgtextureImage == nil) {
+        bgtextureImage = [UIImage imageNamed:@"bgtexture.png"];
+    }
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgtextureImage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,18 +38,16 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return @"";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,7 +55,11 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.textLabel.text = @"Stundenplan zurücksetzen";
+	[cell.textLabel setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:17.0]];
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    [cell.textLabel setShadowColor:[UIColor blackColor]];
+    [cell.textLabel setShadowOffset:CGSizeMake(1.0, 1.0)];
     
     return cell;
 }

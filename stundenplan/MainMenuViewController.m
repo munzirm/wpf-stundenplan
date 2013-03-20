@@ -205,6 +205,7 @@
 		[self setFilterFlag:[_filters objectAtIndex:indexPath.row] to:YES];
 	} else if (indexPath.section == 2) {
 		[self.viewDeckController openSettingsViewController];
+        [self.viewDeckController closeLeftViewAnimated:YES];
 	}
 }
 
