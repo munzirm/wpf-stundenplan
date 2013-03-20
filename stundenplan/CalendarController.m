@@ -67,25 +67,8 @@ enum CalendarControllerStatus {
 						 failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
-		if (self.events.events > 0) {
-			
-			if (success) {
-				success(self.events);
-			}
-			
-		} else if (self.events.events == 0) {
-			
-			NSLog(@"Keine Events...? Ich mach einfach welche rein dude...");
-			
-			[self addModules:@[ @"BS1", @"ST1" ] success:^{
-				
-				NSLog(@"Events hinzugefügt .. yeah");
-				
-				if (success) {
-					success(self.events);
-				}
-				
-			} failure:failure];
+		if (success) {
+			success(self.events);
 		}
 		
 	} failure:failure];
@@ -217,7 +200,7 @@ enum CalendarControllerStatus {
 	
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*180];
 	NSArray *calendars = [NSArray arrayWithObject:calendar];
 	NSPredicate *predicate = [_store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 	
