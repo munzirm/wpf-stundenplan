@@ -20,7 +20,7 @@
 /**
  Return the modules as dictionary.
  */
-- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
+- (void) modulesWithSuccess: (void (^)(NSArray* modules, NSArray* moduleColors))success
 					failure: (void (^)(NSError* error))failure;
 
 /**

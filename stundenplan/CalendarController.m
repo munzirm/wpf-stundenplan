@@ -74,12 +74,13 @@ enum CalendarControllerStatus {
 	} failure:failure];
 }
 
-- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
+- (void) modulesWithSuccess: (void (^)(NSArray* modules, NSArray* moduleColors))success
 					failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
 		if (success) {
-			success([self.events.modules allKeys]);
+			NSDictionary* modules = self.events.modules;
+			success([modules allKeys], [modules allValues]);
 		}
 		
 	} failure:failure];

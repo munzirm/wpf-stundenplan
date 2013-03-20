@@ -29,6 +29,7 @@
 	NSArray* _sectionCellIdentifiers;
 	
 	NSArray* _modules;
+	NSArray* _moduleColors;
 	NSArray* _filters;
 	NSMutableArray* _filterFlags;
 	NSArray* _more;
@@ -55,12 +56,15 @@
 - (void) updateData {
 	// Update module list!
 	_modules = nil;
-	[[CalendarController sharedInstance] modulesWithSuccess:^(NSArray* modules) {
+	_moduleColors = nil;
+	[[CalendarController sharedInstance] modulesWithSuccess:^(NSArray* modules, NSArray* moduleColors) {
 		_modules = modules;
+		_moduleColors = moduleColors;
 		[self.tableView reloadData];
 	} failure:^(NSError *error) {
 		NSLog(@"Error while load modules: %@", error);
 		_modules = nil;
+		_moduleColors = nil;
 		[self.tableView reloadData];
 	}];
 }
