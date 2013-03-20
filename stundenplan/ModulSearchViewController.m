@@ -15,7 +15,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation ModulSearchViewController {
-	CalendarController* _calendarController;
 	UIBarButtonItem* _saveButton;
 	NSString* _course;
 	NSString* _semester;
@@ -25,7 +24,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	_saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Speichern"
+	_saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Hinzufügen"
 												   style:UIBarButtonItemStylePlain
 												  target:self
 												  action:@selector(saveData)];
@@ -133,8 +132,7 @@
 	
 	[SVProgressHUD showWithStatus:@"Suche..."];
 	
-	_calendarController = [[CalendarController alloc] init];
-	[_calendarController searchCourse:course andSemester:semester success:^(NSArray *modules) {
+	[[CalendarController sharedInstance] searchCourse:course andSemester:semester success:^(NSArray *modules) {
 		_modules = modules;
 		[SVProgressHUD showSuccessWithStatus:nil];
 		[self.tableView reloadData];
@@ -151,8 +149,11 @@
 		[selectedModules addObject:[_modules objectAtIndex:selectedIndexPath.row]];
 	}
 	
-	[_calendarController addModules:selectedModules success:^{
+	[SVProgressHUD showWithStatus:@"Speichere..."];
+	
+	[[CalendarController sharedInstance] addModules:selectedModules success:^{
 		[SVProgressHUD showSuccessWithStatus:nil];
+		[((MainViewController*) self.navigationController.parentViewController) updateData];
 		[((MainViewController*) self.navigationController.parentViewController) openTimetableViewController];
 	} failure:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:nil];

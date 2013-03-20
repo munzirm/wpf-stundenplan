@@ -23,12 +23,22 @@ enum CalendarControllerStatus {
 	EKCalendar* _calendar;
 }
 
++ (id)sharedInstance
+{
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (id)init {
 	self = [super init];
 
 	if (self) {
 		// The calendar store key
-		calendarIdentifierKey = @"fh_koeln_stundenplan2";
+		calendarIdentifierKey = @"fh_koeln_stundenplan";
 	
 		// The event store
 		_status = NOT_CHECKED;
@@ -38,6 +48,15 @@ enum CalendarControllerStatus {
 		// Only for testing:
 		for (EKCalendar* calendar in _store.calendars) {
 			NSLog(@"Found calendar: %@", calendar);
+			if ([calendar.title isEqualToString:@"FH Köln Stundenplan"]) {
+				NSError* error = nil;
+				[_store removeCalendar:calendar commit:YES error:&error];
+				if (error) {
+					NSLog(@"Error while remove calendar %@: %@", calendar, error);
+				}
+			} else {
+				NSLog(@"REMOVED!");
+			}
 		}
 	}
 
@@ -48,36 +67,19 @@ enum CalendarControllerStatus {
 						 failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
-		if (self.events.events > 0) {
-			
-			if (success) {
-				success(self.events);
-			}
-			
-		} else if (self.events.events == 0) {
-			
-			NSLog(@"Keine Events...? Ich mach einfach welche rein dude...");
-			
-			[self addModules:@[ @"BS1", @"ST1" ] success:^{
-				
-				NSLog(@"Events hinzugefügt .. yeah");
-				
-				if (success) {
-					success(self.events);
-				}
-				
-			} failure:failure];
+		if (success) {
+			success(self.events);
 		}
 		
 	} failure:failure];
 }
 
-- (void) modulesWithSuccess: (void (^)(NSDictionary* modules))success
+- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
 					failure: (void (^)(NSError* error))failure {
 	[self checkGrantsWithSuccess:^{
 		
 		if (success) {
-			success(self.events.modules);
+			success([self.events.modules allKeys]);
 		}
 		
 	} failure:failure];
@@ -123,10 +125,21 @@ enum CalendarControllerStatus {
 - (void) addModules: (NSArray*) modules
 			success: (void (^)())success
 			failure: (void (^)(NSError* error))failure {
+	
 	[self checkGrantsWithSuccess:^{
 		
+		// Remove already existing modules!
+		NSArray* alreadyAddedModules = self.events.modules;
+		NSMutableArray* stillRequiredModules = [NSMutableArray array];
+		
+		for (NSString* module in modules) {
+			if (![alreadyAddedModules containsObject:module]) {
+				[stillRequiredModules addObject:module];
+			}
+		}
+		
 		FhKoelnF10CalendarClient* client = [[FhKoelnF10CalendarClient alloc] init];
-		client.modules = modules;
+		client.modules = stillRequiredModules;
 		
 		[client fetchEventsForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
 			
@@ -148,7 +161,7 @@ enum CalendarControllerStatus {
 		
 		for (EKEvent* event in events) {
 			// Add the calendar
-			event.calendar = _calendar;
+			event.calendar = self.calendar;
 			
 			// Save the event
 			NSError *error = nil;
@@ -177,6 +190,7 @@ enum CalendarControllerStatus {
 			if (failure) {
 				failure(nil);
 			}
+			return;
 		default:
 			break;
 	}
@@ -197,7 +211,7 @@ enum CalendarControllerStatus {
 	
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*10];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*180];
 	NSArray *calendars = [NSArray arrayWithObject:calendar];
 	NSPredicate *predicate = [_store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 	

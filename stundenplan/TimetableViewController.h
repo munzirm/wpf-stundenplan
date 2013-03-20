@@ -7,14 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
-#import "CalendarController.h"
 #import "TimetableCell.h"
 
 @interface TimetableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIActionSheetDelegate, TimetableCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView* timeView;
 @property (weak, nonatomic) IBOutlet UITableView* tableView;
-
-@property (strong) CalendarController* calendarController;
 
 @end

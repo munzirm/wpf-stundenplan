@@ -7,6 +7,7 @@
 
 #import "MainViewController.h"
 
+#import "MainMenuViewController.h"
 #import "TimetableViewController.h"
 #import "ModulSearchViewController.h"
 #import "ModulConfigurationViewController.h"
@@ -95,5 +96,9 @@
 // See seque in the storyboard are only as a visuell overview!
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //}
+
+- (void) updateData {
+	[((MainMenuViewController*) self.leftController) updateData];
+}
 
 @end

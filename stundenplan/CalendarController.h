@@ -9,6 +9,8 @@
 
 @interface CalendarController : NSObject
 
++ (id)sharedInstance;
+
 /**
  Return the ModulEvents object.
  */
@@ -18,7 +20,7 @@
 /**
  Return the modules as dictionary.
  */
-- (void) modulesWithSuccess: (void (^)(NSDictionary* modules))success
+- (void) modulesWithSuccess: (void (^)(NSArray* modules))success
 					failure: (void (^)(NSError* error))failure;
 
 /**

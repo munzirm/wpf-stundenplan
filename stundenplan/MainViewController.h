@@ -17,4 +17,6 @@
 
 - (void) openSettingsViewController;
 
+- (void) updateData;
+
 @end

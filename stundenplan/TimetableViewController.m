@@ -7,10 +7,12 @@
 
 #import "TimetableViewController.h"
 #import "TimetableCell.h"
+#import "MainViewController.h"
 #import "ModulEventDetailViewController.h"
 #import "ModulEvents.h"
 #import "ModulEvent.h"
 #import "ColorGenerator.h"
+#import "CalendarController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -43,9 +45,13 @@
     }
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgtextureImage];
 
-	self.calendarController = [[CalendarController alloc] init];
-	[self.calendarController moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {
+	[[CalendarController sharedInstance] moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {
 		modulEvents = moduleEvents;
+		
+		if (modulEvents.events.count == 0) {
+			[((MainViewController*)self.navigationController.parentViewController) openSearchModuleViewController];
+		}
+		
 		[self prepareEventsForDisplay];
 	} failure:^(NSError *error) {
 		NSLog(@"Error while load module events in timetable: %@", error);
