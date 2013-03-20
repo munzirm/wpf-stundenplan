@@ -204,7 +204,7 @@
 	} else if (indexPath.section == 1) {
 		[self setFilterFlag:[_filters objectAtIndex:indexPath.row] to:YES];
 	} else if (indexPath.section == 2) {
-		// Todo show settings
+		[self.viewDeckController openSettingsViewController];
 	}
 }
 
