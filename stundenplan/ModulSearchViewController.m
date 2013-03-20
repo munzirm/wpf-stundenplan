@@ -93,7 +93,8 @@
 
 - (void) selectCourse {
 	// TODO use Data class here.
-	NSArray* rows = @[ @"AI", @"MI", @"TI" ];
+    NSDictionary *courses = [Data objectForKey:@"courses"];
+    NSArray *rows = [courses allKeys];
 	
 	[ActionSheetStringPicker showPickerWithTitle:@"Studiengang" rows:rows initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
 		_course = selectedValue;
