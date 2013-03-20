@@ -419,26 +419,31 @@
                                                 <action selector="configureModule:" destination="J3W-ti-P4C" eventType="touchUpInside" id="2kU-XG-ZmL"/>
                                             </connections>
                                         </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5y7-TM-np4">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGb-oz-uay" userLabel="View - Color">
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="modulcoloroverlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="UR5-uF-qCn"/>
+                                            </subviews>
                                             <color key="backgroundColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="5" type="user" id="7V4-Ty-b53"/>
+                                                <constraint firstItem="UR5-uF-qCn" firstAttribute="leading" secondItem="DGb-oz-uay" secondAttribute="leading" constant="-1" id="e18-1Q-kkn"/>
+                                                <constraint firstItem="UR5-uF-qCn" firstAttribute="centerY" secondItem="DGb-oz-uay" secondAttribute="centerY" type="default" id="qcD-mz-ecp"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="5y7-TM-np4" firstAttribute="bottom" secondItem="DHW-Lg-1C5" secondAttribute="bottom" type="default" id="Fck-nM-wCe"/>
-                                    <constraint firstItem="5y7-TM-np4" firstAttribute="leading" secondItem="DHW-Lg-1C5" secondAttribute="leading" type="user" id="GP3-Fc-Odj"/>
+                                    <constraint firstItem="DGb-oz-uay" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" constant="16" id="GCa-Qk-71y"/>
                                     <constraint firstItem="xm3-Dc-VNx" firstAttribute="centerY" secondItem="GdT-El-sRt" secondAttribute="centerY" type="default" id="I4f-GU-NTo"/>
-                                    <constraint firstItem="5y7-TM-np4" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" type="default" id="JLf-pS-qZJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="DGb-oz-uay" secondAttribute="trailing" constant="296" id="JH6-mU-ubL"/>
+                                    <constraint firstItem="DGb-oz-uay" firstAttribute="leading" secondItem="DHW-Lg-1C5" secondAttribute="leading" constant="7" id="Ni2-UI-OJG"/>
+                                    <constraint firstItem="GdT-El-sRt" firstAttribute="leading" secondItem="DHW-Lg-1C5" secondAttribute="leading" constant="27" id="T4S-EY-O4l"/>
                                     <constraint firstAttribute="trailing" secondItem="xm3-Dc-VNx" secondAttribute="trailing" constant="11" id="U6m-wr-E9j"/>
-                                    <constraint firstItem="GdT-El-sRt" firstAttribute="leading" secondItem="DHW-Lg-1C5" secondAttribute="leading" constant="12" id="bOA-f5-sH0"/>
+                                    <constraint firstItem="DGb-oz-uay" firstAttribute="bottom" secondItem="GdT-El-sRt" secondAttribute="bottom" type="default" id="WEp-h5-zcY"/>
                                     <constraint firstItem="xm3-Dc-VNx" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" constant="8" id="zX2-RT-uIB"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="moduleColorIndicator" destination="5y7-TM-np4" id="EF3-dv-1iQ"/>
+                                    <outlet property="moduleColorIndicator" destination="DGb-oz-uay" id="5we-lK-IAO"/>
                                     <outlet property="moduleConfigurationButton" destination="xm3-Dc-VNx" id="O25-Mf-Ymk"/>
                                     <outlet property="moduleLabel" destination="GdT-El-sRt" id="NRL-jf-KOv"/>
                                 </connections>
@@ -467,7 +472,7 @@
                                 <constraints>
                                     <constraint firstItem="uXm-Cx-C6w" firstAttribute="leading" secondItem="aq6-K8-hbg" secondAttribute="leading" type="user" id="IbZ-d8-itU"/>
                                     <constraint firstItem="3zW-3K-JGG" firstAttribute="top" secondItem="aq6-K8-hbg" secondAttribute="top" constant="11" id="QIu-oP-iW0"/>
-                                    <constraint firstItem="3zW-3K-JGG" firstAttribute="leading" secondItem="aq6-K8-hbg" secondAttribute="leading" constant="12" id="dkZ-Pn-Vuq"/>
+                                    <constraint firstItem="3zW-3K-JGG" firstAttribute="leading" secondItem="aq6-K8-hbg" secondAttribute="leading" constant="27" id="ZAw-dP-LEd"/>
                                     <constraint firstItem="uXm-Cx-C6w" firstAttribute="bottom" secondItem="aq6-K8-hbg" secondAttribute="bottom" type="default" id="im1-6g-h7a"/>
                                     <constraint firstItem="uXm-Cx-C6w" firstAttribute="top" secondItem="aq6-K8-hbg" secondAttribute="top" type="default" id="ogK-lv-9n8"/>
                                 </constraints>
@@ -492,7 +497,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="ZiV-p6-IcR" firstAttribute="leading" secondItem="mZS-Kb-V7U" secondAttribute="leading" constant="12" id="8BH-mn-fCD"/>
+                                    <constraint firstItem="ZiV-p6-IcR" firstAttribute="leading" secondItem="mZS-Kb-V7U" secondAttribute="leading" constant="27" id="j6R-Oe-QgF"/>
                                     <constraint firstItem="ZiV-p6-IcR" firstAttribute="top" secondItem="mZS-Kb-V7U" secondAttribute="top" constant="11" id="nWi-Js-c4S"/>
                                 </constraints>
                                 <connections>
@@ -686,93 +691,6 @@
         <image name="modulcoloroverlay.png" width="20" height="20"/>
         <image name="settingsicon.png" width="50" height="50"/>
     </resources>
-    <classes>
-        <class className="DailyPlan" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyPlan.h"/>
-        </class>
-        <class className="IIViewDeckController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
-        </class>
-        <class className="MainMenuFilterCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuFilterCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="filterLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="filterSelectionIndicator" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuModuleCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuModuleCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="moduleColorIndicator" candidateClass="UIView"/>
-                <relationship kind="outlet" name="moduleConfigurationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moduleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainMenuMoreCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuMoreCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="moreLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainMenuSectionHeader" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuSectionHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="sectionConfigurationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sectionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addModules:" candidateClass="UIButton"/>
-                <relationship kind="action" name="configureModule:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="IIViewDeckController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="ModulConfigurationViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulConfigurationViewController.h"/>
-        </class>
-        <class className="ModulEventDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulEventDetailViewController.h"/>
-        </class>
-        <class className="ModulSearchViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulSearchViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="TimetableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="eventColor" candidateClass="UIView"/>
-                <relationship kind="outlet" name="eventColorOverlay" candidateClass="UIView"/>
-                <relationship kind="outlet" name="eventDuration" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventLocation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventType" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TimetableOptionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableOptionCell.h"/>
-            <relationships>
-                <relationship kind="action" name="favorite"/>
-                <relationship kind="action" name="remove"/>
-            </relationships>
-        </class>
-        <class className="TimetableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="timeView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -277,8 +277,6 @@
 				59BA3D4A16AB2596000D0FA4 /* AppDelegate.h */,
 				59BA3D4B16AB2596000D0FA4 /* AppDelegate.m */,
 				59BA3D5316AB2596000D0FA4 /* MainStoryboard.storyboard */,
-				B49CE98E16F946C100DB253B /* navigationbar.png */,
-				B49CE98F16F946C100DB253B /* navigationbar@2x.png */,
 				B4532D6016F8D49F00826B19 /* DailyPlan.h */,
 				B4532D6116F8D49F00826B19 /* DailyPlan.m */,
 				5900FAE616F3FCEC00D83F86 /* MainViewController.h */,
@@ -417,6 +415,8 @@
 				B4F9A61916F7DB8100FDACB0 /* modulcoloroverlay@2x.png */,
 				B4F9A61416F7D23600FDACB0 /* timetablecell.png */,
 				B4F9A61516F7D23600FDACB0 /* timetablecell@2x.png */,
+				B49CE98E16F946C100DB253B /* navigationbar.png */,
+				B49CE98F16F946C100DB253B /* navigationbar@2x.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
