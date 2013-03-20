@@ -15,7 +15,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation ModulSearchViewController {
-	CalendarController* _calendarController;
 	UIBarButtonItem* _saveButton;
 	NSString* _course;
 	NSString* _semester;
@@ -127,8 +126,7 @@
 	
 	[SVProgressHUD showWithStatus:@"Suche..."];
 	
-	_calendarController = [[CalendarController alloc] init];
-	[_calendarController searchCourse:course andSemester:semester success:^(NSArray *modules) {
+	[[CalendarController sharedInstance] searchCourse:course andSemester:semester success:^(NSArray *modules) {
 		_modules = modules;
 		[SVProgressHUD showSuccessWithStatus:nil];
 		[self.tableView reloadData];
@@ -145,7 +143,7 @@
 		[selectedModules addObject:[_modules objectAtIndex:selectedIndexPath.row]];
 	}
 	
-	[_calendarController addModules:selectedModules success:^{
+	[[CalendarController sharedInstance] addModules:selectedModules success:^{
 		[SVProgressHUD showSuccessWithStatus:nil];
 		[((MainViewController*) self.navigationController.parentViewController) openTimetableViewController];
 	} failure:^(NSError *error) {

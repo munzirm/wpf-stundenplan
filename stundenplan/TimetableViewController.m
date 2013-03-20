@@ -11,6 +11,7 @@
 #import "ModulEvents.h"
 #import "ModulEvent.h"
 #import "ColorGenerator.h"
+#import "CalendarController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -43,8 +44,7 @@
     }
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgtextureImage];
 
-	self.calendarController = [[CalendarController alloc] init];
-	[self.calendarController moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {
+	[[CalendarController sharedInstance] moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {
 		modulEvents = moduleEvents;
 		[self prepareEventsForDisplay];
 	} failure:^(NSError *error) {

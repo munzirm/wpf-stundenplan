@@ -23,12 +23,22 @@ enum CalendarControllerStatus {
 	EKCalendar* _calendar;
 }
 
++ (id)sharedInstance
+{
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (id)init {
 	self = [super init];
 
 	if (self) {
 		// The calendar store key
-		calendarIdentifierKey = @"fh_koeln_stundenplan2";
+		calendarIdentifierKey = @"fh_koeln_stundenplan";
 	
 		// The event store
 		_status = NOT_CHECKED;
@@ -177,6 +187,7 @@ enum CalendarControllerStatus {
 			if (failure) {
 				failure(nil);
 			}
+			return;
 		default:
 			break;
 	}

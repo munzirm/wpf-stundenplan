@@ -9,6 +9,8 @@
 
 @interface CalendarController : NSObject
 
++ (id)sharedInstance;
+
 /**
  Return the ModulEvents object.
  */
