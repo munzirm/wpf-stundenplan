@@ -92,7 +92,15 @@
 	return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath
+                                                                                                      *)indexPath {
+    static UIImage *menucellImage = nil;
+    if (menucellImage == nil) {
+        menucellImage = [UIImage imageNamed:@"menucell.png"];
+    }
+    cell.backgroundView = [[UIView alloc] init];
+    cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:menucellImage];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
