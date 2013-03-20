@@ -125,10 +125,21 @@ enum CalendarControllerStatus {
 - (void) addModules: (NSArray*) modules
 			success: (void (^)())success
 			failure: (void (^)(NSError* error))failure {
+	
 	[self checkGrantsWithSuccess:^{
 		
+		// Remove already existing modules!
+		NSArray* alreadyAddedModules = self.events.modules;
+		NSMutableArray* stillRequiredModules = [NSMutableArray array];
+		
+		for (NSString* module in modules) {
+			if (![alreadyAddedModules containsObject:module]) {
+				[stillRequiredModules addObject:module];
+			}
+		}
+		
 		FhKoelnF10CalendarClient* client = [[FhKoelnF10CalendarClient alloc] init];
-		client.modules = modules;
+		client.modules = stillRequiredModules;
 		
 		[client fetchEventsForStore:_store success:^(AFHTTPRequestOperation *operation, NSArray *events) {
 			
