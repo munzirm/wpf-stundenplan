@@ -62,6 +62,8 @@
 		B49CE99116F946C100DB253B /* navigationbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98F16F946C100DB253B /* navigationbar@2x.png */; };
 		B49CE99416F957E000DB253B /* menusectionheaderbig.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE99216F957E000DB253B /* menusectionheaderbig.png */; };
 		B49CE99516F957E000DB253B /* menusectionheaderbig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE99316F957E000DB253B /* menusectionheaderbig@2x.png */; };
+		B49CE9A316F95DD700DB253B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE9A216F95DD700DB253B /* icon.png */; };
+		B49CE9A516F95DDD00DB253B /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE9A416F95DDD00DB253B /* icon@2x.png */; };
 		B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD04416F61D97005395A2 /* ModulEvents.m */; };
 		B4AFD05216F66567005395A2 /* Apache License Version 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04716F66567005395A2 /* Apache License Version 2.txt */; };
 		B4AFD05316F66567005395A2 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04816F66567005395A2 /* OpenSans-Bold.ttf */; };
@@ -168,6 +170,8 @@
 		B49CE98F16F946C100DB253B /* navigationbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar@2x.png"; sourceTree = "<group>"; };
 		B49CE99216F957E000DB253B /* menusectionheaderbig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menusectionheaderbig.png; sourceTree = "<group>"; };
 		B49CE99316F957E000DB253B /* menusectionheaderbig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menusectionheaderbig@2x.png"; sourceTree = "<group>"; };
+		B49CE9A216F95DD700DB253B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		B49CE9A416F95DDD00DB253B /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		B4AFD04316F61D97005395A2 /* ModulEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEvents.h; sourceTree = "<group>"; };
 		B4AFD04416F61D97005395A2 /* ModulEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEvents.m; sourceTree = "<group>"; };
 		B4AFD04716F66567005395A2 /* Apache License Version 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License Version 2.txt"; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 		59BA3D2C16AB2596000D0FA4 = {
 			isa = PBXGroup;
 			children = (
+				B49CE9A416F95DDD00DB253B /* icon@2x.png */,
+				B49CE9A216F95DD700DB253B /* icon.png */,
 				59BA3D7616AB27BF000D0FA4 /* README.md */,
 				594BDF3016B2E3A500328E41 /* Podfile */,
 				59BA3D4116AB2596000D0FA4 /* stundenplan */,
@@ -545,6 +551,8 @@
 				B49CE99116F946C100DB253B /* navigationbar@2x.png in Resources */,
 				B49CE99416F957E000DB253B /* menusectionheaderbig.png in Resources */,
 				B49CE99516F957E000DB253B /* menusectionheaderbig@2x.png in Resources */,
+				B49CE9A316F95DD700DB253B /* icon.png in Resources */,
+				B49CE9A516F95DDD00DB253B /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
