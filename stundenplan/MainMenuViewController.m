@@ -228,6 +228,7 @@
 
 - (void)filterModules:(NSString*) filter {
 	NSLog(@"filterModules: %@", filter);
+	[[CalendarController sharedInstance] setFilter:filter];
 	[self.viewDeckController openTimetableViewController];
 	[self.viewDeckController closeLeftViewAnimated:YES];
 }
