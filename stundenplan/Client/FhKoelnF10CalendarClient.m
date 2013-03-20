@@ -30,10 +30,7 @@
 
 #pragma mark - Asynchronous calls defined in the client API
 
-- (void) fetchEventsForStore:(EKEventStore *)store
-					 success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
-					 failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
-
+- (NSURLRequest*) request {
 	// Yeah, no "XSS" magic here, but we have no free input for this fields in our app.
 	NSMutableArray* parameters = [NSMutableArray array];
 	if (_course) {
@@ -42,14 +39,20 @@
 	if (_semester) {
 		[parameters addObject:[NSString stringWithFormat:@"SEMESTER_NR = '%@'", _semester]];
 	}
-	if (_modul) {
-		[parameters addObject:[NSString stringWithFormat:@"KURZBEZ = '%@'", _modul]];
+	if (_modules && _modules.count > 0) {
+		[parameters addObject:[NSString stringWithFormat:@"KURZBEZ IN ('%@')", [_modules componentsJoinedByString:@"', '"]]];
 	}
-
+	
 	NSString* query = parameters.count == 0 ? @"null is null" : [parameters componentsJoinedByString:@" AND "];
 	NSLog(@"GET %@", query);
-	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
+	return [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
+}
 
+- (void) fetchEventsForStore:(EKEventStore *)store
+					 success:(void (^)(AFHTTPRequestOperation* operation, NSArray* events))success
+					 failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
+	NSURLRequest* request = [self request];
+	
 	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request andEventStore:store success:^(AFCalendarRequestOperation* operation) {
 		if (success) {
 			success(operation, [self summerizeAndCleanupEventData:operation.responseEvents]);
@@ -116,22 +119,7 @@
 - (void) fetchModulesForStore:(EKEventStore *)store
 					  success:(void (^)(AFHTTPRequestOperation* operation, NSArray* modules))success
 					  failure:(void (^)(AFHTTPRequestOperation* operation, NSError* error))failure {
-	
-	// Yeah, no "XSS" magic here, but we have no free input for this fields in our app.
-	NSMutableArray* parameters = [NSMutableArray array];
-	if (_course) {
-		[parameters addObject:[NSString stringWithFormat:@"SG_KZ = '%@'", _course]];
-	}
-	if (_semester) {
-		[parameters addObject:[NSString stringWithFormat:@"SEMESTER_NR = '%@'", _semester]];
-	}
-	if (_modul) {
-		[parameters addObject:[NSString stringWithFormat:@"KURZBEZ = '%@'", _modul]];
-	}
-	
-	NSString* query = parameters.count == 0 ? @"null is null" : [parameters componentsJoinedByString:@" AND "];
-	NSLog(@"GET %@", query);
-	NSURLRequest* request = [self requestWithMethod:@"GET" path:@"ical" parameters:@{ @"sqlabfrage": query }];
+	NSURLRequest* request = [self request];
 	
 	AFCalendarRequestOperation* operation = [AFCalendarRequestOperation calendarRequestOperationWithRequest:request andEventStore:store success:^(AFCalendarRequestOperation* operation) {
 		if (success) {

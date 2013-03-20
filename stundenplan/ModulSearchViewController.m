@@ -7,6 +7,7 @@
 
 #import "ModulSearchViewController.h"
 
+#import "MainViewController.h"
 #import "CalendarController.h"
 #import "Data.h"
 
@@ -117,6 +118,10 @@
 }
 
 - (void) updateData {
+	if (!_course && !_semester) {
+		return;
+	}
+	
 	NSString* course = _course ? [_course substringToIndex:2] : nil;
 	NSString* semester = _semester ? [_semester substringToIndex:1] : nil;
 	
@@ -125,10 +130,10 @@
 	_calendarController = [[CalendarController alloc] init];
 	[_calendarController searchCourse:course andSemester:semester success:^(NSArray *modules) {
 		_modules = modules;
-		[SVProgressHUD dismiss];
+		[SVProgressHUD showSuccessWithStatus:nil];
 		[self.tableView reloadData];
 	} failure:^(NSError *error) {
-		[SVProgressHUD dismiss];
+		[SVProgressHUD showErrorWithStatus:nil];
 		NSLog(@"Error while update data: %@", error);
 	}];
 	
@@ -140,6 +145,13 @@
 		[selectedModules addObject:[_modules objectAtIndex:selectedIndexPath.row]];
 	}
 	
+	[_calendarController addModules:selectedModules success:^{
+		[SVProgressHUD showSuccessWithStatus:nil];
+		[((MainViewController*) self.navigationController.parentViewController) openTimetableViewController];
+	} failure:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:nil];
+		NSLog(@"Error while update data: %@", error);
+	}];
 }
 
 @end
