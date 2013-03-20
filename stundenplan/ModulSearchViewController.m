@@ -31,7 +31,13 @@
 												  action:@selector(saveData)];
 	_saveButton.enabled = NO;
 	self.navigationItem.rightBarButtonItem = _saveButton;
-	
+
+    static UIImage *bgtextureImage = nil;
+    if (bgtextureImage == nil) {
+        bgtextureImage = [UIImage imageNamed:@"bgtexture.png"];
+    }
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgtextureImage];
+    
 	[self updateData];
 }
 
