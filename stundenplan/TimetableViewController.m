@@ -7,6 +7,7 @@
 
 #import "TimetableViewController.h"
 #import "TimetableCell.h"
+#import "MainViewController.h"
 #import "ModulEventDetailViewController.h"
 #import "ModulEvents.h"
 #import "ModulEvent.h"
@@ -46,6 +47,11 @@
 
 	[[CalendarController sharedInstance] moduleEventsWithSuccess:^(ModulEvents *moduleEvents) {
 		modulEvents = moduleEvents;
+		
+		if (modulEvents.events.count == 0) {
+			[((MainViewController*)self.navigationController.parentViewController) openSearchModuleViewController];
+		}
+		
 		[self prepareEventsForDisplay];
 	} failure:^(NSError *error) {
 		NSLog(@"Error while load module events in timetable: %@", error);
