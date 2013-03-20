@@ -7,6 +7,8 @@
 
 #import "MainMenuViewController.h"
 
+#import "CalendarController.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainMenuSectionHeader
@@ -25,8 +27,7 @@
 	NSArray* _sections;
 	NSArray* _sectionCellIdentifiers;
 	
-	NSArray* _modules; // TODO replace this
-	NSArray* _moduleColors; // TODO replace this
+	NSArray* _modules;
 	NSArray* _filters;
 	NSMutableArray* _filterFlags;
 	NSArray* _more;
@@ -38,15 +39,7 @@
 		_sections = @[ @"Module", @"Filter", @" " ];
 		_sectionCellIdentifiers = @[ @"MainMenuModuleCell", @"MainMenuFilterCell", @"MainMenuMoreCell" ];
 		
-		_modules = @[ @"WBA2", @"WPF-CITY", @"MCI", @"BWL2", @"MC1", @"BS1"];
-		_moduleColors = @[
-			[UIColor redColor],
-			[UIColor blueColor],
-			[UIColor greenColor],
-			[UIColor yellowColor],
-			[UIColor magentaColor],
-			[UIColor orangeColor],
-		];
+		[self updateData];
 		
 		_filters = @[ @"Vorlesungen", @"Seminare", @"Praktikas", @"Übungen", @"Tutorien" ];
 		_filterFlags = [@[ @YES, @NO, @NO, @NO, @NO ] mutableCopy];
@@ -56,6 +49,19 @@
 
 	}
 	return self;
+}
+
+- (void) updateData {
+	// Update module list!
+	_modules = nil;
+	[[CalendarController sharedInstance] modulesWithSuccess:^(NSArray* modules) {
+		_modules = modules;
+		[self.tableView reloadData];
+	} failure:^(NSError *error) {
+		NSLog(@"Error while load modules: %@", error);
+		_modules = nil;
+		[self.tableView reloadData];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -104,7 +110,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
-		return _modules.count + 1;
+		if (_modules.count != 0) {
+			return _modules.count + 1;
+		} else {
+			return 0;
+		}
 	} else if (section == 1) {
 		return _filters.count;
 	} else if (section == 2) {
@@ -119,13 +129,13 @@
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 	
 	if (indexPath.section == 0) {
-		if (indexPath.row == 0) {
+		if (indexPath.row == 0 && _modules.count != 0) {
 			((MainMenuModuleCell*) cell).moduleLabel.text = @"Alle";
 			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = nil;
 			((MainMenuModuleCell*) cell).backgroundColor = [UIColor blueColor];
 		} else {
 			((MainMenuModuleCell*) cell).moduleLabel.text = [_modules objectAtIndex:indexPath.row - 1];
-			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [_moduleColors objectAtIndex:indexPath.row - 1];
+			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [UIColor redColor]; // TODO
 			((MainMenuModuleCell*) cell).backgroundColor = nil;
 		}
 	} else if (indexPath.section == 1) {

@@ -34,4 +34,6 @@
 - (IBAction)configureModule:(UIButton*)sender;
 - (IBAction)addModules:(UIButton*)sender;
 
+- (void) updateData;
+
 @end

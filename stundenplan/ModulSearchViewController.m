@@ -24,7 +24,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	_saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Speichern"
+	_saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Hinzufügen"
 												   style:UIBarButtonItemStylePlain
 												  target:self
 												  action:@selector(saveData)];
@@ -143,8 +143,11 @@
 		[selectedModules addObject:[_modules objectAtIndex:selectedIndexPath.row]];
 	}
 	
+	[SVProgressHUD showWithStatus:@"Speichere..."];
+	
 	[[CalendarController sharedInstance] addModules:selectedModules success:^{
 		[SVProgressHUD showSuccessWithStatus:nil];
+		[((MainViewController*) self.navigationController.parentViewController) updateData];
 		[((MainViewController*) self.navigationController.parentViewController) openTimetableViewController];
 	} failure:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:nil];
