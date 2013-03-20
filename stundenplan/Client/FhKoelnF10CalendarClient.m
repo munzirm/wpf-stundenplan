@@ -137,9 +137,19 @@
 - (NSArray*) modulesForEvents: (NSArray*) events {
 	NSMutableArray* modules = [NSMutableArray array];
 	for (EKEvent* event in events) {
-		NSArray *modulComponents = [event.title componentsSeparatedByString:@" "];
-		if (![modules containsObject:[modulComponents objectAtIndex:0]]) {
-			[modules addObject:[modulComponents objectAtIndex:0]];
+		NSString* module = event.title;
+		
+		// Search for "BS1 " or "ST1" dependend if there are two or only one space.
+		NSRange rangeA = [module rangeOfString:@"  "];
+		NSRange rangeB = [module rangeOfString:@" "];
+		if (rangeA.location != NSNotFound) {
+			module = [module substringToIndex:rangeA.location + 1];
+		} else if (rangeB.location != NSNotFound) {
+			module = [module substringToIndex:rangeB.location];
+		}
+		
+		if (![modules containsObject:module]) {
+			[modules addObject:module];
 		}
 	}
 	[modules sortUsingSelector:@selector(compare:)];
