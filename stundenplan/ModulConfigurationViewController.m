@@ -52,10 +52,12 @@
     // Configure the cell...
 	if (indexPath.section == 0) {
 		cell.textLabel.text = [_filter objectAtIndex:indexPath.row];
+		cell.textLabel.backgroundColor = [UIColor clearColor];
 	} else if (indexPath.section == 1) {
 		cell.textLabel.textColor = [UIColor whiteColor];
+		cell.textLabel.backgroundColor = [UIColor clearColor];
 	}
-    
+	
     return cell;
 }
 

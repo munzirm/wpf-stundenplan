@@ -139,7 +139,11 @@
 			return 0;
 		}
 	} else if (section == 1) {
-		return _filters.count;
+		if (_modules.count != 0) {
+			return _filters.count;
+		} else {
+			return 0;
+		}
 	} else if (section == 2) {
 		return _more.count;
 	} else {

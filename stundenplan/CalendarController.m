@@ -50,6 +50,8 @@ enum CalendarControllerStatus {
 }
 
 - (void) reset {
+	_calendar = nil;
+	
     for (EKCalendar* calendar in _store.calendars) {
         NSLog(@"Found calendar: %@", calendar);
         if ([calendar.title isEqualToString:@"FH Köln Stundenplan"]) {

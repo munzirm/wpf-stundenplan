@@ -7,10 +7,7 @@
 
 #import "SettingsViewController.h"
 #import "CalendarController.h"
-
-@interface SettingsViewController ()
-
-@end
+#import "MainViewController.h"
 
 @implementation SettingsViewController
 
@@ -113,6 +110,9 @@
     NSLog(@"Called");
     
     [[CalendarController sharedInstance] reset];
+	
+	[((MainViewController*) self.navigationController.parentViewController) updateData];
+	[((MainViewController*) self.navigationController.parentViewController) openSearchModuleViewController];
 }
 
 @end
