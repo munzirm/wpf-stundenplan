@@ -403,15 +403,15 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xm3-Dc-VNx">
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xm3-Dc-VNx">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="fXp-z3-psn"/>
-                                                <constraint firstAttribute="height" constant="32" id="z8j-uC-XI7"/>
+                                                <constraint firstAttribute="width" constant="30" id="qKA-4f-iJC"/>
+                                                <constraint firstAttribute="height" constant="30" id="tnM-ed-WpP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="X">
-                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="settingsicon.png">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </state>
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -430,14 +430,14 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xm3-Dc-VNx" secondAttribute="trailing" constant="22" id="3Cj-eN-LBs"/>
                                     <constraint firstItem="xm3-Dc-VNx" firstAttribute="baseline" secondItem="GdT-El-sRt" secondAttribute="baseline" type="default" id="EPY-Lj-KYB"/>
                                     <constraint firstItem="5y7-TM-np4" firstAttribute="bottom" secondItem="DHW-Lg-1C5" secondAttribute="bottom" type="default" id="Fck-nM-wCe"/>
                                     <constraint firstItem="5y7-TM-np4" firstAttribute="leading" secondItem="DHW-Lg-1C5" secondAttribute="leading" type="user" id="GP3-Fc-Odj"/>
+                                    <constraint firstItem="xm3-Dc-VNx" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" constant="5" id="Hmn-6J-vaC"/>
                                     <constraint firstItem="5y7-TM-np4" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" type="default" id="JLf-pS-qZJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="xm3-Dc-VNx" secondAttribute="trailing" constant="20" type="default" id="Mh6-Uf-oW0"/>
-                                    <constraint firstItem="5y7-TM-np4" firstAttribute="centerY" secondItem="xm3-Dc-VNx" secondAttribute="centerY" type="default" id="PIm-ox-vbD"/>
                                     <constraint firstItem="GdT-El-sRt" firstAttribute="leading" secondItem="DHW-Lg-1C5" secondAttribute="leading" constant="12" id="bOA-f5-sH0"/>
-                                    <constraint firstItem="GdT-El-sRt" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" constant="11" id="iJN-MF-84f"/>
+                                    <constraint firstItem="GdT-El-sRt" firstAttribute="top" secondItem="DHW-Lg-1C5" secondAttribute="top" constant="11" id="xjy-Ag-qwj"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="moduleColorIndicator" destination="5y7-TM-np4" id="EF3-dv-1iQ"/>
@@ -685,6 +685,7 @@
         <image name="editicon.png" width="50" height="50"/>
         <image name="favicon.png" width="50" height="50"/>
         <image name="modulcoloroverlay.png" width="20" height="20"/>
+        <image name="settingsicon.png" width="50" height="50"/>
     </resources>
     <classes>
         <class className="DailyPlan" superclassName="UIView">
