@@ -6,6 +6,7 @@
 //
 
 #import "MainMenuViewController.h"
+#import "ColorGenerator.h"
 
 #import "CalendarController.h"
 
@@ -85,17 +86,37 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 32;
+	return 20.0;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	static NSString* CellIdentifier = @"MainMenuSectionHeader";
+	/*static NSString* CellIdentifier = @"MainMenuSectionHeader";
 	MainMenuSectionHeader* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	cell.sectionLabel.text = [_sections objectAtIndex:section];
 	cell.sectionConfigurationButton.hidden = section != 0;
 	
-	return cell;
+	return cell;*/
+    
+	UIView* sectionView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+    static UIImage *timetablesectionheaderImage = nil;
+    if (timetablesectionheaderImage == nil) {
+        timetablesectionheaderImage = [UIImage imageNamed:@"timetablesectionheader.png"];
+    }
+    sectionView.backgroundColor = [UIColor colorWithPatternImage:timetablesectionheaderImage];
+    
+	// the label object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, 320.0, 20.0)];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.textColor = UIColorFromRGB(0x424242);
+	headerLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:11.0];
+    headerLabel.shadowColor = [UIColor whiteColor];
+    headerLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+    
+	headerLabel.text = [_sections objectAtIndex:section];
+	[sectionView addSubview:headerLabel];
+    
+	return sectionView;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath
@@ -130,17 +151,28 @@
 	
 	if (indexPath.section == 0) {
 		if (indexPath.row == 0 && _modules.count != 0) {
-			((MainMenuModuleCell*) cell).moduleLabel.text = @"Alle";
+			[[((MainMenuModuleCell*) cell) moduleLabel] setText:@"Alle"];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:17.0]];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setTextColor:UIColorFromRGB(0x424242)];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setShadowColor:[UIColor whiteColor]];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setShadowOffset:CGSizeMake(1.0, 1.0)];
 			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = nil;
-			((MainMenuModuleCell*) cell).backgroundColor = [UIColor blueColor];
 		} else {
-			((MainMenuModuleCell*) cell).moduleLabel.text = [_modules objectAtIndex:indexPath.row - 1];
-			((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [UIColor redColor]; // TODO
-			((MainMenuModuleCell*) cell).backgroundColor = nil;
+			[[((MainMenuModuleCell*) cell) moduleLabel] setText:[_modules objectAtIndex:indexPath.row - 1]];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setFont:[UIFont fontWithName:@"OpenSans-Semibold" size:17.0]];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setTextColor:UIColorFromRGB(0x424242)];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setShadowColor:[UIColor whiteColor]];
+            [[((MainMenuModuleCell*) cell) moduleLabel] setShadowOffset:CGSizeMake(1.0, 1.0)];
+            ((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [_moduleColors objectAtIndex:indexPath.row - 1];
 		}
 	} else if (indexPath.section == 1) {
 		((MainMenuFilterCell*) cell).filterLabel.text =
 				[_filters objectAtIndex:indexPath.row];
+        ((MainMenuFilterCell*) cell).filterLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:17.0];
+        ((MainMenuFilterCell*) cell).filterLabel.textColor = UIColorFromRGB(0x424242);
+        ((MainMenuFilterCell*) cell).filterLabel.shadowColor = [UIColor whiteColor];
+        ((MainMenuFilterCell*) cell).filterLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+        
 		((MainMenuFilterCell*) cell).filterSelectionIndicator.backgroundColor =
 				[[_filterFlags objectAtIndex:indexPath.row] boolValue] ?
 				[UIColor blackColor] :
@@ -148,7 +180,10 @@
 		
 	} else if (indexPath.section == 2) {
 		((MainMenuMoreCell*) cell).moreLabel.text = [_more objectAtIndex:indexPath.row];
-		
+        ((MainMenuMoreCell*) cell).moreLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:17.0];
+        ((MainMenuMoreCell*) cell).moreLabel.textColor = UIColorFromRGB(0x424242);
+        ((MainMenuMoreCell*) cell).moreLabel.shadowColor = [UIColor whiteColor];
+        ((MainMenuMoreCell*) cell).moreLabel.shadowOffset = CGSizeMake(1.0, 1.0);
 	}
 	
 	return cell;
