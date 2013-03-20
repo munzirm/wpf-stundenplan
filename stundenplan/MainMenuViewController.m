@@ -169,7 +169,7 @@
             [[((MainMenuModuleCell*) cell) moduleLabel] setTextColor:UIColorFromRGB(0x424242)];
             [[((MainMenuModuleCell*) cell) moduleLabel] setShadowColor:[UIColor whiteColor]];
             [[((MainMenuModuleCell*) cell) moduleLabel] setShadowOffset:CGSizeMake(1.0, 1.0)];
-            ((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [UIColor redColor];
+            ((MainMenuModuleCell*) cell).moduleColorIndicator.backgroundColor = [UIColor clearColor];
             ((MainMenuModuleCell*) cell).moduleColorIndicator.layer.cornerRadius = 8.5;
 		}
 	} else if (indexPath.section == 1) {
