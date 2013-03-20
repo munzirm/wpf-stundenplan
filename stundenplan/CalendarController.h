@@ -11,6 +11,8 @@
 
 + (id)sharedInstance;
 
+@property (weak, nonatomic) NSString* filter;
+
 /**
  Return the ModulEvents object.
  */

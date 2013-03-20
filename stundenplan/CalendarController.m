@@ -215,11 +215,21 @@ enum CalendarControllerStatus {
 	
 	// For demo proposes, display events for the next X days
 	NSDate *startDate = [NSDate date];
-	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*180];
+	NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:60*60*24*90];
 	NSArray *calendars = [NSArray arrayWithObject:calendar];
 	NSPredicate *predicate = [_store predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
 	
 	NSArray* events = [_store eventsMatchingPredicate:predicate];
+	if (_filter && _filter.length > 0) {
+		NSMutableArray* filteredEvents = [NSMutableArray array];
+		for (EKEvent* event in events) {
+			if ([event.title hasPrefix:_filter]) {
+				[filteredEvents addObject:event];
+			}
+		}
+		NSLog(@"Use filter %@ to reduce %i to %i events.", _filter, events.count, filteredEvents.count);
+		events = filteredEvents;
+	}
 	
 	NSLog(@"Used: LOCAL -- found %i events", events.count);
 	return [[ModulEvents alloc] initWithEvents:events];

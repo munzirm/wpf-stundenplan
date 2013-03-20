@@ -92,6 +92,14 @@
 	}
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 1) {
+		BOOL selectedItems = [self.tableView indexPathsForSelectedRows].count != 0;
+		_saveButton.enabled = selectedItems;
+	}
+}
+
+
 - (void) selectCourse {
 	// TODO use Data class here.
     NSDictionary *courses = [Data objectForKey:@"courses"];
