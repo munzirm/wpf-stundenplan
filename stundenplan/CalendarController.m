@@ -48,6 +48,15 @@ enum CalendarControllerStatus {
 		// Only for testing:
 		for (EKCalendar* calendar in _store.calendars) {
 			NSLog(@"Found calendar: %@", calendar);
+			if ([calendar.title isEqualToString:@"FH Köln Stundenplan"]) {
+				NSError* error = nil;
+				[_store removeCalendar:calendar commit:YES error:&error];
+				if (error) {
+					NSLog(@"Error while remove calendar %@: %@", calendar, error);
+				}
+			} else {
+				NSLog(@"REMOVED!");
+			}
 		}
 	}
 
