@@ -229,7 +229,7 @@
 
 - (void)setFilterFlag:(NSString*) filter to:(BOOL) flag {
 	NSLog(@"setFilterFlag: %@", filter);
-	[self.viewDeckController closeLeftViewAnimated:YES];
+	[self.viewDeckController updateData];
 }
 
 @end
