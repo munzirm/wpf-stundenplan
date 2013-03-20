@@ -158,7 +158,7 @@ enum CalendarControllerStatus {
 		
 		for (EKEvent* event in events) {
 			// Add the calendar
-			event.calendar = _calendar;
+			event.calendar = self.calendar;
 			
 			// Save the event
 			NSError *error = nil;
