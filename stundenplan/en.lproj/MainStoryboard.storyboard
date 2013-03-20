@@ -272,7 +272,7 @@
                                     <rect key="frame" x="10" y="1" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="35" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-sU-MYW">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-sU-MYW">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -380,8 +380,8 @@
                                 </view>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="nIZ-li-qOb" firstAttribute="top" secondItem="lnv-O7-BMj" secondAttribute="top" constant="4" id="ARZ-7X-LY7"/>
-                                    <constraint firstItem="nIZ-li-qOb" firstAttribute="top" secondItem="zi5-Z3-afs" secondAttribute="top" type="default" id="Clg-1l-uDL"/>
+                                    <constraint firstItem="zi5-Z3-afs" firstAttribute="centerY" secondItem="nIZ-li-qOb" secondAttribute="centerY" type="default" id="ZBV-PE-rVj"/>
+                                    <constraint firstItem="nIZ-li-qOb" firstAttribute="top" secondItem="lnv-O7-BMj" secondAttribute="top" constant="4" id="aVZ-Gz-yOZ"/>
                                     <constraint firstAttribute="trailing" secondItem="nIZ-li-qOb" secondAttribute="trailing" constant="11" id="kjv-0V-mCe"/>
                                     <constraint firstItem="zi5-Z3-afs" firstAttribute="leading" secondItem="lnv-O7-BMj" secondAttribute="leading" constant="12" id="njL-qV-3wf"/>
                                 </constraints>

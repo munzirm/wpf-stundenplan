@@ -90,37 +90,35 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 20.0;
+    if (section!=2) {
+        return 32.0;
+    } else {
+        return 20.0;
+    }
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	/*static NSString* CellIdentifier = @"MainMenuSectionHeader";
+	static NSString* CellIdentifier = @"MainMenuSectionHeader";
 	MainMenuSectionHeader* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
-	cell.sectionLabel.text = [_sections objectAtIndex:section];
 	cell.sectionConfigurationButton.hidden = section != 0;
 	
-	return cell;*/
-    
-	UIView* sectionView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
-    static UIImage *timetablesectionheaderImage = nil;
-    if (timetablesectionheaderImage == nil) {
-        timetablesectionheaderImage = [UIImage imageNamed:@"timetablesectionheader.png"];
+
+    static UIImage *menusectionheaderbig = nil;
+    if (menusectionheaderbig == nil) {
+        menusectionheaderbig = [UIImage imageNamed:@"menusectionheaderbig.png"];
     }
-    sectionView.backgroundColor = [UIColor colorWithPatternImage:timetablesectionheaderImage];
+    cell.backgroundColor = [UIColor colorWithPatternImage:menusectionheaderbig];
     
 	// the label object
-	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, 320.0, 20.0)];
-	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.textColor = UIColorFromRGB(0x424242);
-	headerLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:11.0];
-    headerLabel.shadowColor = [UIColor whiteColor];
-    headerLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+	cell.sectionLabel.text = [_sections objectAtIndex:section];
+	cell.sectionLabel.backgroundColor = [UIColor clearColor];
+	cell.sectionLabel.textColor = UIColorFromRGB(0x424242);
+	cell.sectionLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:12.0];
+    cell.sectionLabel.shadowColor = [UIColor whiteColor];
+    cell.sectionLabel.shadowOffset = CGSizeMake(1.0, 1.0);
     
-	headerLabel.text = [_sections objectAtIndex:section];
-	[sectionView addSubview:headerLabel];
-    
-	return sectionView;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath
