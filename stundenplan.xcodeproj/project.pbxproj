@@ -54,6 +54,10 @@
 		B4532D7A16F91B3C00826B19 /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4532D7816F91B3C00826B19 /* menu@2x.png */; };
 		B49CE98416F9315600DB253B /* settingsicon.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98216F9315600DB253B /* settingsicon.png */; };
 		B49CE98516F9315600DB253B /* settingsicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98316F9315600DB253B /* settingsicon@2x.png */; };
+		B49CE98816F9371A00DB253B /* addicon.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98616F9371A00DB253B /* addicon.png */; };
+		B49CE98916F9371A00DB253B /* addicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98716F9371A00DB253B /* addicon@2x.png */; };
+		B49CE98C16F937FB00DB253B /* menucell.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98A16F937FB00DB253B /* menucell.png */; };
+		B49CE98D16F937FB00DB253B /* menucell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49CE98B16F937FB00DB253B /* menucell@2x.png */; };
 		B4AFD04516F61D97005395A2 /* ModulEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AFD04416F61D97005395A2 /* ModulEvents.m */; };
 		B4AFD05216F66567005395A2 /* Apache License Version 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04716F66567005395A2 /* Apache License Version 2.txt */; };
 		B4AFD05316F66567005395A2 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4AFD04816F66567005395A2 /* OpenSans-Bold.ttf */; };
@@ -152,6 +156,10 @@
 		B4532D7816F91B3C00826B19 /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		B49CE98216F9315600DB253B /* settingsicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsicon.png; sourceTree = "<group>"; };
 		B49CE98316F9315600DB253B /* settingsicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsicon@2x.png"; sourceTree = "<group>"; };
+		B49CE98616F9371A00DB253B /* addicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addicon.png; sourceTree = "<group>"; };
+		B49CE98716F9371A00DB253B /* addicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addicon@2x.png"; sourceTree = "<group>"; };
+		B49CE98A16F937FB00DB253B /* menucell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menucell.png; sourceTree = "<group>"; };
+		B49CE98B16F937FB00DB253B /* menucell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menucell@2x.png"; sourceTree = "<group>"; };
 		B4AFD04316F61D97005395A2 /* ModulEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulEvents.h; sourceTree = "<group>"; };
 		B4AFD04416F61D97005395A2 /* ModulEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModulEvents.m; sourceTree = "<group>"; };
 		B4AFD04716F66567005395A2 /* Apache License Version 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License Version 2.txt"; sourceTree = "<group>"; };
@@ -379,6 +387,10 @@
 		B4F9A61316F7CC3300FDACB0 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B49CE98A16F937FB00DB253B /* menucell.png */,
+				B49CE98B16F937FB00DB253B /* menucell@2x.png */,
+				B49CE98616F9371A00DB253B /* addicon.png */,
+				B49CE98716F9371A00DB253B /* addicon@2x.png */,
 				B49CE98216F9315600DB253B /* settingsicon.png */,
 				B49CE98316F9315600DB253B /* settingsicon@2x.png */,
 				B4532D7716F91B3C00826B19 /* menu.png */,
@@ -513,6 +525,10 @@
 				B4532D7A16F91B3C00826B19 /* menu@2x.png in Resources */,
 				B49CE98416F9315600DB253B /* settingsicon.png in Resources */,
 				B49CE98516F9315600DB253B /* settingsicon@2x.png in Resources */,
+				B49CE98816F9371A00DB253B /* addicon.png in Resources */,
+				B49CE98916F9371A00DB253B /* addicon@2x.png in Resources */,
+				B49CE98C16F937FB00DB253B /* menucell.png in Resources */,
+				B49CE98D16F937FB00DB253B /* menucell@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
