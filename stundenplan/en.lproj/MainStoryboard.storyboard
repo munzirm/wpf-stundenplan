@@ -272,7 +272,7 @@
                                     <rect key="frame" x="10" y="1" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-sU-MYW">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="35" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-sU-MYW">
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -695,93 +695,6 @@
         <image name="modulcoloroverlay.png" width="20" height="20"/>
         <image name="settingsicon.png" width="50" height="50"/>
     </resources>
-    <classes>
-        <class className="DailyPlan" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DailyPlan.h"/>
-        </class>
-        <class className="IIViewDeckController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IIViewDeckController.h"/>
-        </class>
-        <class className="MainMenuFilterCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuFilterCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="filterLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="filterSelectionIndicator" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="MainMenuModuleCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuModuleCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="moduleColorIndicator" candidateClass="UIView"/>
-                <relationship kind="outlet" name="moduleConfigurationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moduleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainMenuMoreCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuMoreCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="moreLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainMenuSectionHeader" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuSectionHeader.h"/>
-            <relationships>
-                <relationship kind="outlet" name="sectionConfigurationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sectionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MainMenuViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addModules:" candidateClass="UIButton"/>
-                <relationship kind="action" name="configureModule:" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MainViewController" superclassName="IIViewDeckController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-        </class>
-        <class className="ModulConfigurationViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulConfigurationViewController.h"/>
-        </class>
-        <class className="ModulEventDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulEventDetailViewController.h"/>
-        </class>
-        <class className="ModulSearchViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ModulSearchViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-        </class>
-        <class className="TimetableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="eventColor" candidateClass="UIView"/>
-                <relationship kind="outlet" name="eventColorOverlay" candidateClass="UIView"/>
-                <relationship kind="outlet" name="eventDuration" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventLocation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventTime" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="eventType" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TimetableOptionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableOptionCell.h"/>
-            <relationships>
-                <relationship kind="action" name="favorite"/>
-                <relationship kind="action" name="remove"/>
-            </relationships>
-        </class>
-        <class className="TimetableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TimetableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="timeView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

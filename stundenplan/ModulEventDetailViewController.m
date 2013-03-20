@@ -58,7 +58,7 @@
 	if (section == 0) {
 		return 1;
 	} else if (section == 1) {
-		return 2;
+		return 3;
 	} else if (section == 2) {
 		return 1;
 	} else {
@@ -91,6 +91,9 @@
 		} else if (indexPath.row == 1) {
 			cell.textLabel.text = @"Datum";
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@ - %@", _modulEvent.weekday, _modulEvent.startTime, _modulEvent.endTime];
+		} else if (indexPath.row == 2) {
+			cell.textLabel.text = @"Raum";
+			cell.detailTextLabel.text = _modulEvent.modulLocation;
 		}
 	} else if (indexPath.section == 2) {
 		cell.textLabel.text = @"Löschen";
