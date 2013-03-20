@@ -46,6 +46,7 @@ enum CalendarControllerStatus {
 		_calendar = nil;
 		
 		// Only for testing:
+		/*
 		for (EKCalendar* calendar in _store.calendars) {
 			NSLog(@"Found calendar: %@", calendar);
 			if ([calendar.title isEqualToString:@"FH Köln Stundenplan"]) {
@@ -58,6 +59,7 @@ enum CalendarControllerStatus {
 				NSLog(@"REMOVED!");
 			}
 		}
+		*/
 	}
 
 	return self;
@@ -226,19 +228,6 @@ enum CalendarControllerStatus {
  Get the calendar
  */
 - (EKCalendar *)calendar {
-	// DEBUG CLEAR CALENDAR
-	/*NSString *_calendarIdentifier = [[NSUserDefaults standardUserDefaults] valueForKey:calendarIdentifierKey];
-	EKCalendar *calendar = [self.store calendarWithIdentifier:_calendarIdentifier];
-	NSError *error = nil;
-	BOOL result = [self.store removeCalendar:calendar commit:YES error:&error];
-	if (result) {
-		NSLog(@"Deleted calendar from event store.");
-	} else {
-		NSLog(@"Deleting calendar failed: %@.", error);
-	}
-	_calendar = nil;*/
-	// END DEBUG
-
 	if (_calendar) {
 		return _calendar;
 	}
