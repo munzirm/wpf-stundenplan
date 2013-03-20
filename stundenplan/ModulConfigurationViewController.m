@@ -7,62 +7,46 @@
 
 #import "ModulConfigurationViewController.h"
 
-@interface ModulConfigurationViewController ()
-
-@end
-
-@implementation ModulConfigurationViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+@implementation ModulConfigurationViewController {
+	NSArray* _filter;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		_filter = @[ @"Vorlesung", @"Seminar", @"Praktikum", @"Übung" ];
+	}
 	
-	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Schließen"
-																			 style:UIBarButtonItemStylePlain
-																			target:self
-																			action:@selector(close:)];
-}
-
-- (void)close:(id)sender {
-	NSLog(@"close!");
+	return self;
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (section == 0) {
+		return _filter.count;
+	} else if (section == 1) {
+		return 1;
+	} else {
+		return -1;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *cellIdentifier = indexPath.section == 0 ? @"OptionCell" : @"DeleteCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+	if (indexPath.section == 0) {
+		cell.textLabel.text = [_filter objectAtIndex:indexPath.row];
+	} else if (indexPath.section == 1) {
+		cell.textLabel.textColor = [UIColor whiteColor];
+	}
     
     return cell;
 }
