@@ -90,15 +90,15 @@
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	static NSString* CellIdentifier = @"MainMenuSectionHeader";
+	/*static NSString* CellIdentifier = @"MainMenuSectionHeader";
 	MainMenuSectionHeader* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	cell.sectionLabel.text = [_sections objectAtIndex:section];
 	cell.sectionConfigurationButton.hidden = section != 0;
 	
-	return cell;
+	return cell;*/
     
-	/*UIView* sectionView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
+	UIView* sectionView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
     static UIImage *timetablesectionheaderImage = nil;
     if (timetablesectionheaderImage == nil) {
         timetablesectionheaderImage = [UIImage imageNamed:@"timetablesectionheader.png"];
@@ -116,7 +116,7 @@
 	headerLabel.text = [_sections objectAtIndex:section];
 	[sectionView addSubview:headerLabel];
     
-	return sectionView;*/
+	return sectionView;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath
