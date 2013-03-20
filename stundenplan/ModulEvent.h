@@ -11,6 +11,8 @@
 
 @property (nonatomic) BOOL favorite;
 
+@property (nonatomic, copy, readonly) EKEvent *event;
+
 @property (nonatomic, copy, readonly) NSString *modulAcronym;
 @property (nonatomic, copy, readonly) NSString *modulFullName;
 
@@ -24,11 +26,11 @@
 @property (nonatomic, copy, readonly) NSString *startTime;
 @property (nonatomic, copy, readonly) NSString *endTime;
 
+- (NSString *)modulType;
+
 - (id)initWithEvent:(EKEvent *)event;
 
-- (NSString *)modulType;
 - (void)setModulColor:(UIColor *)color;
-- (void) setStatus: (EKEventStatus) status;
-- (void) deleteEvent: (BOOL) todo;
+- (void) deleteEvent: (BOOL) what;
 
 @end

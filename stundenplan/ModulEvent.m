@@ -6,10 +6,11 @@
 //
 
 #import "ModulEvent.h"
+#import "MainViewController.h"
+#import "CalendarController.h"
 #import "Data.h"
 
 @implementation ModulEvent {
-	EKEvent *_event;
 	NSString *_modulType;
 }
 
@@ -57,12 +58,15 @@
 	_modulColor = color;
 }
 
-- (void) setStatus: (EKEventStatus) status {
-	
-}
-
-- (void) deleteEvent: (BOOL) xy {
-	
+- (void) deleteEvent: (BOOL) andFollowing {
+	if (andFollowing == NO) {
+		[[CalendarController sharedInstance] removeEvent:self success:^(void) {
+			/*[((MainViewController*) self.navigationController.parentViewController) updateData];
+			[((MainViewController*) self.navigationController.parentViewController) openTimetableViewController];*/
+		} failure:^(NSError *error) {
+			NSLog(@"No event deleted: %@", error);
+		}];
+	}
 }
 
 @end

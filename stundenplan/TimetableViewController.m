@@ -22,6 +22,7 @@
 	NSArray *_sortedDays;
 
 	UIActionSheet* _actionSheet;
+	ModulEvent *_eventToDelete;
 }
 
 - (void)dealloc {
@@ -225,6 +226,7 @@
 }
 
 - (void)remove:(ModulEvent*) event {
+	_eventToDelete = event;
 	_actionSheet = [[UIActionSheet alloc] initWithTitle:@"Veranstaltung löschen?"
 											   delegate:self
 									  cancelButtonTitle:@"Abbrechen"
@@ -234,7 +236,11 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-
+	if (buttonIndex==0) {
+		[_eventToDelete deleteEvent:NO];
+	} else if (buttonIndex==1) {
+		//[_eventToDelete deleteEvent:YES];
+	}
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

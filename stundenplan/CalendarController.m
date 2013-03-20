@@ -182,6 +182,24 @@ enum CalendarControllerStatus {
 	} failure:failure];
 }
 
+- (void) removeEvent: (ModulEvent*) event
+			  success: (void (^)())success
+			  failure: (void (^)(NSError* error))failure {
+	[self checkGrantsWithSuccess:^{
+
+		NSError *error = nil;
+		BOOL result = [_store removeEvent:event.event span:EKSpanThisEvent commit:YES error:&error];
+		if (!result) {
+			NSLog(@"Event removing error: %@", error);
+		}
+
+		if (success) {
+			success();
+		}
+
+	} failure:failure];
+}
+
 - (void) checkGrantsWithSuccess: (void (^)())success
 						failure: (void (^)(NSError* error))failure {
 	switch (_status) {

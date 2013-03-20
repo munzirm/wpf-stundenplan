@@ -5,7 +5,9 @@
 //  Copyright (c) 2013 Christoph Jerolimov, Dominik Schilling. All rights reserved.
 //
 
+#import "MainViewController.h"
 #import "ModulEventDetailViewController.h"
+#import "CalendarController.h"
 
 @implementation ModulEventDetailViewController {
 	NSArray* _sections;
@@ -84,7 +86,7 @@
 			cell.detailTextLabel.text = _modulEvent.modulLocation;
 		}
 	} else if (indexPath.section == 2) {
-		cell.textLabel.text = @"Löschen";
+		cell.textLabel.text = @"Veranstaltung löschen";
 	}
 	
     return cell;
@@ -94,47 +96,19 @@
 	return YES;
 }
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// Delete cell
+	if (indexPath.section == 2) {
+		[[CalendarController sharedInstance] removeEvent:_modulEvent success:^(void) {
+			[((MainViewController*) self.navigationController.parentViewController) updateData];
+			[((MainViewController*) self.navigationController.parentViewController) openTimetableViewController];
+		} failure:^(NSError *error) {
+			NSLog(@"No event deleted: %@", error);
+		}];
+	}
+
 }
 
 @end

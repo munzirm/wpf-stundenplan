@@ -50,6 +50,13 @@
 			 success: (void (^)())success
 			 failure: (void (^)(NSError* error))failure;
 
+/**
+ Remove a ModulEvent from calendar
+ */
+- (void) removeEvent: (ModulEvent*) event
+			success: (void (^)())success
+			failure: (void (^)(NSError* error))failure;
+
 - (void) reset;
 
 @end
