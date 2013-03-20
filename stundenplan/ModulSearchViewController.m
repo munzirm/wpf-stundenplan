@@ -95,6 +95,8 @@
 	// TODO use Data class here.
     NSDictionary *courses = [Data objectForKey:@"courses"];
     NSArray *rows = [courses allKeys];
+    rows = [rows sortedArrayUsingSelector:@selector(compare:)];
+
 	
 	[ActionSheetStringPicker showPickerWithTitle:@"Studiengang" rows:rows initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
 		_course = selectedValue;
