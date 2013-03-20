@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *eventName;
 @property (weak, nonatomic) IBOutlet UIView *eventColor;
 @property (strong, nonatomic) IBOutlet UIView *eventColorOverlay;
+@property (weak, nonatomic) IBOutlet UIImageView *eventFav;
 
 @property (weak, nonatomic) IBOutlet UILabel *eventType;
 @property (weak, nonatomic) IBOutlet UILabel *eventLocation;

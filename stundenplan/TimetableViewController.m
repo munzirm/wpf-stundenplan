@@ -194,13 +194,12 @@
 	cell.eventColor.backgroundColor = cell.event.modulColor;
 	cell.eventColor.layer.cornerRadius = 8.5;
 
-	/*if (!cell.event.favorite) {
-	 cell.eventColor.layer.cornerRadius = 8.0;
-	 cell.eventColor.backgroundColor = cell.event.modulColor;
-	 cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? [UIColor lightGrayColor] : nil;
+    // Fav
+	if (!cell.event.favorite) {
+        cell.eventFav.hidden = YES;
 	 } else {
-	 cell.contentView.backgroundColor = cell.event.modulColor;
-	 }*/
+         cell.eventFav.hidden = NO;
+	 }
 
 	return cell;
 }
